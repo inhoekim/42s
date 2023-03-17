@@ -12,6 +12,16 @@
 
 #include "libft.h"
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	idx;
+
+	idx = 0;
+	while (s[idx] != '\0')
+		idx++;
+	return (idx);
+}
+
 static size_t	get_left_idx(char const *s1, char const *set)
 {
 	size_t	left_idx;
@@ -72,7 +82,7 @@ long long left_idx, long long right_idx)
 	long long	idx;
 
 	idx = 0;
-	while (left_idx + idx < right_idx)
+	while (left_idx + idx < right_idx + 1)
 	{
 		new_str[idx] = s1[left_idx + idx];
 		idx++;
@@ -82,11 +92,11 @@ long long left_idx, long long right_idx)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	long long	left_idx;
-	long long	right_idx;
-	char		*new_str;
-	long long	str_size;
-
+	size_t	left_idx;
+	size_t	right_idx;
+	size_t	str_size;
+	char	*new_str;
+	
 	if (set == NULL || ft_strlen(set) == 0)
 		return ((char *)s1);
 	left_idx = get_left_idx(s1, set);
