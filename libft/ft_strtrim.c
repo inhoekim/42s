@@ -12,16 +12,6 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	idx;
-
-	idx = 0;
-	while (s[idx] != '\0')
-		idx++;
-	return (idx);
-}
-
 static size_t	get_left_idx(char const *s1, char const *set)
 {
 	size_t	left_idx;
