@@ -17,6 +17,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	idx;
 	int		diff_flag;
 
+	(void) diff_flag;
 	diff_flag = 0;
 	idx = 0;
 	if (n == 0)

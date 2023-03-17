@@ -46,6 +46,7 @@ static size_t	get_right_idx(char const *s1, char const *set)
 	long long	set_len;
 
 	right_idx = (long long)ft_strlen(s1) - 1;
+	set_len = (long long)ft_strlen(set);
 	while (right_idx > 0 && s1[right_idx])
 	{
 		set_idx = 0;
@@ -87,7 +88,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	long long	str_size;
 
 	if (set == NULL || ft_strlen(set) == 0)
-		return (s1);
+		return ((char *)s1);
 	left_idx = get_left_idx(s1, set);
 	right_idx = get_right_idx(s1, set);
 	if (left_idx > right_idx)
