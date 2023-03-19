@@ -15,7 +15,11 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*ret;
+	size_t			max;
 
+	max = -1;
+	if (size != 0 && count > max / size)
+		return ((void *)0);
 	ret = (unsigned char *)malloc(count * size);
 	if (ret == 0)
 		return (0);

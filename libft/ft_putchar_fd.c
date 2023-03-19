@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 06:26:51 by inhkim            #+#    #+#             */
-/*   Updated: 2023/03/14 06:47:43 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/19 03:05:31 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/19 03:05:31 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putchar_fd(char c, int fd)
 {
-	size_t	idx;
-
-	idx = 0;
-	if (n == 0)
-		return (0);
-	while (s1[idx] && s2[idx] && (idx < n))
-	{
-		if (s1[idx] != s2[idx])
-			break ;
-		idx++;
-	}
-	if (idx == n || (unsigned char)s1[idx] == (unsigned char)s2[idx])
-		return (0);
-	if ((unsigned char)s1[idx] > (unsigned char)s2[idx])
-		return (1);
-	return (-1);
+	write(fd, &c, 1);
 }

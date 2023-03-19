@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	del_ws(const char **str)
+static void	del_ws(const char **str)
 {
 	while (**str)
 	{
@@ -21,7 +21,7 @@ void	del_ws(const char **str)
 	}
 }
 
-int	confirm_sign(const char **str)
+static int	confirm_sign(const char **str)
 {
 	int	sign;
 

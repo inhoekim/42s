@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 06:26:51 by inhkim            #+#    #+#             */
-/*   Updated: 2023/03/14 06:47:43 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/19 05:41:58 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/19 05:42:00 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	idx;
+	t_list	*head_node;
 
-	idx = 0;
-	if (n == 0)
-		return (0);
-	while (s1[idx] && s2[idx] && (idx < n))
+	head_node = *lst;
+	if (*lst == FT_NULL)
+		*lst = new;
+	else
 	{
-		if (s1[idx] != s2[idx])
-			break ;
-		idx++;
+		while (FT_TRUE)
+		{
+			if ((*lst)->next == FT_NULL)
+			{
+				(*lst)->next = new;
+				*lst = head_node;
+				return ;
+			}
+			*lst = (*lst)->next;
+		}	
 	}
-	if (idx == n || (unsigned char)s1[idx] == (unsigned char)s2[idx])
-		return (0);
-	if ((unsigned char)s1[idx] > (unsigned char)s2[idx])
-		return (1);
-	return (-1);
 }
