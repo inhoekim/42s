@@ -6,9 +6,12 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 10:44:37 by inhkim            #+#    #+#             */
-/*   Updated: 2023/03/14 16:32:20 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/03/21 03:48:50 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+#include "limitsft.h"
 
 static void	del_ws(const char **str)
 {
@@ -36,26 +39,45 @@ static int	confirm_sign(const char **str)
 	return (sign);
 }
 
+static long	ft_strtol(const char *str, int sign)
+{
+	long	num;
+	long	front;
+	long	back;
+	int		idx;
+
+	num = 0;
+	idx = -1;
+	front = (long)FT_LONG_MAX / 10;
+	back = (long)FT_LONG_MAX % 10;
+	while (str[++idx])
+	{
+		if (ft_isdigit(str[idx]))
+		{
+			if (num > front || (num == front && str[idx] >= back + '0'))
+			{
+				if (sign == -1 && str[idx] >= '8')
+					return (((long)FT_LONG_MAX * -1) - 1);
+				return ((long)FT_LONG_MAX);
+			}
+			num = (num * 10) + (str[idx] - '0');
+		}
+		else
+			break ;
+	}
+	return (num);
+}
+
 int	ft_atoi(const char *str)
 {
-	long long	num;
-	int			idx;
-	int			sign;
+	long	num;
+	int		idx;
+	int		sign;
 
 	num = 0;
 	idx = 0;
 	del_ws(&str);
 	sign = confirm_sign(&str);
-	while (str[idx])
-	{
-		if ('0' <= str[idx] && str[idx] <= '9')
-		{
-			num *= 10;
-			num += str[idx] - '0';
-			idx++;
-		}
-		else
-			break ;
-	}
+	num = ft_strtol(str, sign);
 	return ((int)(sign * num));
 }
