@@ -38,7 +38,7 @@ static t_format_lst	*make_format_lst(const char *s)
 	return (lst_head);
 }
 
-static long long	start_print(const char *s, va_list args, t_format_lst *lst)
+static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 {
 	long long	print_cnt;
 
@@ -47,13 +47,13 @@ static long long	start_print(const char *s, va_list args, t_format_lst *lst)
 	{
 		if (*s == '%')
 		{
-			print_cnt += ft_print_format(lst->current, &args);
+			print_cnt += ft_print_format(lst->current, args);
 			lst = lst->next;
 			continue;
 		}
-		ft_putchar(*s);
-		print_cnt++;
+		print_cnt += ft_putchar(*s);
 	}
+	return (print_cnt);
 }
 
 int	ft_printf(const char *s, ...)
@@ -71,7 +71,7 @@ int	ft_printf(const char *s, ...)
 		return (-1);
 	}
 	va_start(args, s);
-	print_cnt += start_print(s, args, format_lst);
+	print_cnt += start_print(s, &args, format_lst);
 	va_end(args);
 	ft_lstclear(format_lst);
 	return (print_cnt);

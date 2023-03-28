@@ -18,7 +18,6 @@
 	width: field_width
 	precision: .
 	conversion: [cspdiuxX%]
-	# + -  ' ' 0 field_width . [cspdiuxX%]   << 8개
 */
 static unsigned char	g_conversions[256];
 static unsigned char	g_flags[256];
@@ -59,9 +58,9 @@ static int	make_format(const char ch, t_format *format)
 {
 	if (ft_isdigit(ch))
 	{
-		if (ch == '0' && (!format->width || (format->prec && !format->prec_width)))
+		if (ch == '0' && !format->width && !format->prec)
 			format->flag_ascii['0']++;
-		if (!format->prec)
+		if (!format->prec) 
 			format->width = (format->width * 10) + (ch - '0');
 		else
 			format->prec_width = (format->prec_width * 10) + (ch - '0');
@@ -75,7 +74,7 @@ static int	make_format(const char ch, t_format *format)
 	}
 	else
 	{
-		if (!g_flags[ch] || (g_flags[ch] && format->prec))
+		if (!g_flags[ch] || (g_flags[ch] && (format->width || format->prec)))
 			return (0);
 		format->flag_ascii[ch]++;
 	}
@@ -103,4 +102,3 @@ t_format	*ft_init_format(const char **s)
 	}
 	return (FT_NULL);
 }
-
