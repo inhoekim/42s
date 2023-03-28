@@ -70,5 +70,7 @@ int main()
 	printf("%u\n", -2);
 	printf("%lld\n", (unsigned long long)(-2));
 	printf("%3.0d\n", 5);
-	printf("%+20d", 10, 4);
+	printf("%+20d\n", 10, 4);
+	printf("%0+10d\n", 10);
+	printf("%0-10d\n", 10);
 }

@@ -10,20 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTFT.H
-# define PRINTFT.H
+#ifndef PRINTFT_H
+# define PRINTFT_H
 # define FT_NULL 0
 # define FT_FALSE 0
 # define FT_TRUE 1
 # include <stddef.h>
 
 typedef struct	s_format{
-	unsigned char	format_flag;
-	unsigned char	conversion;
-	long long		precision_exist;
+	unsigned char	flag_ascii[256];
+	char			conversion;
 	long long		width;
-	long long		precision_width;
+	long long		prec_width;
 	long long		print_cnt;
+	int				prec;
 }				t_format;
-void	*ft_memset(void *b, int c, size_t len);
+typedef struct	s_format_lst{
+	struct s_format_lst	*next;
+	t_format			*current;
+}				t_format_lst;
+void		*ft_memset(void *, int, size_t);
+int			ft_isdigit(int);
+t_format	*ft_init_format(const char **);
 #endif

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include "printft.h"
-/*	== %.format ==
+#include <stdlib.h>
+#include "../includes/printft.h"
+/*	== format ==
 	%[flags][width][precision]conversion
 	flags: # + - ' ' 0
 	width: field_width
@@ -20,33 +20,12 @@
 	conversion: [cspdiuxX%]
 	# + -  ' ' 0 field_width . [cspdiuxX%]   << 8개
 */
-static unsigned char	g_flags[256];
 static unsigned char	g_conversions[256];
+static unsigned char	g_flags[256];
 
-t_format	*init_format(const char **s, va_list *args)
+static void	assign_gvalue()
 {
-	t_format *format;
-
-	format = create_format('\0', 0, 0, 0);
-	if (format == FT_NULL)
-		return (FT_NULL);
-	while (**s != '\0')
-	{
-		if (g_conversions[(unsigned char)**s])
-			return (format);
-	}
-	return (NULL);
-}
-
-static void	assign_gvlaue()
-{
-	ft_memset(g_flags, 0, 256);
 	ft_memset(g_conversions, 0, 256);
-	g_flags['+']++;
-	g_flags['-']++;
-	g_flags[' ']++;
-	g_flags['0']++;
-	g_flags['#']++;
 	g_conversions['c']++;
 	g_conversions['s']++;
 	g_conversions['p']++;
@@ -56,22 +35,72 @@ static void	assign_gvlaue()
 	g_conversions['x']++;
 	g_conversions['X']++;
 	g_conversions['%']++;
+	g_flags['#']++;
+	g_flags['+']++;
+	g_flags['-']++;
+	g_flags[' ']++;
 }
 
-static t_format	*create_format(unsigned char format_flag, int precision_exist, \
-int width, int precision_width)
+static t_format	*create_format(char conversion, long long width, long long prec_width, int prec)
 {
 	t_format *format = (t_format *)malloc(sizeof(t_format));
 	if (format == FT_NULL)
 		return (FT_NULL);
-	format->format_flag = format_flag;
-	format->precision_exist = precision_exist;
+	ft_memset(format->flag_ascii, 0, 256);
+	format->conversion = conversion;
 	format->width = width;
-	format->precision_width = precision_width;
+	format->prec_width = prec_width;
+	format->prec = prec;
+	format->print_cnt = 0;
 	return (format);
 }
 
-int	print_format()
+static int	make_format(const char ch, t_format *format)
 {
-
+	if (ft_isdigit(ch))
+	{
+		if (ch == '0' && (!format->width || (format->prec && !format->prec_width)))
+			format->flag_ascii['0']++;
+		if (!format->prec)
+			format->width = (format->width * 10) + (ch - '0');
+		else
+			format->prec_width = (format->prec_width * 10) + (ch - '0');
+	}
+	else if (ch == '.')
+	{
+		if (format->prec != 0)
+			return (0);
+		else
+			format->prec = 1;
+	}
+	else
+	{
+		if (!g_flags[ch] || (g_flags[ch] && format->prec))
+			return (0);
+		format->flag_ascii[ch]++;
+	}
+	return (1);
 }
+
+t_format	*ft_init_format(const char **s)
+{
+	t_format *format;
+
+	assign_gvalue();
+	format = create_format(0, 0, 0, 0);
+	if (format == FT_NULL)
+		return (FT_NULL);
+	(*s)++;
+	while (**s != '\0')
+	{
+		if (g_conversions[(unsigned char)**s])
+		{
+			format->conversion = **s;
+			return (format);
+		}
+		if (!make_format(**s, format))
+			break ;
+	}
+	return (FT_NULL);
+}
+
