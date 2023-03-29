@@ -24,5 +24,7 @@ long long	ft_print_format(t_format *format, va_list *args)
 		print_cnt += ft_print_str(format, (char *)va_arg(*args, char *));
 	if (format->conversion == 'p')
 		print_cnt += ft_print_addr(format, (void *)va_arg(*args, void *));
+	if (format->conversion == 'd' || format->conversion == 'i')
+		print_cnt += ft_print_int(format, (long long)va_arg(*args, long long));
 	return (print_cnt);
 }

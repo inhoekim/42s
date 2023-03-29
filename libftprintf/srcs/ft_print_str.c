@@ -13,21 +13,6 @@
 #include "../includes/printft.h"
 #include <unistd.h>
 
-static long long	put_str(char *str, long long len)
-{
-	long long	cnt;
-	int			idx;
-
-	cnt = 0;
-	idx = 0;
-	while (str[idx] && len > idx)
-	{
-		cnt += write(1, &str[idx], 1);
-		idx++;
-	}
-	return (cnt);
-}
-
 long long	ft_print_str(t_format *format, char *str)
 {
 	long long	cnt;
@@ -41,13 +26,13 @@ long long	ft_print_str(t_format *format, char *str)
 		str_len = format->prec_width;
 	if (format->flag_ascii['-'])
 	{
-		cnt += put_str(str, str_len);
+		cnt += ft_putstr_fd(str, str_len, 1);
 		cnt += ft_print_width(format->width - str_len);
 	}
 	else
 	{
 		cnt += ft_print_width(format->width - str_len);
-		cnt += put_str(str, str_len);
+		cnt += ft_putstr_fd(str, str_len, 1);
 	}
 	return (cnt);
 }

@@ -15,6 +15,7 @@
 # define FT_NULL 0
 # define FT_FALSE 0
 # define FT_TRUE 1
+# define FT_INT_MAX 2147483647
 # include <stddef.h>
 
 typedef struct s_format
@@ -42,7 +43,9 @@ long long		ft_print_width(int width);
 long long		ft_print_str(t_format *format, char *str);
 long long		ft_print_char(t_format *format, char ch);
 long long		ft_print_addr(t_format *format, void *p);
+long long		ft_print_int(t_format *format, long long num);
 int				ft_printf(const char *s, ...);
-int				ft_putchar_fd(char c,int fd);
+int				ft_putchar_fd(char c, int fd);
+long long		ft_putstr_fd(char *str, long long len, int fd);
 t_format_lst	*ft_lstnew(void *content);
 #endif
