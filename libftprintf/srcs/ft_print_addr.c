@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include "../includes/printft.h"
 
-static char	*reverse_str(char *addr_str, size_t right_idx)
+static void	*reverse_str(char *addr_str, size_t right_idx)
 {
 	size_t	left_idx;
 	int		temp_num;
@@ -27,7 +27,6 @@ static char	*reverse_str(char *addr_str, size_t right_idx)
 		left_idx++;
 		right_idx--;
 	}
-	return (addr_str);
 }
 
 static char	*make_addr_str(size_t addr)
@@ -46,7 +45,7 @@ static char	*make_addr_str(size_t addr)
 	}
 	addr_str[idx] = 'x';
 	addr_str[++idx] = '0';
-	addr_str = reverse_str(addr_str, idx);
+	reverse_str(addr_str, idx);
 	return (addr_str);
 }
 

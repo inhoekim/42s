@@ -35,13 +35,15 @@ static int	check_conversion(t_format *format)
 	if ((format->conversion == 'x' || format->conversion == 'X') \
 	&& (format->flag_ascii['+'] || format->flag_ascii[' ']))
 		return (0);
+	return (1);
 }
 
 int	ft_check_formats(t_format_lst *lst)
 {
 	t_format	*format;
 
-	while (lst->current)
+	lst = lst->next;
+	while (lst)
 	{
 		format = lst->current;
 		if ((format->flag_ascii['+'] && format->flag_ascii[' ']) \
@@ -51,6 +53,7 @@ int	ft_check_formats(t_format_lst *lst)
 			return (0);
 		if (!check_conversion(format))
 			return (0);
+		lst = lst->next;
 	}
 	return (1);
 }
