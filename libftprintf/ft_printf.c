@@ -78,6 +78,7 @@ int	ft_printf(const char *s, ...)
 		return (-1);
 	}
 	va_start(args, s);
+	print_cnt = 0;
 	print_cnt += start_print(s, &args, format_lst);
 	va_end(args);
 	//ft_lstclear(format_lst);

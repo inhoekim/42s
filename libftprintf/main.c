@@ -4,7 +4,7 @@
 
 int main()
 {
-	ft_printf("%-300c", 'a');
+	printf("%d\n",ft_printf("%p\n","abcd"));
 	/*
 	printf("%#10x\n", 10);
 	printf("%10x\n", 10);
