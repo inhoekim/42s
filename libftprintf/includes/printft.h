@@ -17,19 +17,21 @@
 # define FT_TRUE 1
 # include <stddef.h>
 
-typedef struct	s_format{
+typedef struct s_format
+{
 	unsigned char	flag_ascii[256];
 	char			conversion;
 	long long		width;
 	long long		prec_width;
 	long long		print_cnt;
 	int				prec;
-}				t_format;
-typedef struct	s_format_lst{
+}t_format;
+typedef struct s_format_lst
+{
 	struct s_format_lst	*next;
 	t_format			*current;
-}				t_format_lst;
-void		*ft_memset(void *, int, size_t);
-int			ft_isdigit(int);
-t_format	*ft_init_format(const char **);
+}t_format_lst;
+void		*ft_memset(void *b, int c, size_t len);
+int			ft_isdigit(int c);
+t_format	*ft_init_format(const char **s);
 #endif

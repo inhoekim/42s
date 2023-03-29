@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "../includes/printft.h"
-/*	== format ==
+/*	=== format ===
 	%[flags][width][precision]conversion
 	flags: # + - ' ' 0
 	width: field_width
@@ -22,7 +22,7 @@
 static unsigned char	g_conversions[256];
 static unsigned char	g_flags[256];
 
-static void	assign_gvalue()
+static void	assign_gvalue(void)
 {
 	ft_memset(g_conversions, 0, 256);
 	g_conversions['c']++;
@@ -40,9 +40,12 @@ static void	assign_gvalue()
 	g_flags[' ']++;
 }
 
-static t_format	*create_format(char conversion, long long width, long long prec_width, int prec)
+static t_format	*create_format(char conversion, \
+long long width, long long prec_width, int prec)
 {
-	t_format *format = (t_format *)malloc(sizeof(t_format));
+	t_format	*format;
+
+	format = (t_format *)malloc(sizeof(t_format));
 	if (format == FT_NULL)
 		return (FT_NULL);
 	ft_memset(format->flag_ascii, 0, 256);
@@ -60,7 +63,7 @@ static int	make_format(const char ch, t_format *format)
 	{
 		if (ch == '0' && !format->width && !format->prec)
 			format->flag_ascii['0']++;
-		if (!format->prec) 
+		if (!format->prec)
 			format->width = (format->width * 10) + (ch - '0');
 		else
 			format->prec_width = (format->prec_width * 10) + (ch - '0');
@@ -83,7 +86,7 @@ static int	make_format(const char ch, t_format *format)
 
 t_format	*ft_init_format(const char **s)
 {
-	t_format *format;
+	t_format	*format;
 
 	assign_gvalue();
 	format = create_format(0, 0, 0, 0);

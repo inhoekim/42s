@@ -14,31 +14,37 @@
 
 static int	check_conversion(t_format *format)
 {
-	if (format->conversion == 'c' && (format->flag_ascii['+'] || format->flag_ascii[' ']\
-	|| format->flag_ascii['#'] || format->flag_ascii['0'] || (format->prec && format->prec_width)))
+	if (format->conversion == 'c' && (format->flag_ascii['+'] || \
+	format->flag_ascii[' '] || format->flag_ascii['#'] || \
+	format->flag_ascii['0'] || (format->prec && format->prec_width)))
 		return (0);
-	if (format->conversion == 's' && (format->flag_ascii['+'] || format->flag_ascii[' ']\
-	|| format->flag_ascii['#'] || format->flag_ascii['0']))
+	if (format->conversion == 's' && (format->flag_ascii['+'] || \
+	format->flag_ascii[' '] || format->flag_ascii['#'] \
+	|| format->flag_ascii['0']))
 		return (0);
-	if (format->conversion == 'p' && (format->flag_ascii['+'] || format->flag_ascii[' ']\
-	|| format->flag_ascii['#'] || format->flag_ascii['0'] || (format->prec && format->prec_width)))
+	if (format->conversion == 'p' && (format->flag_ascii['+'] || \
+	format->flag_ascii[' '] || format->flag_ascii['#'] || \
+	format->flag_ascii['0'] || (format->prec && format->prec_width)))
 		return (0);
-	if ((format->conversion == 'd' || format->conversion == 'i') && format->flag_ascii['#'])
+	if ((format->conversion == 'd' || format->conversion == 'i') \
+	&& format->flag_ascii['#'])
 		return (0);
-	if (format->conversion == 'u' && (format->flag_ascii['+'] || format->flag_ascii[' '] || format->flag_ascii['#']))
+	if (format->conversion == 'u' && (format->flag_ascii['+'] \
+	|| format->flag_ascii[' '] || format->flag_ascii['#']))
 		return (0);
-	if ((format->conversion == 'x' || format->conversion == 'X') && (format->flag_ascii['+'] || format->flag_ascii[' ']))
+	if ((format->conversion == 'x' || format->conversion == 'X') \
+	&& (format->flag_ascii['+'] || format->flag_ascii[' ']))
 		return (0);
 }
 
 int	ft_check_formats(t_format_lst *lst)
 {
-	t_format *format;
+	t_format	*format;
 
 	while (lst->current)
 	{
 		format = lst->current;
-		if ((format->flag_ascii['+'] && format->flag_ascii[' '])\
+		if ((format->flag_ascii['+'] && format->flag_ascii[' ']) \
 			|| (format->flag_ascii['-'] && format->flag_ascii['0']))
 			return (0);
 		if (format->width >= 2147483647 || format->prec_width >= 2147483647)

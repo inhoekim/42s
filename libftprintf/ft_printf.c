@@ -18,6 +18,7 @@ static t_format_lst	*make_format_lst(const char *s)
 {
 	t_format_lst	*format_lst;
 	t_format_lst	*lst_head;
+
 	lst_head = format_lst;
 	while (*s != '\0')
 	{
@@ -49,7 +50,7 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 		{
 			print_cnt += ft_print_format(lst->current, args);
 			lst = lst->next;
-			continue;
+			continue ;
 		}
 		print_cnt += ft_putchar(*s);
 	}
