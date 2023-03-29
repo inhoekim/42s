@@ -61,13 +61,13 @@ long long	ft_print_addr(t_format format, void *p)
 	str_len = ft_strlen(addr_str);
 	if (format.flag_ascii['-'])
 	{
-		cnt += putstr(str, str_len);
+		cnt += putstr(addr_str, str_len);
 		cnt += ft_print_width(format.width - str_len);
 	}
 	else
 	{
 		cnt += ft_print_width(format.width - str_len);
-		cnt += putstr(str, str_len);
+		cnt += putstr(addr_str, str_len);
 	}
 	return (cnt);
 }
