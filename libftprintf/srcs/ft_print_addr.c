@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/printft.h"
 #include <unistd.h>
+#include "./includes/printft.h"
 
 static char	*reverse_str(char *addr_str, size_t right_idx)
 {
@@ -36,7 +36,7 @@ static char	*make_addr_str(size_t addr)
 	char		addr_str[18];
 	size_t		idx;
 
-	addr_str[0] = '\0'
+	addr_str[0] = '\0';
 	idx = 1;
 	while (addr)
 	{
