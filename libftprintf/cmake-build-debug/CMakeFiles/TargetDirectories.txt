@@ -1,0 +1,3 @@
+D:/42s/libftprintf/cmake-build-debug/CMakeFiles/libftprintf.dir
+D:/42s/libftprintf/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/42s/libftprintf/cmake-build-debug/CMakeFiles/rebuild_cache.dir

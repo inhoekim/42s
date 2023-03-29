@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 
-long long	ft_print_char(t_format format, char ch)
+long long	ft_print_char(t_format *format, char ch)
 {
-	if (format.flag_ascii['-'])
+	if (format->flag_ascii['-'])
 	{
 		write(1, &ch, 1);
-		ft_print_width(format.width - 1);
+		ft_print_width(format->width - 1);
 	}
 	else
 	{
-		ft_print_width(format.width - 1);
+		ft_print_width(format->width - 1);
 		write(1, &ch, 1);
 	}
-	if (!format.width)
+	if (!format->width)
 		return (1);
-	return (format.width);
+	return (format->width);
 }

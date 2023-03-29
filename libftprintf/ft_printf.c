@@ -28,7 +28,7 @@ static t_format_lst	*make_format_lst(const char *s)
 			format_lst->next = (t_format_lst *)malloc(sizeof(t_format_lst));
 			if (format_lst->current == FT_NULL || format_lst->next == FT_NULL)
 			{
-				ft_lstclear(lst_head);
+				//ft_lstclear(lst_head);
 				return (FT_NULL);
 			}
 			format_lst = format_lst->next;
@@ -52,7 +52,7 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 			lst = lst->next;
 			continue ;
 		}
-		print_cnt += ft_putchar(*s);
+		print_cnt += ft_putchar_fd(*s, 1);
 	}
 	return (print_cnt);
 }
@@ -68,12 +68,12 @@ int	ft_printf(const char *s, ...)
 	format_lst = make_format_lst(s);
 	if (format_lst == FT_NULL || ft_check_formats(format_lst))
 	{
-		ft_lstclear(format_lst);
+		//ft_lstclear(format_lst);
 		return (-1);
 	}
 	va_start(args, s);
 	print_cnt += start_print(s, &args, format_lst);
 	va_end(args);
-	ft_lstclear(format_lst);
+	//ft_lstclear(format_lst);
 	return (print_cnt);
 }

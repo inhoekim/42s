@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "./includes/printft.h"
 
 int main()
 {
+	ft_printf("%30.3c", 'a');
+	/*
 	printf("%#10x\n", 10);
 	printf("%10x\n", 10);
 	printf("%10o\n", 10);
@@ -29,7 +32,7 @@ int main()
 	printf("%+10d\n", 3);
 	printf("%+10d\n\n", -3);
 	//left adjust
-	printf("%-10d\n", 3);		
+	printf("%-10d\n", 3);
 	printf("%-10d\n", -3);
 
 	int width, digit;
@@ -73,4 +76,5 @@ int main()
 	printf("%+20d\n", 10, 4);
 	printf("%0+10d\n", 10);
 	printf("%0-10d\n", 10);
+	*/
 }

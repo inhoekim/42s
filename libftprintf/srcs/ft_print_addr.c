@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 
 static char	*reverse_str(char *addr_str, size_t right_idx)
 {
@@ -32,7 +32,7 @@ static char	*reverse_str(char *addr_str, size_t right_idx)
 
 static char	*make_addr_str(size_t addr)
 {
-	const char	hex_set = "0123456789abcdef";
+	const char	*hex_set = "0123456789abcdef";
 	char		addr_str[18];
 	size_t		idx;
 
@@ -50,7 +50,22 @@ static char	*make_addr_str(size_t addr)
 	return (addr_str);
 }
 
-long long	ft_print_addr(t_format format, void *p)
+static long long	put_str(char *str, long long len)
+{
+	long long	cnt;
+	int			idx;
+
+	cnt = 0;
+	idx = 0;
+	while (str[idx] && len > idx)
+	{
+		cnt += write(1, &str[idx], 1);
+		idx++;
+	}
+	return (cnt);
+}
+
+long long	ft_print_addr(t_format *format, void *p)
 {
 	long long	cnt;
 	long long	str_len;
@@ -59,15 +74,15 @@ long long	ft_print_addr(t_format format, void *p)
 	cnt = 0;
 	addr_str = make_addr_str((size_t)p);
 	str_len = ft_strlen(addr_str);
-	if (format.flag_ascii['-'])
+	if (format->flag_ascii['-'])
 	{
-		cnt += putstr(addr_str, str_len);
-		cnt += ft_print_width(format.width - str_len);
+		cnt += put_str(addr_str, str_len);
+		cnt += ft_print_width(format->width - str_len);
 	}
 	else
 	{
-		cnt += ft_print_width(format.width - str_len);
-		cnt += putstr(addr_str, str_len);
+		cnt += ft_print_width(format->width - str_len);
+		cnt += put_str(addr_str, str_len);
 	}
 	return (cnt);
 }

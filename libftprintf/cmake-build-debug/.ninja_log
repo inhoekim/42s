@@ -1,0 +1,6 @@
+# ninja log v5
+0	345	7018167951739900	CMakeFiles/libftprintf.dir/main.c.obj	78618a2cb731cd97
+346	853	7018167957656513	libftprintf.exe	ac1b21d9294987c1
+2	108	7018168371075937	CMakeFiles/libftprintf.dir/main.c.obj	78618a2cb731cd97
+3	94	7018182285066126	CMakeFiles/libftprintf.dir/main.c.obj	78618a2cb731cd97
+8	99	7018182285106107	CMakeFiles/libftprintf.dir/ft_printf.c.obj	56801b0b8115cc9

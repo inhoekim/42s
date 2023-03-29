@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 
 static int	check_conversion(t_format *format)
 {

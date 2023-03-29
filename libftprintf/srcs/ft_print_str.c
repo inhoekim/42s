@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 #include <unistd.h>
 
-static long long	putstr(char *str, long long len)
+static long long	put_str(char *str, long long len)
 {
 	long long	cnt;
 	int			idx;
@@ -28,7 +28,7 @@ static long long	putstr(char *str, long long len)
 	return (cnt);
 }
 
-long long	ft_print_str(t_format format, char *str)
+long long	ft_print_str(t_format *format, char *str)
 {
 	long long	cnt;
 	long long	str_len;
@@ -37,17 +37,17 @@ long long	ft_print_str(t_format format, char *str)
 	if (str == FT_NULL)
 		str = "(null)";
 	str_len = ft_strlen(str);
-	if (format.prec)
-		str_len = format.prec_width;
-	if (format.flag_ascii['-'])
+	if (format->prec)
+		str_len = format->prec_width;
+	if (format->flag_ascii['-'])
 	{
-		cnt += putstr(str, str_len);
-		cnt += ft_print_width(format.width - str_len);
+		cnt += put_str(str, str_len);
+		cnt += ft_print_width(format->width - str_len);
 	}
 	else
 	{
-		cnt += ft_print_width(format.width - str_len);
-		cnt += putstr(str, str_len);
+		cnt += ft_print_width(format->width - str_len);
+		cnt += put_str(str, str_len);
 	}
 	return (cnt);
 }

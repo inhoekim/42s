@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 
-long long	ft_print_format(t_format format, va_list *args)
+long long	ft_print_format(t_format *format, va_list *args)
 {
 	long long	print_cnt;
 

@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+
 long long	ft_print_width(int width)
 {
 	long long	cnt;
