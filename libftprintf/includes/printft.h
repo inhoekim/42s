@@ -40,6 +40,7 @@ int				ft_isdigit(int c);
 void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
 long long		ft_print_width(int width);
+long long		ft_print_zero(int width);
 long long		ft_print_str(t_format *format, char *str);
 long long		ft_print_char(t_format *format, char ch);
 long long		ft_print_addr(t_format *format, void *p);

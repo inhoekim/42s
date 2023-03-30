@@ -1,5 +1,6 @@
 
 #include "../includes/printft.h"
+#include <unistd.h>
 
 static int	get_int_len(long long n)
 {
@@ -44,10 +45,32 @@ static void	*int_to_alpha(long long num, char *num_str)
 	recur_set_str(num_str, num, 0, num_len + is_minus - 1);
 }
 
+static long long	proc_print_int_flag(t_format *fm, \
+char *str, long long len, long long actual_len)
+{
+	long long	cnt;
+
+	cnt = 0;
+	if (fm->flag_ascii['-'])
+	{
+		cnt += ft_print_zero(fm->prec_width - len);
+		cnt += ft_putstr_fd(str, len, 1);
+		cnt += ft_print_width(fm->width - actual_len);
+	}
+	else
+	{
+		cnt += ft_print_width(fm->width - actual_len);
+		cnt += ft_print_zero(fm->prec_width - len);
+		cnt += ft_putstr_fd(str, len, 1);
+	}
+	return (cnt);
+}
+
 long long	ft_print_int(t_format *format, long long num)
 {
 	long long	cnt;
 	long long	str_len;
+	long long	actual_len;
 	char 		num_str[11];
 
 	if (num < -FT_INT_MAX - 1 || num > FT_INT_MAX)
@@ -55,17 +78,14 @@ long long	ft_print_int(t_format *format, long long num)
 	cnt = 0;
 	int_to_alpha(num, num_str);
 	str_len = ft_strlen(num_str);
-	if (format->prec)
-		str_len = format->prec_width;
-	if (format->flag_ascii['-'])
+	if (format->flag_ascii[' '])
 	{
-		cnt += ft_putstr_fd(num_str, str_len, 1);
-		cnt += ft_print_width(format->width - str_len);
+		cnt += write(1, " ", 1);
+		(format->width)--;
 	}
-	else
-	{
-		cnt += ft_print_width(format->width - str_len);
-		cnt += ft_putstr_fd(num_str, str_len, 1);
-	}
+	actual_len = str_len;
+	if (format->prec_width > str_len)
+		actual_len = format->prec_width;
+	cnt += proc_print_int_flag(format, num_str, str_len, actual_len);
 	return (cnt);
 }
