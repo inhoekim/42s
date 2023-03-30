@@ -35,7 +35,7 @@ typedef struct s_format_lst
 }t_format_lst;
 int				ft_check_formats(t_format_lst *lst);
 t_format		*ft_init_format(const char **s);
-long long		ft_print_format(t_format *format, va_list *args);
+long long		ft_print_format(t_format *format, va_list args);
 int				ft_isdigit(int c);
 void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
@@ -46,7 +46,9 @@ long long		ft_print_str(t_format *format, char *str);
 long long		ft_print_char(t_format *format, char ch);
 long long		ft_print_addr(t_format *format, void *p);
 long long		ft_print_int(t_format *format, long long num);
+long long		ft_print_percent(void);
 long long		ft_print_hex_lower(t_format *format, unsigned int num);
+long long		ft_print_hex_upper(t_format *format, unsigned int num);
 int				ft_printf(const char *s, ...);
 int				ft_putchar_fd(char c, int fd);
 long long		ft_putstr_fd(char *str, long long len, int fd);

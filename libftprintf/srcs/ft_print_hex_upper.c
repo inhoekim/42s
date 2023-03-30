@@ -64,7 +64,7 @@ char *str, long long len, long long actual_len)
 	return (cnt);
 }
 
-long long	ft_print_hex_lower(t_format *format, unsigned int num)
+long long	ft_print_hex_upper(t_format *format, unsigned int num)
 {
 	long long	cnt;
 	long long	str_len;

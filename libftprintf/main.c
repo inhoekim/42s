@@ -4,12 +4,7 @@
 
 int main()
 {
-	ft_printf("%10.15x\n",200);
-	int a = ft_printf("%-10.x\n",200);
-	printf("%10.15x\n",200);
-	int b = printf("%-10.x\n",200);
-
-	printf("%d %d\n",a,b);
+	ft_printf("%%\n");
 	//printf("aa%8.7s\n", "hello");
 	/*
 	printf("%#10x\n", 10);
