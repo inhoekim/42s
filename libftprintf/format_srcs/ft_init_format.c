@@ -40,7 +40,7 @@ static void	assign_gvalue(void)
 	g_flags[' ']++;
 }
 
-static t_format	*create_format()
+static t_format	*create_format(void)
 {
 	t_format	*format;
 
@@ -52,7 +52,6 @@ static t_format	*create_format()
 	format->width = 0;
 	format->prec_width = 0;
 	format->prec = 0;
-	format->print_cnt = 0;
 	format->idx_len = 1;
 	return (format);
 }

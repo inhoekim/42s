@@ -4,7 +4,8 @@
 
 int main()
 {
-	ft_printf("% .i",40);
+	ft_printf("aa%-8.7s\n","hello");
+	//printf("aa%8.7s\n", "hello");
 	/*
 	printf("%#10x\n", 10);
 	printf("%10x\n", 10);

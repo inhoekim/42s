@@ -21,7 +21,7 @@ long long	ft_print_str(t_format *format, char *str)
 	if (str == FT_NULL)
 		str = "(null)";
 	str_len = ft_strlen(str);
-	if (format->prec && format->prec < str_len)
+	if (format->prec && format->prec_width < str_len)
 		str_len = format->prec_width;
 	if (format->flag_ascii['-'])
 	{

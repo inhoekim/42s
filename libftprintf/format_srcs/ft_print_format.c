@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
 #include "../includes/printft.h"
 
 long long	ft_print_format(t_format *format, va_list *args)
@@ -27,6 +26,7 @@ long long	ft_print_format(t_format *format, va_list *args)
 	if (format->conversion == 'd' || format->conversion == 'i')
 		print_cnt += ft_print_int(format, (long long)va_arg(*args, long long));
 	if (format->conversion == 'x')
-		print_cnt += ft_print_hex_lower(format, (unsigned int)va_arg(*args, unsigned int));
+		print_cnt += ft_print_hex_lower(format, \
+		(unsigned int)va_arg(*args, unsigned int));
 	return (print_cnt);
 }

@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_make_hexstr.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 19:29:38 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/30 19:29:40 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/printft.h"
 
-static void	*reverse_str(char *addr_str, size_t right_idx)
+static void	reverse_str(char *addr_str, size_t right_idx)
 {
 	size_t	left_idx;
 	int		temp_num;
@@ -17,7 +28,7 @@ static void	*reverse_str(char *addr_str, size_t right_idx)
 	}
 }
 
-void    ft_make_hexstr(size_t addr, char addr_str[], int is_addr)
+void	ft_make_hexstr(size_t addr, char addr_str[], int is_addr)
 {
 	const char	*hex_set = "0123456789abcdef";
 	size_t		idx;

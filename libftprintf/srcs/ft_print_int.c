@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/30 19:30:38 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/30 19:30:41 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/printft.h"
 #include <unistd.h>
@@ -26,8 +37,7 @@ static void	recur_set_str(char *str, long long num, int depth, int num_len)
 	str[num_len - depth] = (num % 10) + '0';
 }
 
-
-static void	*int_to_alpha(long long num, char *num_str)
+static void	int_to_alpha(long long num, char *num_str)
 {
 	int			is_minus;
 	int			num_len;
@@ -71,7 +81,7 @@ long long	ft_print_int(t_format *format, long long num)
 	long long	cnt;
 	long long	str_len;
 	long long	actual_len;
-	char 		num_str[11];
+	char		num_str[11];
 
 	if (num < -FT_INT_MAX - 1 || num > FT_INT_MAX)
 		return (0);

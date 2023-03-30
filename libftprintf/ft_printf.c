@@ -13,6 +13,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include "./includes/printft.h"
+#include <stdio.h>
 
 static t_format_lst	*make_format_lst(const char *s)
 {
@@ -29,7 +30,8 @@ static t_format_lst	*make_format_lst(const char *s)
 		if (*s == '%')
 		{
 			format_lst->next = ft_lstnew(ft_init_format(&s));
-			if (format_lst->next == FT_NULL || format_lst->next->current == FT_NULL)
+			if (format_lst->next == FT_NULL \
+			|| format_lst->next->current == FT_NULL)
 			{
 				//ft_lstclear(lst_head);
 				return (FT_NULL);
