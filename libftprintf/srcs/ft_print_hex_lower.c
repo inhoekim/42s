@@ -38,7 +38,8 @@ char *str, long long len, long long actual_len)
 	return (cnt);
 }
 
-static long long	proc_non_prec(t_format *fm, char *str, long long len, long long actual_len)
+static long long	proc_non_prec(t_format *fm, \
+char *str, long long len, long long actual_len)
 {
 	long long	cnt;
 
