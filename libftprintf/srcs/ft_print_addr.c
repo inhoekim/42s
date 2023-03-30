@@ -10,42 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../includes/printft.h"
-
-static void	*reverse_str(char *addr_str, size_t right_idx)
-{
-	size_t	left_idx;
-	int		temp_num;
-
-	left_idx = 0;
-	while (left_idx < right_idx)
-	{
-		temp_num = addr_str[left_idx];
-		addr_str[left_idx] = addr_str[right_idx];
-		addr_str[right_idx] = temp_num;
-		left_idx++;
-		right_idx--;
-	}
-}
-
-static void	make_addr_str(size_t addr, char addr_str[])
-{
-	const char	*hex_set = "0123456789abcdef";
-	size_t		idx;
-
-	addr_str[0] = '\0';
-	idx = 1;
-	while (addr)
-	{
-		addr_str[idx] = hex_set[addr % 16];
-		addr /= 16;
-		idx++;
-	}
-	addr_str[idx] = 'x';
-	addr_str[++idx] = '0';
-	reverse_str(addr_str, idx);
-}
 
 long long	ft_print_addr(t_format *format, void *p)
 {
@@ -54,7 +19,7 @@ long long	ft_print_addr(t_format *format, void *p)
 	char		addr_str[18];
 
 	cnt = 0;
-	make_addr_str((size_t)p, addr_str);
+	ft_make_hexstr((size_t)p, addr_str, FT_TRUE);
 	str_len = ft_strlen(addr_str);
 	if (format->flag_ascii['-'])
 	{

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/printft.h"
-#include <unistd.h>
 
 long long	ft_print_str(t_format *format, char *str)
 {

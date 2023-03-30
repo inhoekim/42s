@@ -151,6 +151,24 @@ build CMakeFiles/libftprintf.dir/srcs/ft_print_zero.c.obj: C_COMPILER__libftprin
   OBJECT_DIR = CMakeFiles\libftprintf.dir
   OBJECT_FILE_DIR = CMakeFiles\libftprintf.dir\srcs
 
+build CMakeFiles/libftprintf.dir/srcs/ft_print_hex_lower.c.obj: C_COMPILER__libftprintf_Debug D$:/42s/libftprintf/srcs/ft_print_hex_lower.c || cmake_object_order_depends_target_libftprintf
+  DEP_FILE = CMakeFiles\libftprintf.dir\srcs\ft_print_hex_lower.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\libftprintf.dir
+  OBJECT_FILE_DIR = CMakeFiles\libftprintf.dir\srcs
+
+build CMakeFiles/libftprintf.dir/srcs/ft_print_hex_upper.c.obj: C_COMPILER__libftprintf_Debug D$:/42s/libftprintf/srcs/ft_print_hex_upper.c || cmake_object_order_depends_target_libftprintf
+  DEP_FILE = CMakeFiles\libftprintf.dir\srcs\ft_print_hex_upper.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\libftprintf.dir
+  OBJECT_FILE_DIR = CMakeFiles\libftprintf.dir\srcs
+
+build CMakeFiles/libftprintf.dir/srcs/ft_make_num_str.c.obj: C_COMPILER__libftprintf_Debug D$:/42s/libftprintf/srcs/ft_make_num_str.c || cmake_object_order_depends_target_libftprintf
+  DEP_FILE = CMakeFiles\libftprintf.dir\srcs\ft_make_num_str.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  OBJECT_DIR = CMakeFiles\libftprintf.dir
+  OBJECT_FILE_DIR = CMakeFiles\libftprintf.dir\srcs
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target libftprintf
@@ -159,7 +177,7 @@ build CMakeFiles/libftprintf.dir/srcs/ft_print_zero.c.obj: C_COMPILER__libftprin
 #############################################
 # Link the executable libftprintf.exe
 
-build libftprintf.exe: C_EXECUTABLE_LINKER__libftprintf_Debug CMakeFiles/libftprintf.dir/main.c.obj CMakeFiles/libftprintf.dir/ft_printf.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_check_formats.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_init_format.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_print_format.c.obj CMakeFiles/libftprintf.dir/srcs/ft_memset.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_addr.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_str.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_char.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_width.c.obj CMakeFiles/libftprintf.dir/srcs/ft_putchar_fd.c.obj CMakeFiles/libftprintf.dir/srcs/ft_strlen.c.obj CMakeFiles/libftprintf.dir/srcs/ft_isdigit.c.obj CMakeFiles/libftprintf.dir/srcs/ft_lstnew.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_int.c.obj CMakeFiles/libftprintf.dir/srcs/ft_putstr_fd.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_zero.c.obj
+build libftprintf.exe: C_EXECUTABLE_LINKER__libftprintf_Debug CMakeFiles/libftprintf.dir/main.c.obj CMakeFiles/libftprintf.dir/ft_printf.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_check_formats.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_init_format.c.obj CMakeFiles/libftprintf.dir/format_srcs/ft_print_format.c.obj CMakeFiles/libftprintf.dir/srcs/ft_memset.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_addr.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_str.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_char.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_width.c.obj CMakeFiles/libftprintf.dir/srcs/ft_putchar_fd.c.obj CMakeFiles/libftprintf.dir/srcs/ft_strlen.c.obj CMakeFiles/libftprintf.dir/srcs/ft_isdigit.c.obj CMakeFiles/libftprintf.dir/srcs/ft_lstnew.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_int.c.obj CMakeFiles/libftprintf.dir/srcs/ft_putstr_fd.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_zero.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_hex_lower.c.obj CMakeFiles/libftprintf.dir/srcs/ft_print_hex_upper.c.obj CMakeFiles/libftprintf.dir/srcs/ft_make_num_str.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\libftprintf.dir

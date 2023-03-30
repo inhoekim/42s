@@ -83,6 +83,11 @@ long long	ft_print_int(t_format *format, long long num)
 		cnt += write(1, " ", 1);
 		(format->width)--;
 	}
+	else if (format->flag_ascii['+'])
+	{
+		cnt += write(1, "+", 1);
+		(format->width)--;
+	}
 	actual_len = str_len;
 	if (format->prec_width > str_len)
 		actual_len = format->prec_width;
