@@ -98,6 +98,7 @@ t_format	*ft_init_format(const char **s)
 		if (g_conversions[(unsigned char)**s])
 		{
 			format->conversion = **s;
+			(*s)++;
 			return (format);
 		}
 		if (!make_format(**s, format))
