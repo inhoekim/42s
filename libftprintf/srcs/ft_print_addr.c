@@ -19,7 +19,7 @@ long long	ft_print_addr(t_format *format, void *p)
 	char		addr_str[18];
 
 	cnt = 0;
-	ft_make_hexstr((size_t)p, addr_str, FT_TRUE);
+	ft_make_hexstr((size_t)p, addr_str, FT_TRUE, FT_TRUE);
 	str_len = ft_strlen(addr_str);
 	if (format->flag_ascii['-'])
 	{

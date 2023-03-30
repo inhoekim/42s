@@ -28,16 +28,21 @@ static void	reverse_str(char *addr_str, size_t right_idx)
 	}
 }
 
-void	ft_make_hexstr(size_t addr, char addr_str[], int is_addr)
+void	ft_make_hexstr(size_t addr, char addr_str[], \
+int is_addr, int lower_case)
 {
-	const char	*hex_set = "0123456789abcdef";
+	const char	*lower_hex = "0123456789abcdef";
+	const char	*upper_hex = "0123456789ABCDEF";
 	size_t		idx;
 
 	addr_str[0] = '\0';
 	idx = 1;
 	while (addr)
 	{
-		addr_str[idx] = hex_set[addr % 16];
+		if (lower_case)
+			addr_str[idx] = lower_hex[addr % 16];
+		else
+			addr_str[idx] = upper_hex[addr % 16];
 		addr /= 16;
 		idx++;
 	}
@@ -46,5 +51,5 @@ void	ft_make_hexstr(size_t addr, char addr_str[], int is_addr)
 		addr_str[idx] = 'x';
 		addr_str[++idx] = '0';
 	}
-	reverse_str(addr_str, idx);
+	reverse_str(addr_str, idx - 1);
 }
