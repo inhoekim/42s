@@ -69,7 +69,7 @@ long long	ft_print_hex_lower(t_format *format, unsigned int num)
 	long long	cnt;
 	long long	str_len;
 	long long	actual_len;
-	char		num_str[10];
+	char		num_str[9];
 	int			is_addr;
 
 	is_addr = FT_FALSE;

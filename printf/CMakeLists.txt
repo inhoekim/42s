@@ -29,4 +29,4 @@ add_executable(printf
         srcs/ft_putchar_fd.c
         srcs/ft_putstr_fd.c
         srcs/ft_strlen.c
-        main.c)
+        main.c srcs/ft_intlen.c)
