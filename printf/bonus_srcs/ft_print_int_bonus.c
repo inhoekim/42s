@@ -35,7 +35,7 @@ static void	int_to_alpha(long long num, char *num_str)
 		num *= -1;
 		is_minus = FT_TRUE;
 	}
-	num_len = get_int_len(num);
+	num_len = ft_intlen(num);
 	if (is_minus)
 		num_str[0] = '-';
 	num_str[num_len + is_minus] = '\0';

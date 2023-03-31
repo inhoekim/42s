@@ -39,6 +39,7 @@ long long		ft_print_format(t_format *format, va_list *args);
 int				ft_isdigit(int c);
 void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
+int				ft_intlen(long long n);
 void			ft_make_hexstr(size_t addr, \
 char *addr_str, int is_addr, int lower_case);
 long long		ft_print_width(int width);
