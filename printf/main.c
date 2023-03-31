@@ -1,17 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf.h"
+//#include "ft_printf.h"
 
 int main()
 {
-	ft_printf(" %p \n", -1);
-	printf(" %p \n", (void *)-1);
-	ft_printf(" %p \n", 5);
-	printf(" %p \n", (void *)5);
-	ft_printf(" %p \n", 15);
-	printf(" %p \n", (void *)15);
-	ft_printf(" %p \n", 30);
-	printf(" %p \n", (void *)30);
+	char c = -1;
+	int i = -1;
+	printf("%p\n",c);
+	printf("%p\n",(char)i);
+	printf("%p\n",(void *)(char)-1);
+	//printf(" %p \n", (void *)-1);
 	//printf("aa%8.7s\n", "hello");
 	/*
 	printf("%#10x\n", 10);
