@@ -12,7 +12,7 @@
 
 #include <stdarg.h>
 #include <stdlib.h>
-#include "./includes/printft.h"
+#include "../includes/printft.h"
 #include <stdio.h>
 
 static t_format_lst	*make_format_lst(const char *s)
@@ -33,7 +33,7 @@ static t_format_lst	*make_format_lst(const char *s)
 			if (format_lst->next == FT_NULL \
 			|| format_lst->next->current == FT_NULL)
 			{
-				//ft_lstclear(lst_head);
+				ft_lstclear(lst_head);
 				return (FT_NULL);
 			}
 			format_lst = format_lst->next;
@@ -76,13 +76,13 @@ int	ft_printf(const char *s, ...)
 	format_lst = make_format_lst(s);
 	if (format_lst == FT_NULL || !ft_check_formats(format_lst))
 	{
-		//ft_lstclear(format_lst);
+		ft_lstclear(format_lst);
 		return (-1);
 	}
 	va_start(args, s);
 	print_cnt = 0;
 	print_cnt += start_print(s, args, format_lst);
 	va_end(args);
-	//ft_lstclear(format_lst);
+	ft_lstclear(format_lst);
 	return (print_cnt);
 }

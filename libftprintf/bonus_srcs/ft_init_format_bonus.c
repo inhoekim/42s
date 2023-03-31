@@ -56,7 +56,7 @@ static t_format	*create_format(void)
 	return (format);
 }
 
-static int	make_format(const char ch, t_format *format)
+static int	make_format(const unsigned char ch, t_format *format)
 {
 	if (ft_isdigit(ch))
 	{
@@ -76,9 +76,9 @@ static int	make_format(const char ch, t_format *format)
 	}
 	else
 	{
-		if (!g_flags[ch] || (g_flags[ch] && (format->width || format->prec)))
+		if (!g_flags[(int)ch] || (g_flags[(int)ch] && (format->width || format->prec)))
 			return (0);
-		format->flag_ascii[ch]++;
+		format->flag_ascii[(int)ch]++;
 	}
 	return (1);
 }

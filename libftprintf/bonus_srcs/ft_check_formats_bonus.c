@@ -48,7 +48,7 @@ int	ft_check_formats(t_format_lst *lst)
 		format = lst->current;
 		if (((format->flag_ascii['+'] && format->flag_ascii[' ']) \
 			|| (format->flag_ascii['-'] && format->flag_ascii['0'])) \
-			&& format->flag_ascii['%'])
+			&& format->conversion != '%')
 			return (0);
 		if (format->width >= 2147483647 || format->prec_width >= 2147483647)
 			return (0);
