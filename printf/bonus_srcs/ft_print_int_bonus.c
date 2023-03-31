@@ -76,15 +76,13 @@ char *str, long long len, long long actual_len)
 	return (cnt);
 }
 
-long long	ft_print_int(t_format *format, long long num)
+long long	ft_print_int(t_format *format, int num)
 {
 	long long	cnt;
 	long long	str_len;
 	long long	actual_len;
 	char		num_str[11];
 
-	if (num < -FT_INT_MAX - 1 || num > FT_INT_MAX)
-		return (0);
 	cnt = 0;
 	int_to_alpha(num, num_str);
 	str_len = ft_strlen(num_str);

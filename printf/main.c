@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_printf.h"
+#include <limits.h>
 
 int main()
 {
-	ft_printf(" %c %c %c ", '1', '0', '1');
-	printf(" %c %c %c ", '1', '0', '1');
+	ft_printf(" %d \n", -1);
+	int a =ft_printf(" %d \n", UINT_MAX);
+	printf(" %d \n", -1);
+	int b = printf(" %d \n", UINT_MAX);
+	printf("%d %d",a,b);
 	//printf(" %p \n", (void *)-1);
 	//printf("aa%8.7s\n", "hello");
 	/*

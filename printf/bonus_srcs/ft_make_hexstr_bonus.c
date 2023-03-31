@@ -36,6 +36,8 @@ int is_addr, int lower_case)
 	size_t		idx;
 
 	addr_str[0] = '\0';
+	if (addr == 0)
+		addr_str[1] = '0';
 	idx = 1;
 	while (addr)
 	{
