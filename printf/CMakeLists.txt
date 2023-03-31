@@ -18,8 +18,7 @@ add_executable(printf
         srcs/ft_print_addr.c
         srcs/ft_print_char.c
         srcs/ft_print_format.c
-        srcs/ft_print_hex_lower.c
-        srcs/ft_print_hex_upper.c
+        srcs/ft_print_hex.c
         srcs/ft_print_int.c
         srcs/ft_print_percent.c
         srcs/ft_print_str.c

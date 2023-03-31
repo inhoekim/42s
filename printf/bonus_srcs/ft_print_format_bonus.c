@@ -28,11 +28,11 @@ long long	ft_print_format(t_format *format, va_list *args)
 	if (format->conversion == 'u')
 		print_cnt += ft_print_uint(format, (unsigned int)va_arg(*args, unsigned int));
 	if (format->conversion == 'x')
-		print_cnt += ft_print_hex_lower(format, \
-		(unsigned int)va_arg(*args, unsigned int));
+		print_cnt += ft_print_hex(format, \
+		(unsigned int)va_arg(*args, unsigned int), FT_TRUE);
 	if (format->conversion == 'X')
-		print_cnt += ft_print_hex_lower(format, \
-		(unsigned int)va_arg(*args, unsigned int));
+		print_cnt += ft_print_hex(format, \
+		(unsigned int)va_arg(*args, unsigned int), FT_FALSE);
 	if (format->conversion == '%')
 		print_cnt += ft_print_percent(format);
 	return (print_cnt);

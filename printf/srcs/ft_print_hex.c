@@ -64,7 +64,7 @@ char *str, long long len, long long actual_len)
 	return (cnt);
 }
 
-long long	ft_print_hex_lower(t_format *format, unsigned int num)
+long long	ft_print_hex(t_format *format, unsigned int num, int lower_case)
 {
 	long long	cnt;
 	long long	str_len;
@@ -76,7 +76,7 @@ long long	ft_print_hex_lower(t_format *format, unsigned int num)
 	cnt = 0;
 	if (format->flag_ascii['#'])
 		is_addr = FT_TRUE + 1;
-	ft_make_hexstr(num, num_str, FT_FALSE, FT_TRUE);
+	ft_make_hexstr(num, num_str, FT_FALSE, lower_case);
 	str_len = ft_strlen(num_str);
 	actual_len = str_len + is_addr;
 	if (format->prec_width > str_len)
