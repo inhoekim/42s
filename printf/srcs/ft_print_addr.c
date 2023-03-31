@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-long long	ft_print_addr(t_format *format, void *p)
+long long	ft_print_addr(t_format *format, unsigned long long p)
 {
 	long long	cnt;
 	long long	str_len;

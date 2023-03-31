@@ -51,5 +51,5 @@ int is_addr, int lower_case)
 		addr_str[idx] = 'x';
 		addr_str[++idx] = '0';
 	}
-	reverse_str(addr_str, idx - 1);
+	reverse_str(addr_str, idx);
 }

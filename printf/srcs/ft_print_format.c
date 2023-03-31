@@ -22,7 +22,7 @@ long long	ft_print_format(t_format *format, va_list args)
 	if (format->conversion == 's')
 		print_cnt += ft_print_str(format, (char *)va_arg(args, char *));
 	if (format->conversion == 'p')
-		print_cnt += ft_print_addr(format, (void *)va_arg(args, void *));
+		print_cnt += ft_print_addr(format, (unsigned long long)va_arg(args, unsigned long long));
 	if (format->conversion == 'd' || format->conversion == 'i')
 		print_cnt += ft_print_int(format, (long long)va_arg(args, long long));
 	if (format->conversion == 'x')
@@ -32,6 +32,6 @@ long long	ft_print_format(t_format *format, va_list args)
 		print_cnt += ft_print_hex_lower(format, \
 		(unsigned int)va_arg(args, unsigned int));
 	if (format->conversion == '%')
-		print_cnt += ft_print_percent();
+		print_cnt += ft_print_percent(format);
 	return (print_cnt);
 }

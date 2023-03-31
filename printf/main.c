@@ -1,11 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./includes/printft.h"
+#include "ft_printf.h"
 
 int main()
 {
-	ft_printf("%+ #0-30.5%\n");
-	printf("%+ #0-30.5%\n");
+	ft_printf(" %p \n", -1);
+	printf(" %p \n", (void *)-1);
+	ft_printf(" %p \n", 5);
+	printf(" %p \n", (void *)5);
+	ft_printf(" %p \n", 15);
+	printf(" %p \n", (void *)15);
+	ft_printf(" %p \n", 30);
+	printf(" %p \n", (void *)30);
 	//printf("aa%8.7s\n", "hello");
 	/*
 	printf("%#10x\n", 10);

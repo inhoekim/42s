@@ -6,7 +6,7 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/03/31 10:21:51 by inhkim           ###   ########.fr        #
+#    Updated: 2023/03/31 11:48:58 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,12 @@ clean :
 	@rm -f BONUS_SUB
 
 fclean : clean
-	rm -f $(TARGET)
+	rm -f $(NAME)
 
 re : fclean
 	make all
+
+test : $(SRCS_WITH_PATH) main.c
+	$(CC) $(CFLAGS) -g3 $^ -o $@ -I./includes
 
 .PHONY : all clean fclean re bonus
