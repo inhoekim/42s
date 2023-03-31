@@ -47,6 +47,7 @@ long long		ft_print_str(t_format *format, char *str);
 long long		ft_print_char(t_format *format, char ch);
 long long		ft_print_addr(t_format *format, long long p);
 long long		ft_print_int(t_format *format, int num);
+long long		ft_print_uint(t_format *format, unsigned int num);
 long long		ft_print_percent(t_format *format);
 long long		ft_print_hex_lower(t_format *format, unsigned int num);
 long long		ft_print_hex_upper(t_format *format, unsigned int num);

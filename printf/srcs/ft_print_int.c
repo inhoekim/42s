@@ -13,19 +13,6 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static int	get_int_len(long long n)
-{
-	int	len;
-
-	len = 1;
-	while (n / 10 != 0)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
-}
-
 static void	recur_set_str(char *str, long long num, int depth, int num_len)
 {
 	if (num / 10 == 0)
@@ -48,7 +35,7 @@ static void	int_to_alpha(long long num, char *num_str)
 		num *= -1;
 		is_minus = FT_TRUE;
 	}
-	num_len = get_int_len(num);
+	num_len = ft_intlen(num);
 	if (is_minus)
 		num_str[0] = '-';
 	num_str[num_len + is_minus] = '\0';
@@ -96,6 +83,23 @@ long long	ft_print_int(t_format *format, int num)
 		cnt += write(1, "+", 1);
 		(format->width)--;
 	}
+	actual_len = str_len;
+	if (format->prec_width > str_len)
+		actual_len = format->prec_width;
+	cnt += proc_print_int_flag(format, num_str, str_len, actual_len);
+	return (cnt);
+}
+
+long long	ft_print_uint(t_format *format, unsigned int num)
+{
+	long long	cnt;
+	long long	str_len;
+	long long	actual_len;
+	char		num_str[12];
+
+	cnt = 0;
+	int_to_alpha(num, num_str);
+	str_len = ft_strlen(num_str);
 	actual_len = str_len;
 	if (format->prec_width > str_len)
 		actual_len = format->prec_width;

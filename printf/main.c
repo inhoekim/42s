@@ -5,10 +5,8 @@
 
 int main()
 {
-	ft_printf(" %d \n", -1);
-	int a =ft_printf(" %d \n", UINT_MAX);
-	printf(" %d \n", -1);
-	int b = printf(" %d \n", UINT_MAX);
+	int a = ft_printf("%u\n", -1);
+	int b = printf("%u\n", -1);
 	printf("%d %d",a,b);
 	//printf(" %p \n", (void *)-1);
 	//printf("aa%8.7s\n", "hello");
