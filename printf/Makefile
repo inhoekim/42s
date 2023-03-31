@@ -34,12 +34,18 @@ all : MANDATORY
 bonus : BONUS_SUB
 
 MANDATORY : $(SRCS_OBJS)
-	ar c $(NAME) $^
+	ar rcs $(NAME) $^
+	@if [ -f "BONUS_SUB" ]; then \
+		ar ds $(NAME) $(BONUS_OBJS); \
+	fi
 	@touch $@
 	@rm -f BONUS_SUB
 
 BONUS_SUB : $(BONUS_OBJS)
-	ar c $(NAME) $^
+	ar rcs $(NAME) $^
+	@if [ -f "MANDATORY" ]; then \
+		ar ds $(NAME) $(SRCS_OBJS); \
+	fi
 	@touch $@
 	@rm -f MANDATORY
 	
