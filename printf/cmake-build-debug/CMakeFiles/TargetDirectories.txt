@@ -1,0 +1,3 @@
+D:/42s/printf/cmake-build-debug/CMakeFiles/printf.dir
+D:/42s/printf/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/42s/printf/cmake-build-debug/CMakeFiles/rebuild_cache.dir
