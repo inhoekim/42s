@@ -98,9 +98,7 @@ long long	ft_print_uint(t_format *format, unsigned int num)
 	cnt = 0;
 	ft_uitoa(num, num_str);
 	str_len = ft_strlen(num_str);
-	actual_len = str_len;
-	if (format->prec_width > str_len)
-		actual_len = format->prec_width;
+	pre_proc(format, num < 0, &actual_len, &str_len);
 	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, num < 0);
 	return (cnt);
 }
