@@ -48,6 +48,11 @@ char *str, long long len, long long actual_len)
 	long long	cnt;
 
 	cnt = 0;
+	if (fm->flag_ascii['0'] && !fm->prec)
+	{
+		fm->prec_width = fm->width;
+		actual_len = fm->width;
+	}
 	if (fm->flag_ascii['-'])
 	{
 		cnt += ft_print_zero(fm->prec_width - len);

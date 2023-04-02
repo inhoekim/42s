@@ -5,9 +5,12 @@
 
 int main()
 {
-	int a = ft_printf("%X\n", -1);
-	int b = printf("%X\n", -1);
-	printf("%d %d",a,b);
+	ft_printf("%-5s%c\n", "1234", '$');
+	printf("%-5s%c\n", "1234", '$');
+	//int a = ft_printf(" %04d\n", 9);
+	//int b = printf("%04d\n", 9);
+
+	//printf("%d %d",a,b);
 	//printf(" %p \n", (void *)-1);
 	//printf("aa%8.7s\n", "hello");
 	/*
