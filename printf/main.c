@@ -5,8 +5,10 @@
 
 int main()
 {
-	ft_printf("%-5s%c\n", "1234", '$');
-	printf("%-5s%c\n", "1234", '$');
+	ft_printf("%5.4d\n", 14);
+	ft_printf("%04d\n", -14);
+	printf("%5.4d\n", 14);
+	printf("%04d\n", -14);
 	//int a = ft_printf(" %04d\n", 9);
 	//int b = printf("%04d\n", 9);
 

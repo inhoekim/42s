@@ -13,48 +13,40 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void	recur_set_str(char *str, long long num, int depth, int num_len)
+static void	pre_proc(t_format *fm, int is_minus, \
+long long *actual_len, long long *str_len)
 {
-	if (num / 10 == 0)
+	*actual_len = *str_len;
+	if (!fm->prec)
 	{
-		str[num_len - depth] = (num % 10) + '0';
-		return ;
+		if (is_minus)
+			*actual_len += 1;
+		if (fm->flag_ascii['0'])
+		{
+			fm->prec_width = fm->width;
+			*actual_len = fm->width;
+			*str_len += 1;
+		}
 	}
-	recur_set_str(str, num / 10, depth + 1, num_len);
-	str[num_len - depth] = (num % 10) + '0';
-}
-
-static void	int_to_alpha(long long num, char *num_str)
-{
-	int			is_minus;
-	int			num_len;
-
-	is_minus = FT_FALSE;
-	if (num < 0)
+	else
 	{
-		num *= -1;
-		is_minus = FT_TRUE;
+		if (fm->prec_width > *actual_len)
+			*actual_len = fm->prec_width;
+		if (is_minus)
+			*actual_len += 1;
 	}
-	num_len = ft_intlen(num);
-	if (is_minus)
-		num_str[0] = '-';
-	num_str[num_len + is_minus] = '\0';
-	recur_set_str(num_str, num, 0, num_len + is_minus - 1);
 }
 
 static long long	proc_print_int_flag(t_format *fm, \
-char *str, long long len, long long actual_len)
+char *str, long long len, long long actual_len, int is_minus)
 {
 	long long	cnt;
 
 	cnt = 0;
-	if (fm->flag_ascii['0'] && !fm->prec)
-	{
-		fm->prec_width = fm->width;
-		actual_len = fm->width;
-	}
 	if (fm->flag_ascii['-'])
 	{
+		if (is_minus)
+			cnt += write(1, "-", 1);
 		cnt += ft_print_zero(fm->prec_width - len);
 		cnt += ft_putstr_fd(str, len, 1);
 		cnt += ft_print_width(fm->width - actual_len);
@@ -62,6 +54,8 @@ char *str, long long len, long long actual_len)
 	else
 	{
 		cnt += ft_print_width(fm->width - actual_len);
+		if (is_minus)
+			cnt += write(1, "-", 1);
 		cnt += ft_print_zero(fm->prec_width - len);
 		cnt += ft_putstr_fd(str, len, 1);
 	}
@@ -76,7 +70,7 @@ long long	ft_print_int(t_format *format, int num)
 	char		num_str[12];
 
 	cnt = 0;
-	int_to_alpha(num, num_str);
+	ft_uitoa(num, num_str);
 	str_len = ft_strlen(num_str);
 	if (format->flag_ascii[' '])
 	{
@@ -88,10 +82,8 @@ long long	ft_print_int(t_format *format, int num)
 		cnt += write(1, "+", 1);
 		(format->width)--;
 	}
-	actual_len = str_len;
-	if (format->prec_width > str_len)
-		actual_len = format->prec_width;
-	cnt += proc_print_int_flag(format, num_str, str_len, actual_len);
+	pre_proc(format, num < 0, &actual_len, &str_len);
+	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, num < 0);
 	return (cnt);
 }
 
@@ -103,11 +95,11 @@ long long	ft_print_uint(t_format *format, unsigned int num)
 	char		num_str[12];
 
 	cnt = 0;
-	int_to_alpha(num, num_str);
+	ft_uitoa(num, num_str);
 	str_len = ft_strlen(num_str);
 	actual_len = str_len;
 	if (format->prec_width > str_len)
 		actual_len = format->prec_width;
-	cnt += proc_print_int_flag(format, num_str, str_len, actual_len);
+	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, num < 0);
 	return (cnt);
 }
