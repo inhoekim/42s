@@ -5,8 +5,8 @@
 
 int main()
 {
-	ft_printf("%04u\n", 9);
-	printf("%04u\n", 9);
+	int a = ft_printf("%.d\n", 0);
+	printf("%d", a);
 
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);

@@ -72,15 +72,15 @@ long long	ft_print_int(t_format *format, int num)
 
 	cnt = 0;
 	ft_uitoa(num, num_str);
+	if (num == 0 && format->prec)
+		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
-	if (format->flag_ascii[' '])
+	if (format->flag_ascii[' '] || format->flag_ascii['+'])
 	{
-		cnt += write(1, " ", 1);
-		(format->width)--;
-	}
-	else if (format->flag_ascii['+'])
-	{
-		cnt += write(1, "+", 1);
+		if (format->flag_ascii[' '])
+			cnt += write(1, " ", 1);
+		else if (format->flag_ascii['+'])
+			cnt += write(1, "+", 1);
 		(format->width)--;
 	}
 	pre_proc(format, num < 0, &actual_len, &str_len);
@@ -97,6 +97,8 @@ long long	ft_print_uint(t_format *format, unsigned int num)
 
 	cnt = 0;
 	ft_uitoa(num, num_str);
+	if (num == 0 && format->prec)
+		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
 	pre_proc(format, 0, &actual_len, &str_len);
 	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, 0);
