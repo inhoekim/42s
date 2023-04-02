@@ -22,6 +22,7 @@ static t_format_lst	*make_format_lst(const char *s)
 	format_lst = (t_format_lst *)malloc(sizeof(t_format_lst));
 	if (format_lst == FT_NULL)
 		return (FT_NULL);
+	format_lst->next = FT_NULL;
 	format_lst->current = FT_NULL;
 	lst_head = format_lst;
 	while (*s != '\0')

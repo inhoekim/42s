@@ -42,6 +42,8 @@ int	ft_check_formats(t_format_lst *lst)
 {
 	t_format	*format;
 
+	if (lst->next == FT_NULL)
+		return (0);
 	lst = lst->next;
 	while (lst)
 	{
