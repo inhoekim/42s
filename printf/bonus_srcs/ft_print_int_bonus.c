@@ -21,11 +21,12 @@ long long *actual_len, long long *str_len)
 	{
 		if (is_minus)
 			*actual_len += 1;
+		if (is_minus && fm->flag_ascii['0'])
+			*str_len += 1;
 		if (fm->flag_ascii['0'])
 		{
 			fm->prec_width = fm->width;
 			*actual_len = fm->width;
-			*str_len += 1;
 		}
 	}
 	else
