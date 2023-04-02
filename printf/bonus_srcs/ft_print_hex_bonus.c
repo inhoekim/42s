@@ -74,7 +74,7 @@ long long	ft_print_hex(t_format *format, unsigned int num, int lower_case)
 
 	is_addr = FT_FALSE;
 	cnt = 0;
-	if (format->flag_ascii['#'])
+	if (format->flag_ascii['#'] && num != 0)
 		is_addr = FT_TRUE + 1;
 	ft_make_hexstr(num, num_str, FT_FALSE, lower_case);
 	if (num == 0 && format->prec)
