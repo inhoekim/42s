@@ -77,6 +77,8 @@ long long	ft_print_hex(t_format *format, unsigned int num, int lower_case)
 	if (format->flag_ascii['#'])
 		is_addr = FT_TRUE + 1;
 	ft_make_hexstr(num, num_str, FT_FALSE, lower_case);
+	if (num == 0 && format->prec)
+		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
 	actual_len = str_len + is_addr;
 	if (format->prec_width > str_len)
