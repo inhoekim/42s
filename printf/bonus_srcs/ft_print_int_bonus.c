@@ -13,9 +13,6 @@
 #include "ft_printf_bonus.h"
 #include <unistd.h>
 
-#include "ft_printf.h"
-#include <unistd.h>
-
 static void	pre_proc(t_format *fm, int is_minus, \
 long long *actual_len, long long *str_len)
 {
