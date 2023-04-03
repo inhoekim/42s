@@ -21,7 +21,7 @@ char *str, long long len, long long actual_len)
 	cnt = 0;
 	if (fm->flag_ascii['-'])
 	{
-		if (fm->flag_ascii['#'])
+		if (fm->flag_ascii['#'] && len == 1 && str[0] == 0)
 			cnt += write(1, "0x", 2);
 		cnt += ft_print_zero(fm->prec_width - len);
 		cnt += ft_putstr_fd(str, len, 1);
@@ -30,7 +30,7 @@ char *str, long long len, long long actual_len)
 	else
 	{
 		cnt += ft_print_width(fm->width - actual_len);
-		if (fm->flag_ascii['#'])
+		if (fm->flag_ascii['#'] && len == 1 && str[0] == 0)
 			cnt += write(1, "0x", 2);
 		cnt += ft_print_zero(fm->prec_width - len);
 		cnt += ft_putstr_fd(str, len, 1);
@@ -46,7 +46,7 @@ char *str, long long len, long long actual_len)
 	cnt = 0;
 	if (fm->flag_ascii['-'])
 	{
-		if (fm->flag_ascii['#'])
+		if (fm->flag_ascii['#'] && len == 1 && str[0] == 0)
 			cnt += write(1, "0x", 2);
 		cnt += ft_putstr_fd(str, len, 1);
 		cnt += ft_print_width(fm->width - actual_len);
@@ -55,7 +55,7 @@ char *str, long long len, long long actual_len)
 	{
 		if (!fm->flag_ascii['0'])
 			cnt += ft_print_width(fm->width - actual_len);
-		if (fm->flag_ascii['#'])
+		if (fm->flag_ascii['#'] && len == 1 && str[0] == 0)
 			cnt += write(1, "0x", 2);
 		if (fm->flag_ascii['0'])
 			cnt += ft_print_zero(fm->width - actual_len);
