@@ -16,10 +16,10 @@ long long	ft_print_addr(t_format *format, long long p)
 {
 	long long	cnt;
 	long long	str_len;
-	char		addr_str[21];
+	char		addr_str[19];
 
 	cnt = 0;
-	ft_make_hexstr((long long)p, addr_str, FT_TRUE, FT_TRUE);
+	ft_make_hexstr((long long)p, addr_str, FT_TRUE + 1, FT_TRUE);
 	str_len = ft_strlen(addr_str);
 	if (format->flag_ascii['-'])
 	{
