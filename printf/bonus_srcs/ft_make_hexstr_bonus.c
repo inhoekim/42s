@@ -42,16 +42,19 @@ int is_addr, int lower_case)
 	while (addr)
 	{
 		if (lower_case)
-			addr_str[idx] = lower_hex[addr % 16];
+			addr_str[idx++] = lower_hex[addr % 16];
 		else
-			addr_str[idx] = upper_hex[addr % 16];
+			addr_str[idx++] = upper_hex[addr % 16];
 		addr /= 16;
-		idx++;
 	}
 	if (is_addr)
 	{
-		addr_str[idx] = 'x';
+		if (lower_case)
+			addr_str[idx] = 'x';
+		else
+			addr_str[idx] = 'X';
 		addr_str[++idx] = '0';
+		is_addr--;
 	}
 	reverse_str(addr_str, idx + is_addr - 1);
 }
