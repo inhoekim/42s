@@ -80,3 +80,6 @@
 83	227	7021875025806046	printf.exe	c0d8876c47405f25
 3	93	7021875296523749	CMakeFiles/printf.dir/srcs/ft_print_hex.c.obj	3fa12de41a1bd2b4
 94	229	7021875297842989	printf.exe	c0d8876c47405f25
+2	87	7021877675521777	CMakeFiles/printf.dir/srcs/ft_print_hex.c.obj	3fa12de41a1bd2b4
+8	91	7021877675551770	CMakeFiles/printf.dir/main.c.obj	392615c1d2475cc7
+91	219	7021877676791049	printf.exe	c0d8876c47405f25

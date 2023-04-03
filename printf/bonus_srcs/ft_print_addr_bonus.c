@@ -16,7 +16,7 @@ long long	ft_print_addr(t_format *format, long long p)
 {
 	long long	cnt;
 	long long	str_len;
-	char		addr_str[19];
+	char		addr_str[21];
 
 	cnt = 0;
 	ft_make_hexstr((long long)p, addr_str, FT_TRUE, FT_TRUE);

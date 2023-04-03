@@ -5,8 +5,8 @@
 
 int main()
 {
-	int a = ft_printf("%#-10.5x\n", 1);
-	int b = printf("%#-10.5x\n", 1);
+	int a = ft_printf("%p\n", -1);
+	int b = printf("%p\n", -1);
 	printf("%d %d", a ,b);
 
 	//printf("");
