@@ -75,7 +75,7 @@ long long	ft_print_int(t_format *format, int num)
 	if (num == 0 && format->prec)
 		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
-	if ((format->flag_ascii[' '] && num > 0) || format->flag_ascii['+'])
+	if ((format->flag_ascii[' '] || format->flag_ascii['+']) && num >= 0)
 	{
 		if (format->flag_ascii[' '])
 			cnt += write(1, " ", 1);
