@@ -49,7 +49,7 @@ char *str, long long len, long long actual_len)
 }
 
 static long long	proc_non_prec(t_format *fm, \
-char *str, long long len, long long actual_len)
+char *str, long long actual_len)
 {
 	long long	cnt;
 
@@ -96,6 +96,6 @@ long long	ft_print_hex(t_format *format, unsigned int num, int lower_case)
 	if (format->prec)
 		cnt += proc_prec(format, num_str, str_len, actual_len);
 	else
-		cnt += proc_non_prec(format, num_str, str_len, actual_len);
+		cnt += proc_non_prec(format, num_str, actual_len);
 	return (cnt);
 }
