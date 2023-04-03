@@ -32,6 +32,11 @@ typedef struct s_format_lst
 	struct s_format_lst	*next;
 	t_format			*current;
 }t_format_lst;
+typedef struct s_len_data
+{
+	long long	str_len;
+	long long	actual_len;
+}t_len_data;
 int				ft_check_formats(t_format_lst *lst);
 t_format		*ft_init_format(const char **s);
 long long		ft_print_format(t_format *format, va_list *args);

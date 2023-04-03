@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 #include <limits.h>
 
 int main()
 {
-	int a = ft_printf("%.2d\n", -1);
-	int b = printf("%.1d\n", -1);
-	printf("%d %d", a ,b);
+	int a =  ft_printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6=n");
+	printf("\n\n\n ============================================================================== \n\n\n");
+	int b = printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6=n");
+	printf("\n\n%d %d", a ,b);
 
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);
