@@ -30,4 +30,3 @@ long long	ft_print_percent(t_format *format)
 	}	
 	return (cnt);
 }
-	

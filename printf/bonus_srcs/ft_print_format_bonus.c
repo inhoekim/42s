@@ -26,7 +26,8 @@ long long	ft_print_format(t_format *format, va_list *args)
 	if (format->conversion == 'd' || format->conversion == 'i')
 		print_cnt += ft_print_int(format, (int)va_arg(*args, int));
 	if (format->conversion == 'u')
-		print_cnt += ft_print_uint(format, (unsigned int)va_arg(*args, unsigned int));
+		print_cnt += ft_print_uint(format, \
+		(unsigned int)va_arg(*args, unsigned int));
 	if (format->conversion == 'x')
 		print_cnt += ft_print_hex(format, \
 		(unsigned int)va_arg(*args, unsigned int), FT_TRUE);

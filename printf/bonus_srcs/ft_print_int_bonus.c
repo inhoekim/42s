@@ -71,7 +71,7 @@ long long	ft_print_int(t_format *format, int num)
 	char		num_str[12];
 
 	cnt = 0;
-	ft_uitoa(num, num_str);
+	ft_itoa(num, num_str);
 	if (num == 0 && format->prec)
 		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
@@ -96,11 +96,11 @@ long long	ft_print_uint(t_format *format, unsigned int num)
 	char		num_str[12];
 
 	cnt = 0;
-	ft_uitoa(num, num_str);
+	ft_itoa(num, num_str);
 	if (num == 0 && format->prec)
 		num_str[0] = '\0';
 	str_len = ft_strlen(num_str);
-	pre_proc(format, 0, &actual_len, &str_len);
-	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, 0);
+	pre_proc(format, num < 0, &actual_len, &str_len);
+	cnt += proc_print_int_flag(format, num_str, str_len, actual_len, num < 0);
 	return (cnt);
 }

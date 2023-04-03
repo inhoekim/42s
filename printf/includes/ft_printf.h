@@ -39,7 +39,7 @@ int				ft_isdigit(int c);
 void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
 int				ft_intlen(long long n);
-void			ft_uitoa(long long num, char *num_str);
+void			ft_itoa(long long num, char *num_str);
 void			ft_make_hexstr(size_t addr, \
 char *addr_str, int is_addr, int lower_case);
 long long		ft_print_width(int width);
@@ -50,7 +50,8 @@ long long		ft_print_addr(t_format *format, long long p);
 long long		ft_print_int(t_format *format, int num);
 long long		ft_print_uint(t_format *format, unsigned int num);
 long long		ft_print_percent(t_format *format);
-long long		ft_print_hex(t_format *format, unsigned int num, int lower_case);
+long long		ft_print_hex(t_format *format, \
+unsigned int num, int lower_case);
 int				ft_printf(const char *s, ...);
 int				ft_putchar_fd(char c, int fd);
 long long		ft_putstr_fd(char *str, long long len, int fd);

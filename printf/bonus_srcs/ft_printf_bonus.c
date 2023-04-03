@@ -14,16 +14,26 @@
 #include <stdlib.h>
 #include "ft_printf_bonus.h"
 
+static t_format_lst	*make_lst_head(void)
+{
+	t_format_lst	*head;
+
+	head = (t_format_lst *)malloc(sizeof(t_format_lst));
+	if (head == FT_NULL)
+		return (FT_NULL);
+	head->next = FT_NULL;
+	head->current = FT_NULL;
+	return (head);
+}
+
 static t_format_lst	*make_format_lst(const char *s)
 {
 	t_format_lst	*format_lst;
 	t_format_lst	*lst_head;
 
-	format_lst = (t_format_lst *)malloc(sizeof(t_format_lst));
+	format_lst = make_lst_head();
 	if (format_lst == FT_NULL)
 		return (FT_NULL);
-	format_lst->next = FT_NULL;
-	format_lst->current = FT_NULL;
 	lst_head = format_lst;
 	while (*s != '\0')
 	{
