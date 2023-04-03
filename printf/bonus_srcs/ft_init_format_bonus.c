@@ -40,19 +40,15 @@ static void	assign_gvalue(void)
 	g_flags[' ']++;
 }
 
-static t_format	*create_format(void)
+static t_format	*create_format(t_format *format)
 {
-	t_format	*format;
-
-	format = (t_format *)malloc(sizeof(t_format));
-	if (format == FT_NULL)
-		return (FT_NULL);
 	ft_memset(format->flag_ascii, 0, 256);
 	format->conversion = 0;
 	format->width = 0;
 	format->prec_width = 0;
 	format->prec = 0;
 	format->idx_len = 1;
+	format->complete = 0;
 	return (format);
 }
 
@@ -84,27 +80,26 @@ static int	make_format(const unsigned char ch, t_format *format)
 	return (1);
 }
 
-t_format	*ft_init_format(const char **s)
+t_format	ft_init_format(const char **s)
 {
-	t_format	*format;
+	t_format	format;
 
 	assign_gvalue();
-	format = create_format();
-	if (format == FT_NULL)
-		return (FT_NULL);
+	create_format(&format);
 	(*s)++;
 	while (**s != '\0')
 	{
-		format->idx_len++;
+		format.idx_len++;
 		if (g_conversions[(unsigned char)**s])
 		{
-			format->conversion = **s;
+			format.complete = 1;
+			format.conversion = **s;
 			(*s)++;
 			return (format);
 		}
-		if (!make_format(**s, format))
+		if (!make_format(**s, &format))
 			break ;
 		(*s)++;
 	}
-	return (FT_NULL);
+	return (format);
 }

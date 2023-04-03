@@ -22,7 +22,6 @@ static t_format_lst	*make_lst_head(void)
 	if (head == FT_NULL)
 		return (FT_NULL);
 	head->next = FT_NULL;
-	head->current = FT_NULL;
 	return (head);
 }
 
@@ -40,8 +39,7 @@ static t_format_lst	*make_format_lst(const char *s)
 		if (*s == '%')
 		{
 			format_lst->next = ft_lstnew(ft_init_format(&s));
-			if (format_lst->next == FT_NULL \
-			|| format_lst->next->current == FT_NULL)
+			if (format_lst->next == FT_NULL)
 			{
 				ft_lstclear(lst_head);
 				return (FT_NULL);
@@ -65,7 +63,7 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 		if (*s == '%')
 		{
 			print_cnt += ft_print_format(lst->current, args);
-			s += lst->current->idx_len;
+			s += lst->current.idx_len;
 			lst = lst->next;
 			continue ;
 		}

@@ -13,19 +13,19 @@
 #include <unistd.h>
 #include <ft_printf_bonus.h>
 
-long long	ft_print_percent(t_format *format)
+long long	ft_print_percent(t_format format)
 {
 	long long	cnt;
 
 	cnt = 0;
-	if (format->flag_ascii['-'])
+	if (format.flag_ascii['-'])
 	{
 		cnt += write(1, "%", 1);
-		cnt += ft_print_width(format->width - 1);
+		cnt += ft_print_width(format.width - 1);
 	}
 	else
 	{
-		cnt += ft_print_width(format->width - 1);
+		cnt += ft_print_width(format.width - 1);
 		cnt += write(1, "%", 1);
 	}	
 	return (cnt);
