@@ -99,12 +99,10 @@ long long	ft_print_int(t_format format, int num)
 
 long long	ft_print_uint(t_format format, unsigned int num)
 {
-	long long		cnt;
 	t_check_wdata	wdata;
 	t_len_data		len_data;
 	char			num_str[12];
 
-	cnt = 0;
 	ft_itoa(num, num_str);
 	if (num == 0 && format.prec)
 		num_str[0] = '\0';
