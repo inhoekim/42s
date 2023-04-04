@@ -41,7 +41,7 @@ typedef struct s_len_data
 int				ft_check_formats(t_format_lst *lst);
 t_format		ft_init_format(const char **s);
 long long		ft_print_format(t_format format, va_list *args);
-int				ft_isdigit(int c);
+int				ft_isdigit(unsigned char c);
 void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
 int				ft_intlen(long long n);
