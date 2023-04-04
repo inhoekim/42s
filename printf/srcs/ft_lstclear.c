@@ -21,7 +21,6 @@ void	ft_lstclear(t_format_lst *lst)
 	{
 		del_target = lst;
 		lst = lst->next;
-		free(del_target->current);
 		free(del_target);
 	}
 }

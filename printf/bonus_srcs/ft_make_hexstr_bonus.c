@@ -49,10 +49,9 @@ int is_addr, int lower_case)
 	}
 	if (is_addr)
 	{
+		addr_str[idx] = 'X';
 		if (lower_case)
 			addr_str[idx] = 'x';
-		else
-			addr_str[idx] = 'X';
 		addr_str[++idx] = '0';
 		is_addr--;
 	}

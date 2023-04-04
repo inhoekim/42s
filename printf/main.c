@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "ft_printf.h"
 #include <limits.h>
 
-int main()
+int main(void)
 {
+<<<<<<< HEAD
 	int a = ft_printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
 	int b = printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
 	printf("%d %d", a ,b);
@@ -88,4 +88,10 @@ int main()
 	printf("%0+10d\n", 10);
 	printf("%0-10d\n", 10);
 	*/
+=======
+	int a = ft_printf("p6 %.0d\n", 100);
+	printf("\n%d\n", a);
+	a = printf("p6 %.0d\n", 100);
+	printf("\n%d", a);
+>>>>>>> 7b5a67addac2138d6f03e99749201e6ee7d194d9
 }

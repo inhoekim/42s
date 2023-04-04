@@ -13,14 +13,16 @@
 #include "ft_printf_bonus.h"
 #include <stdlib.h>
 
-t_format_lst	*ft_lstnew(void *content)
+t_format_lst	*ft_lstnew(t_format content)
 {
 	t_format_lst	*new_list;
 
+	if (!content.complete)
+		return (FT_NULL);
 	new_list = (t_format_lst *)malloc(sizeof(t_format_lst));
 	if (new_list == FT_NULL)
 		return (FT_NULL);
-	new_list->current = (t_format *)content;
+	new_list->current = content;
 	new_list->next = FT_NULL;
 	return (new_list);
 }

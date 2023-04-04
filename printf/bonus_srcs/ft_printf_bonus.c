@@ -14,24 +14,32 @@
 #include <stdlib.h>
 #include "ft_printf_bonus.h"
 
+static t_format_lst	*make_lst_head(void)
+{
+	t_format_lst	*head;
+
+	head = (t_format_lst *)malloc(sizeof(t_format_lst));
+	if (head == FT_NULL)
+		return (FT_NULL);
+	head->next = FT_NULL;
+	return (head);
+}
+
 static t_format_lst	*make_format_lst(const char *s)
 {
 	t_format_lst	*format_lst;
 	t_format_lst	*lst_head;
 
-	format_lst = (t_format_lst *)malloc(sizeof(t_format_lst));
+	format_lst = make_lst_head();
 	if (format_lst == FT_NULL)
 		return (FT_NULL);
-	format_lst->next = FT_NULL;
-	format_lst->current = FT_NULL;
 	lst_head = format_lst;
 	while (*s != '\0')
 	{
 		if (*s == '%')
 		{
 			format_lst->next = ft_lstnew(ft_init_format(&s));
-			if (format_lst->next == FT_NULL \
-			|| format_lst->next->current == FT_NULL)
+			if (format_lst->next == FT_NULL)
 			{
 				ft_lstclear(lst_head);
 				return (FT_NULL);
@@ -48,14 +56,13 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 {
 	long long	print_cnt;
 
-	lst = lst->next;
 	print_cnt = 0;
 	while (*s != '\0')
 	{
 		if (*s == '%')
 		{
 			print_cnt += ft_print_format(lst->current, args);
-			s += lst->current->idx_len;
+			s += lst->current.idx_len;
 			lst = lst->next;
 			continue ;
 		}
@@ -74,14 +81,14 @@ int	ft_printf(const char *s, ...)
 	if (s == FT_NULL)
 		return (-1);
 	format_lst = make_format_lst(s);
-	if (format_lst == FT_NULL || !ft_check_formats(format_lst))
+	if (format_lst == FT_NULL || !ft_check_formats(format_lst->next))
 	{
 		ft_lstclear(format_lst);
 		return (-1);
 	}
 	va_start(args, s);
 	print_cnt = 0;
-	print_cnt += start_print(s, &args, format_lst);
+	print_cnt += start_print(s, &args, format_lst->next);
 	va_end(args);
 	ft_lstclear(format_lst);
 	return (print_cnt);
