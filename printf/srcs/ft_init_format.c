@@ -81,18 +81,16 @@ t_format *format, unsigned char *flags)
 
 t_format	ft_init_format(const char **s)
 {
-	t_format		*format;
+	t_format		format;
 	unsigned char	conversions[256];
 	unsigned char	flags[256];
 
 	assign_cfvalue(conversions, flags);
 	create_format(&format);
-	if (format == FT_NULL)
-		return (FT_NULL);
 	(*s)++;
 	while (**s != '\0')
 	{
-		format->idx_len++;
+		format.idx_len++;
 		if (conversions[(unsigned char)**s])
 		{
 			format.complete = 1;
@@ -100,9 +98,10 @@ t_format	ft_init_format(const char **s)
 			(*s)++;
 			return (format);
 		}
-		if (!make_format(**s, format, flags))
+		if (!make_format(**s, &format, flags))
 			break ;
 		(*s)++;
 	}
 	return (format);
 }
+
