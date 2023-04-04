@@ -69,6 +69,6 @@ int				ft_putchar_fd(char c, int fd);
 long long		ft_putstr_fd(char *str, long long len, int fd);
 t_format_lst	*ft_lstnew(t_format content);
 void			ft_lstclear(t_format_lst *lst);
-void			ft_check_wr_err(long long write_cnt, \
+void			ft_err(long long write_cnt, \
 t_check_wdata *data);
 #endif
