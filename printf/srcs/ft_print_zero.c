@@ -15,11 +15,15 @@
 long long	ft_print_zero(int width)
 {
 	long long	cnt;
+	long long	temp;
 
 	cnt = 0;
 	while (width > 0)
 	{
-		cnt += write(1, "0", 1);
+		temp = write(1, "0", 1);
+		if (temp < 0)
+			return (-1);
+		cnt += temp;
 		width--;
 	}
 	return (cnt);

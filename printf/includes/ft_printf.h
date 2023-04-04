@@ -15,7 +15,7 @@
 # define FT_NULL 0
 # define FT_FALSE 0
 # define FT_TRUE 1
-# define INT_MAX 2147483647
+# define FT_INT_MAX 2147483647
 # include <stddef.h>
 # include <stdarg.h>
 
@@ -39,6 +39,11 @@ typedef struct s_len_data
 	long long	str_len;
 	long long	actual_len;
 }t_len_data;
+typedef struct s_check_wdata
+{
+	long long	cnt;
+	int			is_minus;
+}t_check_wdata;
 int				ft_check_formats(t_format_lst *lst);
 t_format		ft_init_format(const char **s);
 long long		ft_print_format(t_format format, va_list *args);
@@ -64,4 +69,6 @@ int				ft_putchar_fd(char c, int fd);
 long long		ft_putstr_fd(char *str, long long len, int fd);
 t_format_lst	*ft_lstnew(t_format content);
 void			ft_lstclear(t_format_lst *lst);
+void			ft_check_wr_err(long long write_cnt, \
+t_check_wdata *data);
 #endif
