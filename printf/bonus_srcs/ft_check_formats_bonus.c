@@ -19,8 +19,7 @@ static int	check_conversion(t_format format)
 	format.flag_ascii['0'] || (format.prec && format.prec_width)))
 		return (0);
 	if (format.conversion == 's' && (format.flag_ascii['+'] || \
-	format.flag_ascii[' '] || format.flag_ascii['#'] \
-	|| format.flag_ascii['0']))
+	format.flag_ascii['#'] || format.flag_ascii['0']))
 		return (0);
 	if (format.conversion == 'p' && (format.flag_ascii['+'] || \
 	format.flag_ascii[' '] || format.flag_ascii['#'] || \
