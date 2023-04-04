@@ -19,25 +19,23 @@
 	precision: .
 	conversion: [cspdiuxX%]
 */
-static unsigned char	g_conversions[256];
-static unsigned char	g_flags[256];
-
-static void	assign_gvalue(void)
+static void	assign_cfvalue(unsigned char *conversions, unsigned char *flags)
 {
-	ft_memset(g_conversions, 0, 256);
-	g_conversions['c']++;
-	g_conversions['s']++;
-	g_conversions['p']++;
-	g_conversions['d']++;
-	g_conversions['i']++;
-	g_conversions['u']++;
-	g_conversions['x']++;
-	g_conversions['X']++;
-	g_conversions['%']++;
-	g_flags['#']++;
-	g_flags['+']++;
-	g_flags['-']++;
-	g_flags[' ']++;
+	ft_memset(conversions, 0, 256);
+	ft_memset(flags, 0, 256);
+	conversions['c']++;
+	conversions['s']++;
+	conversions['p']++;
+	conversions['d']++;
+	conversions['i']++;
+	conversions['u']++;
+	conversions['x']++;
+	conversions['X']++;
+	conversions['%']++;
+	flags['#']++;
+	flags['+']++;
+	flags['-']++;
+	flags[' ']++;
 }
 
 static t_format	*create_format(void)
@@ -56,7 +54,8 @@ static t_format	*create_format(void)
 	return (format);
 }
 
-static int	make_format(const unsigned char ch, t_format *format)
+static int	make_format(const unsigned char ch, \
+t_format *format, unsigned char *flags)
 {
 	if (ft_isdigit(ch))
 	{
@@ -76,8 +75,8 @@ static int	make_format(const unsigned char ch, t_format *format)
 	}
 	else
 	{
-		if (!g_flags[(int)ch] || \
-		(g_flags[(int)ch] && (format->width || format->prec)))
+		if (!flags[(int)ch] || \
+		(flags[(int)ch] && (format->width || format->prec)))
 			return (0);
 		format->flag_ascii[(int)ch]++;
 	}
@@ -86,9 +85,11 @@ static int	make_format(const unsigned char ch, t_format *format)
 
 t_format	*ft_init_format(const char **s)
 {
-	t_format	*format;
+	t_format		*format;
+	unsigned char	conversions[256];
+	unsigned char	flags[256];
 
-	assign_gvalue();
+	assign_cfvalue(conversions, flags);
 	format = create_format();
 	if (format == FT_NULL)
 		return (FT_NULL);
@@ -96,13 +97,13 @@ t_format	*ft_init_format(const char **s)
 	while (**s != '\0')
 	{
 		format->idx_len++;
-		if (g_conversions[(unsigned char)**s])
+		if (conversions[(unsigned char)**s])
 		{
 			format->conversion = **s;
 			(*s)++;
 			return (format);
 		}
-		if (!make_format(**s, format))
+		if (!make_format(**s, format, flags))
 			break ;
 		(*s)++;
 	}

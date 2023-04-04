@@ -5,10 +5,10 @@
 
 int main()
 {
-	int a = ft_printf("%+d\n", -1);
-	int b = printf("%+d\n", -1);
+	int a = ft_printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	int b = printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
 	printf("%d %d", a ,b);
-
+	system("leaks a.out");
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);
 	//int b = printf("%04d\n", 9);

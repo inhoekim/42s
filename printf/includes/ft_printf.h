@@ -15,6 +15,7 @@
 # define FT_NULL 0
 # define FT_FALSE 0
 # define FT_TRUE 1
+# define INT_MAX 2147483647
 # include <stddef.h>
 # include <stdarg.h>
 
