@@ -4,9 +4,8 @@
 
 int main(void)
 {
-	int a = ft_printf("%-5c", (char)27);
-	printf("\n----------------------------------------------\n");
-	int b = printf("%-5c", (char)27);
-	printf("\n----------------------------------------------\n");
-	printf("%d %d",a, b);
+	int a = ft_printf("p6 %.0d\n", 100);
+	printf("\n%d\n", a);
+	a = printf("p6 %.0d\n", 100);
+	printf("\n%d", a);
 }
