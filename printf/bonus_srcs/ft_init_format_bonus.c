@@ -38,7 +38,7 @@ static void	assign_cfvalue(unsigned char *conversions, unsigned char *flags)
 	flags[' ']++;
 }
 
-static t_format	*create_format(t_format *format)
+static void	create_format(t_format *format)
 {
 	ft_memset(format->flag_ascii, 0, 256);
 	format->conversion = 0;
@@ -47,7 +47,6 @@ static t_format	*create_format(t_format *format)
 	format->prec = 0;
 	format->idx_len = 1;
 	format->complete = 0;
-	return (format);
 }
 
 static int	make_format(const unsigned char ch, \

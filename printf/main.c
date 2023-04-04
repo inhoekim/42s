@@ -1,14 +1,12 @@
 #include <stdio.h>
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 #include <limits.h>
 
 int main(void)
 {
-<<<<<<< HEAD
-	int a = ft_printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
-	int b = printf("%-10.100s, %-10.100s, %-10.100s, %-10.100s\n", (char *)NULL, "", "test", "joihwhhgsdkhksdgsdg\t\v\n\r\f\a25252\b6");
+	int a = ft_printf("% s\n" , "abcd");
+	int b = printf("% s\n", "abcd");
 	printf("%d %d", a ,b);
-	system("leaks a.out");
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);
 	//int b = printf("%04d\n", 9);
@@ -88,10 +86,4 @@ int main(void)
 	printf("%0+10d\n", 10);
 	printf("%0-10d\n", 10);
 	*/
-=======
-	int a = ft_printf("p6 %.0d\n", 100);
-	printf("\n%d\n", a);
-	a = printf("p6 %.0d\n", 100);
-	printf("\n%d", a);
->>>>>>> 7b5a67addac2138d6f03e99749201e6ee7d194d9
 }
