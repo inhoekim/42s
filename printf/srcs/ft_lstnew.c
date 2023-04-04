@@ -17,6 +17,8 @@ t_format_lst	*ft_lstnew(t_format content)
 {
 	t_format_lst	*new_list;
 
+	if (!content.complete)
+		return (FT_NULL);
 	new_list = (t_format_lst *)malloc(sizeof(t_format_lst));
 	if (new_list == FT_NULL)
 		return (FT_NULL);
