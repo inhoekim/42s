@@ -81,12 +81,12 @@ t_format *format, unsigned char *flags)
 
 t_format	ft_init_format(const char **s)
 {
-	t_format		*format;
+	t_format		format;
 	unsigned char	conversions[256];
 	unsigned char	flags[256];
 
 	assign_cfvalue(conversions, flags);
-	format = create_format();
+	create_format(&format);
 	if (format == FT_NULL)
 		return (FT_NULL);
 	(*s)++;

@@ -86,7 +86,7 @@ t_format	ft_init_format(const char **s)
 	unsigned char	flags[256];
 
 	assign_cfvalue(conversions, flags);
-	format = create_format();
+	create_format(&format);
 	if (format == FT_NULL)
 		return (FT_NULL);
 	(*s)++;
