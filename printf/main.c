@@ -4,8 +4,8 @@
 
 int main(void)
 {
-	int a = ft_printf("%-0s\n" , "");
-	int b = printf("%-0s\n", "");
+	int a = ft_printf("%-0s\n" , "a");
+	int b = printf("%-0s\n", "a");
 	printf("%d %d", a ,b);
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);
