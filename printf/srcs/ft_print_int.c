@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void init_wdata(t_check_wdata *wdata)
+static void	init_wdata(t_check_wdata *wdata)
 {
 	wdata->cnt = 0;
 	wdata->is_minus = 0;
@@ -77,7 +77,7 @@ long long	ft_print_int(t_format format, int num)
 	t_check_wdata	wdata;
 	t_len_data		len_data;
 	char			num_str[12];
-	int 			temp;
+	int				temp;
 
 	temp = 0;
 	ft_itoa(num, num_str);
@@ -108,7 +108,7 @@ long long	ft_print_uint(t_format format, unsigned int num)
 		num_str[0] = '\0';
 	len_data.str_len = ft_strlen(num_str);
 	pre_proc(&format, num < 0, &len_data);
-	wdata =  proc_print_int_flag(format, num_str, &len_data, num < 0);
+	wdata = proc_print_int_flag(format, num_str, &len_data, num < 0);
 	if (wdata.is_minus)
 		return (-1);
 	return (wdata.cnt);
