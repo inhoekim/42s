@@ -56,7 +56,6 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 {
 	long long	print_cnt;
 
-	lst = lst->next;
 	print_cnt = 0;
 	while (*s != '\0')
 	{
@@ -82,14 +81,14 @@ int	ft_printf(const char *s, ...)
 	if (s == FT_NULL)
 		return (-1);
 	format_lst = make_format_lst(s);
-	if (format_lst == FT_NULL || !ft_check_formats(format_lst))
+	if (format_lst == FT_NULL || !ft_check_formats(format_lst->next))
 	{
 		ft_lstclear(format_lst);
 		return (-1);
 	}
 	va_start(args, s);
 	print_cnt = 0;
-	print_cnt += start_print(s, &args, format_lst);
+	print_cnt += start_print(s, &args, format_lst->next);
 	va_end(args);
 	ft_lstclear(format_lst);
 	return (print_cnt);

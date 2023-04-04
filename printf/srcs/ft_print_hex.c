@@ -31,7 +31,7 @@ char *str, long long len, long long actual_len)
 	cnt = 0;
 	if (fm.flag_ascii['-'])
 	{
-		if (fm.flag_ascii['#'] && actual_len >= 3)
+		if (fm.flag_ascii['#'] && actual_len >= 3 && len != 0)
 			cnt += print_addr_prefix(&str);
 		cnt += ft_print_zero(fm.prec_width - len);
 		cnt += ft_putstr_fd(str, ft_strlen(str), 1);
@@ -40,7 +40,7 @@ char *str, long long len, long long actual_len)
 	else
 	{
 		cnt += ft_print_width(fm.width - actual_len);
-		if (fm.flag_ascii['#'] && actual_len >= 3)
+		if (fm.flag_ascii['#'] && actual_len >= 3 && len != 0)
 			cnt += print_addr_prefix(&str);
 		cnt += ft_print_zero(fm.prec_width - len);
 		cnt += ft_putstr_fd(str, ft_strlen(str), 1);

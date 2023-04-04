@@ -13,25 +13,25 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void	pre_proc(t_format fm, int is_minus, t_len_data *len_data)
+static void	pre_proc(t_format *fm, int is_minus, t_len_data *len_data)
 {
 	len_data->actual_len = len_data->str_len;
-	if (!fm.prec)
+	if (!fm->prec)
 	{
 		if (is_minus)
 			len_data->actual_len += 1;
-		if (is_minus && fm.flag_ascii['0'])
+		if (is_minus && fm->flag_ascii['0'])
 			len_data->str_len += 1;
-		if (fm.flag_ascii['0'])
+		if (fm->flag_ascii['0'])
 		{
-			fm.prec_width = fm.width;
-			len_data->actual_len = fm.width;
+			fm->prec_width = fm->width;
+			len_data->actual_len = fm->width;
 		}
 	}
 	else
 	{
-		if (fm.prec_width > len_data->actual_len)
-			len_data->actual_len = fm.prec_width;
+		if (fm->prec_width > len_data->actual_len)
+			len_data->actual_len = fm->prec_width;
 		if (is_minus)
 			len_data->actual_len += 1;
 	}
@@ -83,7 +83,7 @@ long long	ft_print_int(t_format format, int num)
 			cnt += write(1, " ", 1);
 		(format.width)--;
 	}
-	pre_proc(format, num < 0, &len_data);
+	pre_proc(&format, num < 0, &len_data);
 	cnt += proc_print_int_flag(format, num_str, &len_data, num < 0);
 	return (cnt);
 }
@@ -99,7 +99,7 @@ long long	ft_print_uint(t_format format, unsigned int num)
 	if (num == 0 && format.prec)
 		num_str[0] = '\0';
 	len_data.str_len = ft_strlen(num_str);
-	pre_proc(format, num < 0, &len_data);
+	pre_proc(&format, num < 0, &len_data);
 	cnt += proc_print_int_flag(format, num_str, &len_data, num < 0);
 	return (cnt);
 }
