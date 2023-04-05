@@ -17,7 +17,7 @@ long long	ft_print_percent(t_format format)
 {
 	if (format.flag_ascii['-'])
 	{
-		if (write(1, "%", 1) == 1 || \
+		if (write(1, "%", 1) == -1 || \
 		ft_print_width(format.width - 1) == -1)
 			return (-1);
 	}
