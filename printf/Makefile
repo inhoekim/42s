@@ -29,6 +29,8 @@ SRCS_OBJS=$(SRCS_WITH_PATH:.c=.o)
 BONUS_OBJS=$(BONUS_WITH_PATH:.c=.o)
 NAME=libftprintf.a
 
+$(NAME) : all
+
 all : MANDATORY
 
 bonus : BONUS_SUB

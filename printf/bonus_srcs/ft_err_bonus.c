@@ -12,10 +12,11 @@
 
 #include "ft_printf_bonus.h"
 
-void	ft_err(long long write_cnt, t_check_wdata *data)
+int	ft_err(long long write_cnt, long long *cnt)
 {
 	if (write_cnt < 0)
-		data->is_minus = 1;
+		return (1);
 	else
-		data->cnt += write_cnt;
+		*cnt += write_cnt;
+	return (0);
 }

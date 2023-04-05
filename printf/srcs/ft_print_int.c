@@ -13,20 +13,31 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-static void	init_wdata(t_check_wdata *wdata)
+static int	print_detail(t_format fm, \
+t_len_data *len_data, char *str, long long *cnt)
 {
-	wdata->cnt = 0;
-	wdata->is_minus = 0;
+	if (ft_err(ft_print_width(fm.width - len_data->actual_len), cnt))
+		return (1);
+	if (len_data->is_minus)
+		if (ft_err(write(1, "-", 1), cnt))
+			return (1);
+	if (!(len_data->is_minus) && fm.flag_ascii['+'])
+		if (ft_err(write(1, "+", 1), cnt))
+			return (1);
+	if (ft_err(ft_print_zero(fm.prec_width - len_data->str_len), cnt) || \
+	ft_err(ft_putstr_fd(str, len_data->str_len, 1), cnt))
+		return (1);
+	return (0);
 }
 
-static void	pre_proc(t_format *fm, int is_minus, t_len_data *len_data)
+static void	pre_proc(t_format *fm, t_len_data *len_data)
 {
 	len_data->actual_len = len_data->str_len;
 	if (!fm->prec)
 	{
-		if (is_minus)
+		if (len_data->is_minus)
 			len_data->actual_len += 1;
-		if (is_minus && fm->flag_ascii['0'])
+		if (len_data->is_minus && fm->flag_ascii['0'])
 			len_data->str_len += 1;
 		if (fm->flag_ascii['0'])
 		{
@@ -38,48 +49,43 @@ static void	pre_proc(t_format *fm, int is_minus, t_len_data *len_data)
 	{
 		if (fm->prec_width > len_data->actual_len)
 			len_data->actual_len = fm->prec_width;
-		if (is_minus)
+		if (len_data->is_minus)
 			len_data->actual_len += 1;
 	}
 }
 
-static t_check_wdata	proc_print_int_flag(t_format fm, \
-char *str, t_len_data *len_data, int is_minus)
+static long long	proc_print_int_flag(t_format fm, \
+char *str, t_len_data *len_data)
 {
-	t_check_wdata	wdata;
+	long long	cnt;
 
-	init_wdata(&wdata);
+	cnt = 0;
 	if (fm.flag_ascii['-'])
 	{
-		if (is_minus)
-			ft_err(write(1, "-", 1), &wdata);
-		if (!is_minus && fm.flag_ascii['+'])
-			ft_err(write(1, "+", 1), &wdata);
-		ft_err(ft_print_zero(fm.prec_width - len_data->str_len), &wdata);
-		ft_err(ft_putstr_fd(str, len_data->str_len, 1), &wdata);
-		ft_err(ft_print_width(fm.width - len_data->actual_len), &wdata);
+		if (len_data->is_minus)
+			if (ft_err(write(1, "-", 1), &cnt))
+				return (-1);
+		if (!(len_data->is_minus) && fm.flag_ascii['+'])
+			if (ft_err(write(1, "+", 1), &cnt))
+				return (-1);
+		if (ft_err(ft_print_zero(fm.prec_width - len_data->str_len), &cnt) || \
+		ft_err(ft_putstr_fd(str, len_data->str_len, 1), &cnt) || \
+		ft_err(ft_print_width(fm.width - len_data->actual_len), &cnt))
+			return (-1);
 	}
 	else
-	{
-		ft_err(ft_print_width(fm.width - len_data->actual_len), &wdata);
-		if (is_minus)
-			ft_err(write(1, "-", 1), &wdata);
-		if (!is_minus && fm.flag_ascii['+'])
-			ft_err(write(1, "+", 1), &wdata);
-		ft_err(ft_print_zero(fm.prec_width - len_data->str_len), &wdata);
-		ft_err(ft_putstr_fd(str, len_data->str_len, 1), &wdata);
-	}
-	return (wdata);
+		if (print_detail(fm, len_data, str, &cnt))
+			return (-1);
+	return (cnt);
 }
 
 long long	ft_print_int(t_format format, int num)
 {
-	t_check_wdata	wdata;
+	long long		cnt;
 	t_len_data		len_data;
 	char			num_str[12];
-	int				temp;
 
-	temp = 0;
+	cnt = 0;
 	ft_itoa(num, num_str);
 	if (num == 0 && format.prec)
 		num_str[0] = '\0';
@@ -87,19 +93,22 @@ long long	ft_print_int(t_format format, int num)
 	if ((format.flag_ascii[' '] || format.flag_ascii['+']) && num >= 0)
 	{
 		if (format.flag_ascii[' '])
-			temp = write(1, " ", 1);
+			cnt = write(1, " ", 1);
 		(format.width)--;
 	}
-	pre_proc(&format, num < 0, &len_data);
-	wdata = proc_print_int_flag(format, num_str, &len_data, num < 0);
-	if (wdata.is_minus || temp < 0)
+	if (cnt < 0)
 		return (-1);
-	return (wdata.cnt + temp);
+	len_data.is_minus = 0;
+	if (num < 0)
+		len_data.is_minus = 1;
+	pre_proc(&format, &len_data);
+	cnt += proc_print_int_flag(format, num_str, &len_data);
+	return (cnt);
 }
 
 long long	ft_print_uint(t_format format, unsigned int num)
 {
-	t_check_wdata	wdata;
+	long long		cnt;
 	t_len_data		len_data;
 	char			num_str[12];
 
@@ -107,9 +116,8 @@ long long	ft_print_uint(t_format format, unsigned int num)
 	if (num == 0 && format.prec)
 		num_str[0] = '\0';
 	len_data.str_len = ft_strlen(num_str);
-	pre_proc(&format, num < 0, &len_data);
-	wdata = proc_print_int_flag(format, num_str, &len_data, num < 0);
-	if (wdata.is_minus)
-		return (-1);
-	return (wdata.cnt);
+	len_data.is_minus = 0;
+	pre_proc(&format, &len_data);
+	cnt = proc_print_int_flag(format, num_str, &len_data);
+	return (cnt);
 }

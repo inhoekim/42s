@@ -38,12 +38,8 @@ typedef struct s_len_data
 {
 	long long	str_len;
 	long long	actual_len;
-}t_len_data;
-typedef struct s_check_wdata
-{
-	long long	cnt;
 	int			is_minus;
-}t_check_wdata;
+}t_len_data;
 int				ft_check_formats(t_format_lst *lst);
 t_format		ft_init_format(const char **s);
 long long		ft_print_format(t_format format, va_list *args);
@@ -69,6 +65,5 @@ int				ft_putchar_fd(char c, int fd);
 long long		ft_putstr_fd(char *str, long long len, int fd);
 t_format_lst	*ft_lstnew(t_format content);
 void			ft_lstclear(t_format_lst *lst);
-void			ft_err(long long write_cnt, \
-t_check_wdata *data);
+int				ft_err(long long write_cnt, long long *cnt);
 #endif
