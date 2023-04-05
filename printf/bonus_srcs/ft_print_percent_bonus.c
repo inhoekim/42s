@@ -24,7 +24,7 @@ long long	ft_print_percent(t_format format)
 	else
 	{
 		if (ft_print_width(format.width - 1) == -1 || \
-		write(1, "%", 1))
+		write(1, "%", 1) == -1)
 			return (-1);
 	}
 	if (format.width >= 1)
