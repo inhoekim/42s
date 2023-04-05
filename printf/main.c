@@ -4,8 +4,10 @@
 
 int main(void)
 {
-	int a = ft_printf("%-5%\n");
-	int b = printf("%-5%\n");
+	int a = ft_printf("%-100c, %-100c, %-100c", '5', 'x', '\n');
+	printf("\n=======================\n");
+	int b = printf("%-100c, %-100c, %-100c", '5', 'x', '\n');
+	printf("\n=======================\n");
 	printf("%d %d", a ,b);
 	//printf("");
 	//int a = ft_printf(" %04d\n", 9);
