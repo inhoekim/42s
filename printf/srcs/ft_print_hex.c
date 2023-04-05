@@ -105,4 +105,3 @@ long long	ft_print_hex(t_format format, unsigned int num, int lower_case)
 		return (-1);
 	return (wdata.cnt);
 }
-
