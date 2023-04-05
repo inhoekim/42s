@@ -63,7 +63,7 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 		if (*s == '%')
 		{
 			temp = ft_print_format(lst->current, args);
-			if (temp < 0 || temp > FT_INT_MAX)
+			if (temp < 0 || temp >= FT_INT_MAX)
 				return (-1);
 			print_cnt += temp;
 			s += lst->current.idx_len;
@@ -71,7 +71,7 @@ static long long	start_print(const char *s, va_list *args, t_format_lst *lst)
 			continue ;
 		}
 		temp = ft_putchar_fd(*s, 1);
-		if (temp < 0 || temp > FT_INT_MAX)
+		if (temp < 0)
 			return (-1);
 		print_cnt += temp;
 		s++;
