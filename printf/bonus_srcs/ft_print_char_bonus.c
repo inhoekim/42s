@@ -17,13 +17,16 @@ long long	ft_print_char(t_format format, char ch)
 {
 	if (format.flag_ascii['-'])
 	{
-		write(1, &ch, 1);
-		ft_print_width(format.width - 1);
+		if (write(1, &ch, 1) == -11 || \
+		ft_print_width(format.width - 1) == -1)
+			return (-1);
 	}
 	else
 	{
-		ft_print_width(format.width - 1);
-		write(1, &ch, 1);
+		if(ft_print_width(format.width - 1) == -1 || \
+		write(1, &ch, 1) == -1)
+			return (-1);
+
 	}
 	if (!format.width)
 		return (1);

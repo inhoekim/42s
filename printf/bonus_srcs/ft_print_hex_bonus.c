@@ -13,77 +13,81 @@
 #include "ft_printf_bonus.h"
 #include <unistd.h>
 
+static void	init_wdata(t_check_wdata *wdata)
+{
+	wdata->cnt = 0;
+	wdata->is_minus = 0;
+}
+
 static long long	print_addr_prefix(char **str)
 {
 	long long	cnt;
 
-	cnt = 0;
-	cnt += ft_putstr_fd(*str, 2, 1);
+	cnt = ft_putstr_fd(*str, 2, 1);
 	*str = *str + 2;
 	return (cnt);
 }
 
-static long long	proc_prec(t_format fm, \
+static t_check_wdata	proc_prec(t_format fm, \
 char *str, long long len, long long actual_len)
 {
-	long long	cnt;
+	t_check_wdata	wdata;
 
-	cnt = 0;
+	init_wdata(&wdata);
 	if (fm.flag_ascii['-'])
 	{
 		if (fm.flag_ascii['#'] && actual_len >= 3 && len != 0)
-			cnt += print_addr_prefix(&str);
-		cnt += ft_print_zero(fm.prec_width - len);
-		cnt += ft_putstr_fd(str, ft_strlen(str), 1);
-		cnt += ft_print_width(fm.width - actual_len);
+			ft_err(print_addr_prefix(&str), &wdata);
+		ft_err(ft_print_zero(fm.prec_width - len), &wdata);
+		ft_err(ft_putstr_fd(str, ft_strlen(str), 1), &wdata);
+		ft_err(ft_print_width(fm.width - actual_len), &wdata);
 	}
 	else
 	{
-		cnt += ft_print_width(fm.width - actual_len);
+		ft_err(ft_print_width(fm.width - actual_len), &wdata);
 		if (fm.flag_ascii['#'] && actual_len >= 3 && len != 0)
-			cnt += print_addr_prefix(&str);
-		cnt += ft_print_zero(fm.prec_width - len);
-		cnt += ft_putstr_fd(str, ft_strlen(str), 1);
+			ft_err(print_addr_prefix(&str), &wdata);
+		ft_err(ft_print_zero(fm.prec_width - len), &wdata);
+		ft_err(ft_putstr_fd(str, ft_strlen(str), 1), &wdata);
 	}
-	return (cnt);
+	return (wdata);
 }
 
-static long long	proc_non_prec(t_format fm, \
+static t_check_wdata	proc_non_prec(t_format fm, \
 char *str, long long actual_len)
 {
-	long long	cnt;
+	t_check_wdata	wdata;
 
-	cnt = 0;
+	init_wdata(&wdata);
 	if (fm.flag_ascii['-'])
 	{
 		if (fm.flag_ascii['#'] && actual_len >= 3)
-			cnt += print_addr_prefix(&str);
-		cnt += ft_putstr_fd(str, ft_strlen(str), 1);
-		cnt += ft_print_width(fm.width - actual_len);
+			ft_err(print_addr_prefix(&str), &wdata);
+		ft_err(ft_putstr_fd(str, ft_strlen(str), 1), &wdata);
+		ft_err(ft_print_width(fm.width - actual_len), &wdata);
 	}
 	else
 	{
 		if (!fm.flag_ascii['0'])
-			cnt += ft_print_width(fm.width - actual_len);
+			ft_err(ft_print_width(fm.width - actual_len), &wdata);
 		if (fm.flag_ascii['#'] && actual_len >= 3)
-			cnt += print_addr_prefix(&str);
+			ft_err(print_addr_prefix(&str), &wdata);
 		if (fm.flag_ascii['0'])
-			cnt += ft_print_zero(fm.width - actual_len);
-		cnt += ft_putstr_fd(str, ft_strlen(str), 1);
+			ft_err(ft_print_zero(fm.width - actual_len), &wdata);
+		ft_err(ft_putstr_fd(str, ft_strlen(str), 1), &wdata);
 	}
-	return (cnt);
+	return (wdata);
 }
 
 long long	ft_print_hex(t_format format, unsigned int num, int lower_case)
 {
-	long long	cnt;
-	long long	str_len;
-	long long	actual_len;
-	char		num_str[11];
-	int			is_addr;
+	t_check_wdata	wdata;
+	long long		str_len;
+	long long		actual_len;
+	char			num_str[11];
+	int				is_addr;
 
 	is_addr = FT_FALSE;
-	cnt = 0;
 	if (format.flag_ascii['#'] && num != 0)
 		is_addr = FT_TRUE + 1;
 	ft_make_hexstr(num, num_str, is_addr, lower_case);
@@ -94,8 +98,10 @@ long long	ft_print_hex(t_format format, unsigned int num, int lower_case)
 	if (format.prec_width > str_len)
 		actual_len = format.prec_width + is_addr;
 	if (format.prec)
-		cnt += proc_prec(format, num_str, str_len, actual_len);
+		wdata = proc_prec(format, num_str, str_len, actual_len);
 	else
-		cnt += proc_non_prec(format, num_str, actual_len);
-	return (cnt);
+		wdata = proc_non_prec(format, num_str, actual_len);
+	if (wdata.is_minus)
+		return (-1);
+	return (wdata.cnt);
 }

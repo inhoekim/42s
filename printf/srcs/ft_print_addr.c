@@ -14,22 +14,24 @@
 
 long long	ft_print_addr(t_format format, long long p)
 {
-	long long	cnt;
 	long long	str_len;
 	char		addr_str[19];
 
-	cnt = 0;
 	ft_make_hexstr((long long)p, addr_str, FT_TRUE + 1, FT_TRUE);
 	str_len = ft_strlen(addr_str);
 	if (format.flag_ascii['-'])
 	{
-		cnt += ft_putstr_fd(addr_str, str_len, 1);
-		cnt += ft_print_width(format.width - str_len);
+		if (ft_putstr_fd(addr_str, str_len, 1) == -1 || \
+		ft_print_width(format.width - str_len) == -1)
+			return (-1);
 	}
 	else
 	{
-		cnt += ft_print_width(format.width - str_len);
-		cnt += ft_putstr_fd(addr_str, str_len, 1);
+		if (ft_print_width(format.width - str_len) == -1 || \
+		ft_putstr_fd(addr_str, str_len, 1) == -1)
+			return (-1);
 	}
-	return (cnt);
+	if (format.width > str_len)
+		return (format.width);
+	return (str_len);
 }

@@ -15,18 +15,19 @@
 
 long long	ft_print_percent(t_format format)
 {
-	long long	cnt;
-
-	cnt = 0;
 	if (format.flag_ascii['-'])
 	{
-		cnt += write(1, "%", 1);
-		cnt += ft_print_width(format.width - 1);
+		if (write(1, "%", 1) == 1 || \
+		ft_print_width(format.width - 1) == -1)
+			return (-1);
 	}
 	else
 	{
-		cnt += ft_print_width(format.width - 1);
-		cnt += write(1, "%", 1);
-	}	
-	return (cnt);
+		if (ft_print_width(format.width - 1) == -1 || \
+		write(1, "%", 1))
+			return (-1);
+	}
+	if (format.width >= 1)
+		return (format.width);
+	return (1);
 }

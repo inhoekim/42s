@@ -14,10 +14,8 @@
 
 long long	ft_print_str(t_format format, char *str)
 {
-	long long	cnt;
 	long long	str_len;
 
-	cnt = 0;
 	if (str == FT_NULL)
 		str = "(null)";
 	str_len = ft_strlen(str);
@@ -25,13 +23,17 @@ long long	ft_print_str(t_format format, char *str)
 		str_len = format.prec_width;
 	if (format.flag_ascii['-'])
 	{
-		cnt += ft_putstr_fd(str, str_len, 1);
-		cnt += ft_print_width(format.width - str_len);
+		if (ft_putstr_fd(str, str_len, 1) == -1 || \
+		ft_print_width(format.width - str_len) == -1)
+			return (-1);
 	}
 	else
 	{
-		cnt += ft_print_width(format.width - str_len);
-		cnt += ft_putstr_fd(str, str_len, 1);
+		if (ft_print_width(format.width - str_len) == -1 || \
+		ft_putstr_fd(str, str_len, 1) == -1)
+			return (-1);
 	}
-	return (cnt);
+	if (format.width > str_len)
+		return (format.width);
+	return (str_len);
 }
