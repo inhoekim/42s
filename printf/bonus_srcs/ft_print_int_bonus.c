@@ -65,7 +65,7 @@ char *str, t_len_data *len_data, int is_minus)
 		if (is_minus)
 			ft_err(write(1, "-", 1), &wdata);
 		if (!is_minus && fm.flag_ascii['+'])
-			ft_err(write(1, "+", 1) , &wdata);
+			ft_err(write(1, "+", 1), &wdata);
 		ft_err(ft_print_zero(fm.prec_width - len_data->str_len), &wdata);
 		ft_err(ft_putstr_fd(str, len_data->str_len, 1), &wdata);
 	}
