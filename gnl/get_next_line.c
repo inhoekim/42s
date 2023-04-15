@@ -38,26 +38,25 @@ static int	join_buf(t_vector *vec, int idx, char *buf)
 	return (FT_TRUE);
 }
 
-static char	*read_line(int idx, t_vector *vec)
+static char	*read_line(int idx, t_vector *vec, char *ret_str, char **buf)
 {
-	char		*ret_str;
-	char		*buf;
 	long long	offset;
+	int			read_ret;
 
-	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buf == FT_NULL)
+	*buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (*buf == FT_NULL)
 		return (ft_clear(vec->contents, vec->size));
 	offset = 0;
 	while (FT_TRUE)
 	{
 		if (ft_find_newline(vec, idx, &offset, &ret_str))
-		{
-			free(buf);
 			return (ret_str);
-		}
-		if (read(vec->contents[idx].fd, buf, BUFFER_SIZE) == FT_ERR)
+		read_ret = read(vec->contents[idx].fd, *buf, BUFFER_SIZE);
+		if (read_ret == FT_ERR)
 			return (ft_clear(vec->contents, vec->size));
-		if (join_buf(vec, idx, buf) == FT_ERR)
+		if (read_ret == 0)
+			return (vec->contents[idx].str);
+		if (join_buf(vec, idx, *buf) == FT_ERR)
 			return (ft_clear(vec->contents, vec->size));
 	}
 	return (FT_NULL);
@@ -94,8 +93,8 @@ static int	find_fd(int fd, t_vector *vec)
 	int	i;
 
 	i = -1;
-	while (i < vec->size - 1)
-		if (vec->contents[++i].fd == fd)
+	while (++i < vec->size)
+		if (vec->contents[i].fd == fd)
 			break ;
 	if (i == vec->size || i == -1)
 	{
@@ -120,6 +119,8 @@ char	*get_next_line(int fd)
 {
 	static t_vector	fd_vector;
 	int				fd_idx;
+	char			*str;
+	char			*buf;
 
 	if (fd_vector.size == 0)
 	{
@@ -128,9 +129,13 @@ char	*get_next_line(int fd)
 		fd_vector.contents = (t_vec_fd *)malloc(sizeof(t_vec_fd) * 1024);
 	}
 	if (!fd_vector.contents || fd < 0 || BUFFER_SIZE <= 0)
-		return (FT_NULL);
+		return (ft_clear(fd_vector.contents, fd_vector.size));
 	fd_idx = find_fd(fd, &fd_vector);
 	if (fd_idx == FT_ERR)
 		return (FT_NULL);
-	return (read_line(fd_idx, &fd_vector));
+	str = FT_NULL;
+	buf = FT_NULL;
+	str = read_line(fd_idx, &fd_vector, str, &buf);
+	free(buf);
+	return (str);
 }
