@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:30:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/10 18:30:15 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/04/16 05:03:08 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*read_line(int idx, t_vector *vec)
 			free(buf);
 			return (ret_str);
 		}
-			if (read(vec->contents[idx].fd, buf, BUFFER_SIZE) == FT_ERR)
+		if (read(vec->contents[idx].fd, buf, BUFFER_SIZE) == FT_ERR)
 			return (ft_clear(vec->contents, vec->size));
 		if (join_buf(vec, idx, buf) == FT_ERR)
 			return (ft_clear(vec->contents, vec->size));
@@ -133,11 +133,4 @@ char	*get_next_line(int fd)
 	if (fd_idx == FT_ERR)
 		return (FT_NULL);
 	return (read_line(fd_idx, &fd_vector));
-}
-
-#include <stdio.h>
-int	main(void)
-{
-	printf("%s", get_next_line(0));
-	printf("%s", get_next_line(0));
 }
