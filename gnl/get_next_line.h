@@ -19,7 +19,9 @@
 # define FT_ERR -1
 # define FT_TRUE 1
 # define FT_FALSE 0
-#include <unistd.h>
+# include <unistd.h>
+# include <stdlib.h>
+
 typedef struct s_vec_fd{
 	int		fd;
 	char	*str;
@@ -29,13 +31,13 @@ typedef struct s_vector{
 	int			size;
 	t_vec_fd	*contents;
 }t_vector;
-char	*get_next_line(int fd);
-int	ft_find_newline(t_vector *vec, \
-int idx, long long *offset, char **ret_str);
-int	ft_split_newline(t_vector *vec, \
-int idx, long long offset, char **ret_str);
-void	ft_str_copy(char *dest, \
-char *src, long long start, long long end);
+char		*get_next_line(int fd);
 long long	ft_strlen(char *str);
-void	*ft_clear(t_vec_fd *contents, int size);
+void		*ft_clear(t_vec_fd *contents, int size);
+int			ft_find_newline(t_vector *vec, \
+int idx, long long *offset, char **ret_str);
+int			ft_split_newline(t_vector *vec, \
+int idx, long long offset, char **ret_str);
+void		ft_str_copy(char *dest, \
+char *src, long long start, long long end);
 #endif
