@@ -1,39 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                       :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 18:33:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/10 18:33:41 by inhkim           ###   ########.fr       */
+/*   Created: 2023/04/18 05:31:54 by inhkim            #+#    #+#             */
+/*   Updated: 2023/04/18 08:23:38 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_clear(t_vec_fd *contents, int size)
-{
-	int	idx;
-
-	idx = 0;
-	while (idx < size)
-		free(contents[idx].str);
-	free(contents);
-	return (FT_NULL);
-}
-
-long long	ft_strlen(char *str)
-{
-	long long	idx;
-
-	if (str == FT_NULL)
-		return (0);
-	idx = 0;
-	while (str[idx] != '\0')
-		idx++;
-	return (idx);
-}
 
 void	ft_str_copy(char *dest, \
 char *src, long long start, long long end)
@@ -49,47 +26,69 @@ char *src, long long start, long long end)
 		dest_idx++;
 		src_idx++;
 	}
+	dest[dest_idx] = '\0';
 }
 
 int	ft_split_newline(t_vector *vec, \
 int idx, long long offset, char **ret_str)
 {
 	char		*str;
-	long long	len;
 
-	str = vec->contents[idx].str;
-	len = ft_strlen(str);
-	*ret_str = (char *)malloc(sizeof(char) * (offset + 1));
-	vec->contents[idx].str = (char *)malloc(sizeof(char) * (len - offset + 1));
-	if (!(*ret_str) || !vec->contents[idx].str)
-	{
-		free(str);
-		free(*ret_str);
+	str = vec->inner_vec[idx].str;
+	*ret_str = (char *)malloc(sizeof(char) * ((offset + 1) + 1));
+	if (*ret_str == FT_NULL)
 		return (FT_ERR);
-	}
 	ft_str_copy(*ret_str, str, 0, offset + 1);
-	ft_str_copy(vec->contents[idx].str, str, offset + 1, len);
+	ft_str_copy(str, str, offset + 1, vec->inner_vec[idx].size);
+	vec->inner_vec[idx].size = vec->inner_vec[idx].size - (offset + 1);
 	return (FT_TRUE);
 }
 
-int	ft_find_newline(t_vector *vec, \
-int idx, long long *offset, char **ret_str)
+int	ft_expand_vector(t_vector *vec)
 {
-	char	*str;
+	char		*temp;
+	int			idx;
 
-	str = vec->contents[idx].str;
-	while (str[*offset])
+	temp = vec->str;
+	vec->str = (char *)malloc(sizeof(char) * (vec->capacity * 2));
+	if (vec->str == FT_NULL)
 	{
-		if (str[*offset] == '\n')
-		{
-			if (ft_split_newline(vec, idx, *offset, ret_str) == FT_ERR)
-			{
-				ft_clear(vec->contents, vec->size);
-				return (FT_ERR);
-			}
-			return (FT_TRUE);
-		}
-		*offset = *offset + 1;
+		vec->str = temp;
+		return (FT_ERR);
 	}
-	return (FT_FALSE);
+	vec->capacity = vec->capacity * 2;
+	idx = -1;
+	while (++idx < vec->size && temp)
+		vec->str[idx] = temp[idx];
+	free(temp);
+	return (FT_TRUE);
+}
+
+int	ft_expand_outer_vector(t_vector *vec)
+{
+	t_vector	*temp;
+	int			idx;
+
+	idx = -1;
+	if (vec->size == vec->capacity)
+	{
+		temp = vec->inner_vec;
+		vec->inner_vec = \
+		(t_vector *)malloc(sizeof(t_vector) * (vec->capacity * 2));
+		if (vec->inner_vec == FT_NULL)
+		{
+			vec->inner_vec = temp;
+			return (FT_ERR);
+		}
+		vec->capacity = vec->capacity * 2;
+		while (++idx < vec->size)
+		{
+			vec->inner_vec[idx].fd = temp[idx].fd;
+			vec->inner_vec[idx].str = temp[idx].str;
+			vec->inner_vec[idx].size = temp[idx].size;
+			vec->inner_vec[idx].capacity = temp[idx].capacity;
+		}
+		free(temp);
+	}
+	return (FT_TRUE);
 }
