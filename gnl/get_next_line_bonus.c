@@ -48,7 +48,7 @@ int idx, t_vector *vec, char **ret_str)
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
 		return (FT_ERR);
 	}
-	reture (FT_TRUE);
+	return (FT_TRUE);
 }
 
 static int	read_line(int idx, t_vector *vec, char **ret_str, char **buf)
