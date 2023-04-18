@@ -34,12 +34,12 @@ static int	join_buf(t_vector *vec, int idx, char *buf, long long buf_len)
 static int	read_check(long long read_ret, \
 int idx, t_vector *vec, char **ret_str)
 {
-	if (read_ret == FT_FALSE && !vec->inner_vec[idx].str)
+	if (read_ret == FT_FALSE && vec->inner_vec[idx].str)
 	{
 		*ret_str = vec->inner_vec[idx].str;
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
-		return (FT_ERR);
+		return (FT_TRUE);
 	}
 	if (read_ret <= 0)
 	{
@@ -121,6 +121,7 @@ char	*get_next_line(int fd)
 			free(outer_vector.inner_vec);
 		return (FT_NULL);
 	}
+	str = FT_NULL;
 	read_line(fd_idx, &outer_vector, &str, &buf);
 	free(buf);
 	if (outer_vector.size == 0)
