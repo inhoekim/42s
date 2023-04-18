@@ -39,16 +39,16 @@ int idx, t_vector *vec, char **ret_str)
 		*ret_str = vec->inner_vec[idx].str;
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
-		return (FT_ERR);
+		return (FT_TRUE);
 	}
 	if (read_ret <= 0)
 	{
 		free(vec->inner_vec[idx].str);
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
-		return (FT_ERR);
+		return (FT_TRUE);
 	}
-	return (FT_TRUE);
+	return (FT_FALSE);
 }
 
 static int	read_line(int idx, t_vector *vec, char **ret_str, char **buf)
@@ -67,8 +67,8 @@ static int	read_line(int idx, t_vector *vec, char **ret_str, char **buf)
 			if (vec->inner_vec[idx].str[++offset - 1] == '\n')
 				return (ft_split_newline(vec, idx, offset - 1, ret_str));
 		read_ret = read(vec->inner_vec[idx].fd, *buf, BUFFER_SIZE);
-		if (read_check(read_ret, idx, vec, ret_str) == FT_ERR)
-			return (FT_ERR);
+		if (read_check(read_ret, idx, vec, ret_str))
+			return (FT_TRUE);
 		if (join_buf(vec, idx, *buf, (long long)read_ret) == FT_ERR)
 			return (FT_ERR);
 	}
@@ -115,12 +115,15 @@ char	*get_next_line(int fd)
 	dat.fd_idx = find_fd(fd, &outer_vector);
 	if (dat.fd_idx == FT_ERR || BUFFER_SIZE <= 0)
 	{
-		if (outer_vector.size == 0)
-			free(outer_vector.inner_vec);
+		free(outer_vector.inner_vec);
 		return (FT_NULL);
 	}
 	dat.str = FT_NULL;
-	read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf));
+	if (read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf)) == FT_ERR)
+	{
+		free(outer_vector.inner_vec);
+		outer_vector.inner_vec = FT_NULL;
+	}
 	free(dat.buf);
 	if (outer_vector.size == 0)
 		free(outer_vector.inner_vec);
