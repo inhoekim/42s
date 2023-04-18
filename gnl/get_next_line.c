@@ -39,7 +39,7 @@ int idx, t_vector *vec, char **ret_str)
 		*ret_str = vec->inner_vec[idx].str;
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
-		return (FT_TRUE);
+		return (FT_ERR);
 	}
 	if (read_ret <= 0)
 	{

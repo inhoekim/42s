@@ -128,4 +128,3 @@ char	*get_next_line(int fd)
 		free(outer_vector.inner_vec);
 	return (str);
 }
-

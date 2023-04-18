@@ -42,7 +42,10 @@ int idx, long long offset, char **ret_str)
 	ft_str_copy(str, str, offset + 1, vec->inner_vec[idx].size);
 	vec->inner_vec[idx].size = vec->inner_vec[idx].size - (offset + 1);
 	if (vec->inner_vec[idx].size == 0)
+	{
+		free(vec->inner_vec[idx].str);
 		vec->inner_vec[idx].str = FT_NULL;
+	}
 	return (FT_TRUE);
 }
 
