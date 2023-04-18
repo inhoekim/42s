@@ -79,6 +79,8 @@ static int	find_fd(int fd, t_vector *vec)
 	int	i;
 
 	i = -1;
+	if (fd < 0)
+		return (i);
 	while (++i < vec->size)
 		if (vec->inner_vec[i].fd == fd)
 			break ;
@@ -109,14 +111,16 @@ char	*get_next_line(int fd)
 		outer_vector.capacity = 1024;
 		outer_vector.size = 0;
 		outer_vector.inner_vec = (t_vector *)malloc(sizeof(t_vector) * 1024);
+		if (outer_vector.inner_vec == FT_NULL)
+			return (FT_NULL);
 	}
-	if (!outer_vector.inner_vec || fd < 0 || BUFFER_SIZE <= 0)
-		return (FT_NULL);
 	fd_idx = find_fd(fd, &outer_vector);
-	if (fd_idx == FT_ERR)
+	if (fd_idx == FT_ERR || BUFFER_SIZE <= 0)
+	{
+		if (outer_vector.size == 0)
+			free(outer_vector.inner_vec);
 		return (FT_NULL);
-	str = FT_NULL;
-	buf = FT_NULL;
+	}
 	read_line(fd_idx, &outer_vector, &str, &buf);
 	free(buf);
 	if (outer_vector.size == 0)
