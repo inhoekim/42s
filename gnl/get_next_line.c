@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:30:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/18 08:22:25 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/04/18 09:28:44 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ static int	read_line(int idx, t_vector *vec, char **ret_str, char **buf)
 	if (*buf == FT_NULL)
 		return (FT_ERR);
 	(*buf)[BUFFER_SIZE] = '\0';
-	offset = -1;
+	offset = 0;
 	while (FT_TRUE)
 	{
-		if (vec->inner_vec[idx].str)
-			while (vec->inner_vec[idx].str[++offset])
-				if (vec->inner_vec[idx].str[offset] == '\n')
-					return (ft_split_newline(vec, idx, offset, ret_str));
+		while (vec->inner_vec[idx].str && vec->inner_vec[idx].str[offset])
+			if (vec->inner_vec[idx].str[++offset - 1] == '\n')
+				return (ft_split_newline(vec, idx, offset - 1, ret_str));
 		read_ret = read(vec->inner_vec[idx].fd, *buf, BUFFER_SIZE);
 		if (read_ret == 0)
 		{
@@ -75,7 +74,7 @@ static int	find_fd(int fd, t_vector *vec)
 		if (i == -1)
 			i = 0;
 		vec->inner_vec[i].fd = fd;
-		vec->inner_vec[i].capacity = 512;
+		vec->inner_vec[i].capacity = 1024;
 		vec->inner_vec[i].size = 0;
 		vec->inner_vec[i].str = FT_NULL;
 		vec->size++;

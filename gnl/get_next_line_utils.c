@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:30:26 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/18 07:48:39 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/04/18 09:06:00 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int idx, long long offset, char **ret_str)
 	ft_str_copy(*ret_str, str, 0, offset + 1);
 	ft_str_copy(str, str, offset + 1, vec->inner_vec[idx].size);
 	vec->inner_vec[idx].size = vec->inner_vec[idx].size - (offset + 1);
+	if (vec->inner_vec[idx].size == 0)
+		vec->inner_vec[idx].str = FT_NULL;
 	return (FT_TRUE);
 }
 
@@ -50,13 +52,16 @@ int	ft_expand_vector(t_vector *vec)
 	int			idx;
 
 	temp = vec->str;
-	vec->str = (char *)malloc(sizeof(char) * (vec->capacity * 2));
+	if (temp)
+		vec->capacity = vec->capacity * 2;
+	vec->str = (char *)malloc(sizeof(char) * (vec->capacity));
 	if (vec->str == FT_NULL)
 	{
+		if (temp)
+			vec->capacity = vec->capacity / 2;
 		vec->str = temp;
 		return (FT_ERR);
 	}
-	vec->capacity = vec->capacity * 2;
 	idx = -1;
 	while (++idx < vec->size && temp)
 		vec->str[idx] = temp[idx];
