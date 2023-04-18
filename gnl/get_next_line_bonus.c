@@ -39,7 +39,7 @@ int idx, t_vector *vec, char **ret_str)
 		*ret_str = vec->inner_vec[idx].str;
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
-		return (FT_TRUE);
+		return (FT_ERR);
 	}
 	if (read_ret <= 0)
 	{
@@ -67,7 +67,8 @@ static int	read_line(int idx, t_vector *vec, char **ret_str, char **buf)
 			if (vec->inner_vec[idx].str[++offset - 1] == '\n')
 				return (ft_split_newline(vec, idx, offset - 1, ret_str));
 		read_ret = read(vec->inner_vec[idx].fd, *buf, BUFFER_SIZE);
-		read_check(read_ret, idx, vec, ret_str);
+		if (read_check(read_ret, idx, vec, ret_str) == FT_ERR)
+			return (FT_ERR);
 		if (join_buf(vec, idx, *buf, (long long)read_ret) == FT_ERR)
 			return (FT_ERR);
 	}
