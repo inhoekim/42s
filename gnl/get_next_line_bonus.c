@@ -38,14 +38,14 @@ int idx, t_vector *vec, char **ret_str)
 	{
 		*ret_str = vec->inner_vec[idx].str;
 		vec->size--;
-		vec->inner_vec[idx] = vec->inner_vec[size];
+		vec->inner_vec[idx] = vec->inner_vec[vec->size];
 		return (FT_ERR);
 	}
 	if (read_ret <= 0)
 	{
 		free(vec->inner_vec[idx].str);
 		vec->size--;
-		vec->inner_vec[idx] = vec->inner_vec[size];
+		vec->inner_vec[idx] = vec->inner_vec[vec->size];
 		return (FT_ERR);
 	}
 	reture (FT_TRUE);
@@ -123,4 +123,3 @@ char	*get_next_line(int fd)
 		free(outer_vector.inner_vec);
 	return (str);
 }
-
