@@ -102,9 +102,7 @@ static int	find_fd(int fd, t_vector *vec)
 char	*get_next_line(int fd)
 {
 	static t_vector	outer_vector;
-	int				fd_idx;
-	char			*str;
-	char			*buf;
+	t_data			dat;
 
 	if (outer_vector.size == 0)
 	{
@@ -114,17 +112,17 @@ char	*get_next_line(int fd)
 		if (outer_vector.inner_vec == FT_NULL)
 			return (FT_NULL);
 	}
-	fd_idx = find_fd(fd, &outer_vector);
-	if (fd_idx == FT_ERR || BUFFER_SIZE <= 0)
+	dat.fd_idx = find_fd(fd, &outer_vector);
+	if (dat.fd_idx == FT_ERR || BUFFER_SIZE <= 0)
 	{
 		if (outer_vector.size == 0)
 			free(outer_vector.inner_vec);
 		return (FT_NULL);
 	}
-	str = FT_NULL;
-	read_line(fd_idx, &outer_vector, &str, &buf);
-	free(buf);
+	dat.str = FT_NULL;
+	read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf));
+	free(dat.buf);
 	if (outer_vector.size == 0)
 		free(outer_vector.inner_vec);
-	return (str);
+	return (dat.str);
 }

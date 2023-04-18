@@ -29,6 +29,11 @@ typedef struct s_vector{
 	char			*str;
 	struct s_vector	*inner_vec;
 }t_vector;
+typedef struct s_data{
+	int		fd_idx;
+	char	*str;
+	char	*buf;
+}t_data;
 char	*get_next_line(int fd);
 int		ft_split_newline(t_vector *vec, \
 int idx, long long offset, char *ret_str);
