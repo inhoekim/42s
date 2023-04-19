@@ -121,7 +121,7 @@ char	*get_next_line(int fd)
 	}
 	dat.str = FT_NULL;
 	if (read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf)) == FT_ERR)
-		outer_vector.size = 0;
+		ft_all_clear(&outer_vector);
 	free(dat.buf);
 	if (outer_vector.size == 0)
 		free(outer_vector.inner_vec);

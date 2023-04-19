@@ -12,6 +12,16 @@
 
 #include "get_next_line.h"
 
+void	ft_all_clear(t_vector *vec)
+{
+	int idx;
+
+	idx = -1;
+	while (++idx < vec->size)
+		free(vec->inner_vec[idx].str);
+	vec->size = 0;
+}
+
 static int	join_buf(t_vector *vec, int idx, char *buf, long long buf_len)
 {
 	t_vector	*str_vec;
@@ -121,7 +131,7 @@ char	*get_next_line(int fd)
 	}
 	dat.str = FT_NULL;
 	if (read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf)) == FT_ERR)
-		outer_vector.size = 0;
+		ft_all_clear(&outer_vector);
 	free(dat.buf);
 	if (outer_vector.size == 0)
 		free(outer_vector.inner_vec);

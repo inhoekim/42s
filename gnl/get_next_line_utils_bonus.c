@@ -12,6 +12,16 @@
 
 #include "get_next_line.h"
 
+void	ft_all_clear(t_vector *vec)
+{
+	int idx;
+
+	idx = -1;
+	while (++idx < vec->size)
+		free(vec->inner_vec[idx].str);
+	vec->size = 0;
+}
+
 void	ft_str_copy(char *dest, \
 char *src, long long start, long long end)
 {
