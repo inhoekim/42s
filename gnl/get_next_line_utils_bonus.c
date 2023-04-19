@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 05:31:54 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/18 09:30:06 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/04/19 17:17:53 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_all_clear(t_vector *vec)
 {
-	int idx;
+	int	idx;
 
 	idx = -1;
 	while (++idx < vec->size)

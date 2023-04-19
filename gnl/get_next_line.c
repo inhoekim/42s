@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 18:30:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/04/18 09:28:44 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/04/19 17:22:54 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 
 	if (outer_vector.size == 0)
 	{
-		outer_vector.capacity = 1024;
+		outer_vector.capacity = 10;
 		outer_vector.size = 0;
 		outer_vector.inner_vec = (t_vector *)malloc(sizeof(t_vector) * 10);
 		if (outer_vector.inner_vec == FT_NULL)
