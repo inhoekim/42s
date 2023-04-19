@@ -12,16 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-void	ft_all_clear(t_vector *vec)
-{
-	int idx;
-
-	idx = -1;
-	while (++idx < vec->size)
-		free(vec->inner_vec[idx].str);
-	vec->size = 0;
-}
-
 static int	join_buf(t_vector *vec, int idx, char *buf, long long buf_len)
 {
 	t_vector	*str_vec;
