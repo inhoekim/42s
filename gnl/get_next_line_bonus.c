@@ -36,7 +36,8 @@ int idx, t_vector *vec, char **ret_str)
 {
 	if (read_ret == FT_FALSE && vec->inner_vec[idx].str)
 	{
-		*ret_str = vec->inner_vec[idx].str;
+		ft_split_newline(vec, idx, vec->inner_vec[idx].size - 1, ret_str);
+		free(vec->inner_vec[idx].str);
 		vec->size--;
 		vec->inner_vec[idx] = vec->inner_vec[vec->size];
 		return (FT_TRUE);
@@ -122,7 +123,7 @@ char	*get_next_line(int fd)
 	if (read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf)) == FT_ERR)
 	{
 		free(outer_vector.inner_vec);
-		outer_vector.inner_vec = FT_NULL;
+		return (dat.str);
 	}
 	free(dat.buf);
 	if (outer_vector.size == 0)
