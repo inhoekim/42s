@@ -109,7 +109,7 @@ char	*get_next_line(int fd)
 	{
 		outer_vector.capacity = 1024;
 		outer_vector.size = 0;
-		outer_vector.inner_vec = (t_vector *)malloc(sizeof(t_vector) * 1024);
+		outer_vector.inner_vec = (t_vector *)malloc(sizeof(t_vector) * 10);
 		if (outer_vector.inner_vec == FT_NULL)
 			return (FT_NULL);
 	}
@@ -121,10 +121,7 @@ char	*get_next_line(int fd)
 	}
 	dat.str = FT_NULL;
 	if (read_line(dat.fd_idx, &outer_vector, &(dat.str), &(dat.buf)) == FT_ERR)
-	{
-		free(outer_vector.inner_vec);
-		return (dat.str);
-	}
+		outer_vector.size = 0;
 	free(dat.buf);
 	if (outer_vector.size == 0)
 		free(outer_vector.inner_vec);
