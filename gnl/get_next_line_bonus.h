@@ -36,7 +36,7 @@ typedef struct s_data{
 }t_data;
 char	*get_next_line(int fd);
 int		ft_split_newline(t_vector *vec, \
-int idx, long long offset, char *ret_str);
+int idx, long long offset, char **ret_str);
 void	ft_str_copy(char *dest, \
 char *src, long long start, long long end);
 int		ft_expand_outer_vector(t_vector *vec);
