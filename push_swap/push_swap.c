@@ -10,13 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "push_swap.h"
 #include <stdio.h>
+#include "push_swap.h"
 
-
-
-int	check_format(int argc, char **argv)
+static int	check_format(int argc, char **argv)
 {	
 	t_format_info	info;
 
@@ -43,38 +40,54 @@ int	check_format(int argc, char **argv)
 	return (FT_TRUE);
 }
 
-void	order_stack(int from, char type)
+static void	move_area(int stack_idx, int area_size)
 {
-	int partition_size[3];
+	int idx;
+	int static_area_size;
 
+	idx = -1;
+	static_area_size = get_st(stack_idx)->size;
+	if (2 * area_size < static_area_size)
+		while (++idx < static_area_size)
+			op_rr(stack_idx);
+	else
+		while (++idx < static_area_size - area_size)
+			op_r(stack_idx);
+}
+
+static void	partition(int from, int size, char type, int *area)
+{
+	int *arr;
+
+	arr = mrg_sort(mk_arr(from, size), size);
+}
+
+static void	order_stack(int from, int size, char type)
+{
+	int* const	area = {0, 0, 0};
+
+	if (size <= 3)
+	{
+		//sort_less_3(from, size, type);
+		return ;
+	}
+	partition(from, size, type, area);
 	if (from == A)
 	{
-		//order_stack(A)
+		order_stack(A, area[2], 'L');
+		order_stack(B, area[1], 'M');
+		move_area(B, area[0]);
+		order_stack(B, area[0], 'S');
 	}
 	if (from == B)
 	{
-
+		order_stack(A, area[2], 'L');
+		move_area(A, area[1]);
+		order_stack(A, area[1], 'M');
+		order_stack(B, area[0], 'S');
 	}
 }
 
-static	int *mk_arr(int stack_idx, int size)
-{
-	t_element	*iter;
-	int 		*arr;
-	int 		idx;
-
-	arr = (int *)malloc(sizeof(int) * size);
-	if (arr == FT_NULL)
-		return (FT_NULL);
-	iter = get_st(stack_idx)->front;
-	idx = 0;
-	while (iter != FT_NULL)
-	{
-		arr[idx++] = iter->num;
-		iter = iter->next;
-	}
-	return (arr);
-}
 
 int	main(int argc, char **argv)
 {
@@ -84,11 +97,9 @@ int	main(int argc, char **argv)
 		printf("Error\n");
 		exit(1);
 	}
-	order_stack(A, 'L');
+	order_stack(A, get_st(A)->size, 'L');
 
-
-	op_rr(A);
-
+	/*
 	printf("stackA");
 	printf("\n===================================\n");
 	int *arr = mk_arr(A, get_st(A)->size);
@@ -101,5 +112,6 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < get_st(B)->size; i++)
 		printf("%d ", arr[i]);
 	printf("\n===================================\n");
+	*/
 	return (0);
 }

@@ -19,7 +19,7 @@
 # define A 0
 # define B 1
 # define AB 2
-
+# include <stdlib.h>
 typedef struct s_element
 {
 	struct s_element	*before;
@@ -47,6 +47,7 @@ int			push_back(t_deque *stack, int val);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
 t_deque		*get_st(int type);
-int			*mrg_sort(int *arr, int size);
 int			chk_dup(int *arr);
+int 		*mk_arr(int stack_idx, int size);
+int			*mrg_sort(int *arr, int size);
 #endif

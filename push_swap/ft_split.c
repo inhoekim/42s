@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 static void	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 
 t_deque	*get_st(int type)
 {
@@ -38,4 +37,23 @@ int	chk_dup(int *arr)
 	}
 	free(arr);
 	return (FT_TRUE);
+}
+
+int *mk_arr(int stack_idx, int size)
+{
+	t_element	*iter;
+	int 		*arr;
+	int 		idx;
+
+	arr = (int *)malloc(sizeof(int) * size);
+	if (arr == FT_NULL)
+		return (FT_NULL);
+	iter = get_st(stack_idx)->front;
+	idx = 0;
+	while (iter != FT_NULL)
+	{
+		arr[idx++] = iter->num;
+		iter = iter->next;
+	}
+	return (arr);
 }
