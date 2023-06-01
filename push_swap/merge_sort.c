@@ -53,7 +53,7 @@ void	merge_proc(int *arr, int *new_arr, int left, int right)
 	merge(arr, new_arr, left, right);
 }
 
-int *merge_sort(int *arr, int size)
+int *mrg_sort(int *arr, int size)
 {
 	int *new_arr;
 

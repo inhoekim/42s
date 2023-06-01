@@ -39,10 +39,14 @@ typedef struct	s_format_info
 	int			i;
 	long long	num;
 }t_format_info;
-void		oper_r(int stack_idx, t_deque (*stacks)[2]);
+void		op_r(int stack_idx);
+void		op_rr(int stack_idx);
+void		op_s(int stack_idx);
+void		op_p(int stack_idx);
+int			push_back(t_deque *stack, int val);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
 t_deque		*get_st(int type);
-int			*merge_sort(int *arr, int size);
+int			*mrg_sort(int *arr, int size);
 int			chk_dup(int *arr);
 #endif
