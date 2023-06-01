@@ -29,6 +29,7 @@ int	push_back(t_deque *stack, int val)
 	if (stack->tail != FT_NULL)
 		stack->tail->next = element;
 	stack->tail = element;
+	stack->size++;
 	return (FT_TRUE);
 }
 
@@ -37,7 +38,6 @@ int	check_format(t_deque (*stacks)[2], int argc, char **argv)
 	t_format_info	info;
 
 	info.idx = 0;
-	info.cnt = 0;
 	info.splited_str = FT_NULL;
 	while (--argc)
 	{	
@@ -60,18 +60,23 @@ int	check_format(t_deque (*stacks)[2], int argc, char **argv)
 	return (FT_TRUE);
 }
 
-int	main(int argc, char **argv)
+void	init_stacks(t_deque (*stacks)[2])
 {
-	t_deque	stacks[2];
-	//int		*arr;
-	int		size;
-
 	stacks[A].front = FT_NULL;
 	stacks[A].tail = FT_NULL;
 	stacks[B].front = FT_NULL;
 	stacks[B].tail = FT_NULL;
-	size = check_format(&stacks, argc, argv);
-	if (size == FT_ERR)
+	stacks[A].size = 0;
+	stacks[B].size = 0;
+}
+
+int	main(int argc, char **argv)
+{
+	t_deque	stacks[2];
+
+	init_stacks(stacks);
+	
+	if (check_format(&stacks, argc, argv) == FT_ERR)
 	{
 		printf("Error\n");
 		exit(1);

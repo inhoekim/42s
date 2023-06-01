@@ -34,6 +34,7 @@ typedef struct s_deque
 {
 	struct s_element	*front;
 	struct s_element	*tail;
+	int 				size;
 }t_deque;
 typedef struct	s_format_info
 {
@@ -41,7 +42,6 @@ typedef struct	s_format_info
 	int		idx;
 	long	num;
 	int		i;
-	int		cnt;
 }t_format_info;
 void	oper_r(int stack_idx, t_deque (*stacks)[2]);
 long	ft_atoi(const char *str);
