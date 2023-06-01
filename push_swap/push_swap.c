@@ -33,7 +33,7 @@ int	push_back(t_deque *stack, int val)
 	return (FT_TRUE);
 }
 
-int	check_format(t_deque (*stacks)[2], int argc, char **argv)
+int	check_format(int argc, char **argv)
 {	
 	t_format_info	info;
 
@@ -49,7 +49,7 @@ int	check_format(t_deque (*stacks)[2], int argc, char **argv)
 		{
 			info.num = ft_atoi((info.splited_str)[info.i]);
 			if ((info.num > FT_INT_MAX) || (info.num < FT_INT_MAX * -1 -1) || \
-			push_back(stacks[A], info.num) == FT_ERR)
+			push_back(get_st(A), info.num) == FT_ERR)
 				return (FT_ERR);
 		}
 		info.i = -1;
@@ -60,40 +60,56 @@ int	check_format(t_deque (*stacks)[2], int argc, char **argv)
 	return (FT_TRUE);
 }
 
-void	init_stacks(t_deque (*stacks)[2])
+void	order_stack(int from, char type)
 {
-	stacks[A].front = FT_NULL;
-	stacks[A].tail = FT_NULL;
-	stacks[B].front = FT_NULL;
-	stacks[B].tail = FT_NULL;
-	stacks[A].size = 0;
-	stacks[B].size = 0;
+	int partition_size[3];
+
+	if (from == A)
+	{
+		//order_stack(A)
+	}
+	if (from == B)
+	{
+
+	}
+}
+
+static	int *make_arr(int stack_idx, int size)
+{
+	t_element	*iter;
+	int 		*arr;
+	int 		idx;
+
+	arr = (int *)malloc(sizeof(int) * size);
+	if (arr == FT_NULL)
+		return (FT_NULL);
+	iter = get_st(stack_idx)->front;
+	idx = 0;
+	while (iter != FT_NULL)
+	{
+		arr[idx++] = iter->num;
+		iter = iter->next;
+	}
+	return (arr);
 }
 
 int	main(int argc, char **argv)
 {
-	t_deque	stacks[2];
+	if (check_format(argc, argv) == FT_ERR || \
+	check_dup(merge_sort(make_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR)
+	{
+		printf("Error\n");
+		exit(1);
+	}
+	order_stack(A, 'L');
 
-	init_stacks(stacks);
-	
-	if (check_format(&stacks, argc, argv) == FT_ERR)
-	{
-		printf("Error\n");
-		exit(1);
-	}
-	/*
-	make_arr(arr);
-	if (size == FT_ERR || sort_arr(arr))
-	{
-		printf("Error\n");
-		exit(1);
-	}
-	*/
-	t_element	*iter = stacks[A].front;
-	while(iter != FT_NULL) {
-		printf("%d ", iter->num);
-		iter = iter->next;
-	}
-	printf("\n");
+	int *arr = make_arr(A, get_st(A)->size);
+	for (int i = 0; i < get_st(A)->size; i++)
+		printf("%d ", arr[i]);
+	printf("\n===================================\n");
+	arr = merge_sort(arr, get_st(A)->size);
+	for (int i = 0; i < get_st(A)->size; i++)
+		printf("%d ", arr[i]);
+	printf("\n===================================\n");
 	return (0);
 }

@@ -46,4 +46,7 @@ typedef struct	s_format_info
 void	oper_r(int stack_idx, t_deque (*stacks)[2]);
 long	ft_atoi(const char *str);
 char	**ft_split(const char *s);
+t_deque	*get_st(int type);
+int		*merge_sort(int *arr, int size);
+int		check_dup(int *arr);
 #endif
