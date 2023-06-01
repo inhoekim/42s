@@ -36,7 +36,8 @@ void	merge(int *arr, int *new_arr, int left, int right)
 				new_arr[idx++] = arr[left_arr_idx++];
 		}
 	}
-	while (left++ <= right)
+	left--;
+	while (++left <= right)
 		arr[left] = new_arr[left];
 }
 
@@ -56,6 +57,8 @@ int *merge_sort(int *arr, int size)
 {
 	int *new_arr;
 
+	if (size == 1)
+		return (arr);
 	new_arr = (int *)malloc(sizeof(int) * size);
 	if (arr == FT_NULL || new_arr == FT_NULL)
 		return (FT_NULL);

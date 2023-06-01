@@ -100,7 +100,7 @@ char	**ft_split(const char *s)
 
 	strs_cnt = get_split_cnt(s);
 	new_strs = (char **)malloc(sizeof(char *) * (strs_cnt + 1));
-	if (new_strs == FT_NULL)
+	if (strs_cnt == 0 || new_strs == FT_NULL)
 		return (FT_NULL);
 	new_strs[strs_cnt] = FT_NULL;
 	strs_cnt = make_each_str(new_strs, s);

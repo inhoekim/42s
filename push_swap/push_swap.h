@@ -11,11 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# ifdef __x86_64__ 
-#  define FT_LONG_MAX 9223372036854775807L
-# else
-#  define FT_LONG_MAX 2147483647L
-# endif
+# define FT_LONG_MAX 9223372036854775807L
 # define FT_INT_MAX 2147483647
 # define FT_NULL 0
 # define FT_ERR 0
@@ -38,15 +34,15 @@ typedef struct s_deque
 }t_deque;
 typedef struct	s_format_info
 {
-	char	**splited_str;
-	int		idx;
-	long	num;
-	int		i;
+	char		**splited_str;
+	int			idx;
+	int			i;
+	long long	num;
 }t_format_info;
-void	oper_r(int stack_idx, t_deque (*stacks)[2]);
-long	ft_atoi(const char *str);
-char	**ft_split(const char *s);
-t_deque	*get_st(int type);
-int		*merge_sort(int *arr, int size);
-int		check_dup(int *arr);
+void		oper_r(int stack_idx, t_deque (*stacks)[2]);
+long long	ft_atoi(const char *str);
+char		**ft_split(const char *s);
+t_deque		*get_st(int type);
+int			*merge_sort(int *arr, int size);
+int			chk_dup(int *arr);
 #endif

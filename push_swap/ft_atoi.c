@@ -27,44 +27,44 @@ static int	confirm_sign(const char **str)
 	return (sign);
 }
 
-static long	ft_strtol(const char *str, int sign)
+static long long	ft_strtol(const char *str, int sign)
 {
-	long	num;
-	long	front;
-	long	back;
-	int		idx;
+	long long	num;
+	long long	front;
+	long long	back;
+	int			idx;
 
 	num = 0;
 	idx = -1;
-	front = (long)FT_LONG_MAX / 10;
-	back = (long)FT_LONG_MAX % 10;
+	front = (long long)FT_LONG_MAX / 10;
+	back = (long long)FT_LONG_MAX % 10;
 	while (str[++idx])
 	{
-		if ('1' <= str[idx] && str[idx] <= '9')
+		if ('0' <= str[idx] && str[idx] <= '9')
 		{
 			if (num > front || (num == front && str[idx] >= back + '0'))
 			{
-				if (sign == -1 && str[idx] >= '8')
-					return (((long)FT_LONG_MAX * -1) - 1);
-				return ((long)FT_LONG_MAX);
+				if (sign == -1 && (num > front || (num == front && str[idx] >= '8')))
+					return (((long long)FT_LONG_MAX * -1) - 1);
+				return ((long long)FT_LONG_MAX);
 			}
 			num = (num * 10) + (str[idx] - '0');
 		}
 		else
-			return ((long)FT_LONG_MAX) ;
+			return ((long long)FT_LONG_MAX) ;
 	}
 	return (num);
 }
 
-long	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
-	long	num;
-	int		idx;
-	int		sign;
+	long long	num;
+	int			sign;
 
 	num = 0;
-	idx = 0;
 	sign = confirm_sign(&str);
 	num = ft_strtol(str, sign);
+	if (num == FT_LONG_MAX * -1 - 1)
+		return (num);
 	return (sign * num);
 }

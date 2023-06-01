@@ -23,7 +23,7 @@ t_deque	*get_st(int type)
 		return (&stacks[B]);
 }
 
-int	check_dup(int *arr)
+int	chk_dup(int *arr)
 {
 	int i;
 

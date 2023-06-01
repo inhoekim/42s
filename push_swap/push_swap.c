@@ -74,7 +74,7 @@ void	order_stack(int from, char type)
 	}
 }
 
-static	int *make_arr(int stack_idx, int size)
+static	int *mk_arr(int stack_idx, int size)
 {
 	t_element	*iter;
 	int 		*arr;
@@ -96,14 +96,14 @@ static	int *make_arr(int stack_idx, int size)
 int	main(int argc, char **argv)
 {
 	if (check_format(argc, argv) == FT_ERR || \
-	check_dup(merge_sort(make_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR)
+	chk_dup(merge_sort(mk_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR)
 	{
 		printf("Error\n");
 		exit(1);
 	}
 	order_stack(A, 'L');
 
-	int *arr = make_arr(A, get_st(A)->size);
+	int *arr = mk_arr(A, get_st(A)->size);
 	for (int i = 0; i < get_st(A)->size; i++)
 		printf("%d ", arr[i]);
 	printf("\n===================================\n");
