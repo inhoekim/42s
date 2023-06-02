@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	merge(int *arr, int *new_arr, int left, int right)
+static void	merge(int *arr, int *new_arr, int left, int right)
 {
 	int	left_arr_idx;
 	int	right_arr_idx;
@@ -40,7 +40,7 @@ void	merge(int *arr, int *new_arr, int left, int right)
 		arr[left] = new_arr[left];
 }
 
-void	merge_proc(int *arr, int *new_arr, int left, int right)
+static void	merge_proc(int *arr, int *new_arr, int left, int right)
 {
 	int mid;
 

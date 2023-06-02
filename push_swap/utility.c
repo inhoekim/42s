@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 01:57:52 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 18:00:05 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:38:49 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	check_format(int argc, char **argv)
 	return (FT_TRUE);
 }
 
-static void	move_area(int stack_idx, int area_size)
+void	move_area(int stack_idx, int area_size)
 {
 	int idx;
 	int static_area_size;

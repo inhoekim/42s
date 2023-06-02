@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 18:05:08 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:49:13 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,16 @@ typedef struct	s_part_info
 	int			remain_s;
 	int			*arr;
 }t_part_info;
-void		op_r(int stack_idx);
-void		op_rr(int stack_idx);
-void		op_s(int stack_idx);
-void		op_p(int stack_idx);
+typedef struct	s_three_num
+{
+	int	top;
+	int	mid;
+	int	bottom;
+}t_three_num;
+int			op_r(int stack_idx);
+int			op_rr(int stack_idx);
+int			op_s(int stack_idx);
+int			op_p(int stack_idx);
 int			push_back(t_deque *stack, int val);
 t_deque		*get_st(int type);
 int			check_format(int argc, char **argv);
@@ -63,4 +69,8 @@ int			*mrg_sort(int *arr, int size);
 void		partition(int from, int size, char type, int *area);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
+void		sort_less_3a(int size);
+void		sort_less_3b(int size);
+void		order_stackA(int size, char type);
+void		order_stackB(int size, char type);
 #endif

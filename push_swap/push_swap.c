@@ -6,37 +6,47 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 18:04:03 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:48:25 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 
-static void	order_stack(int from, int size, char type)
+void	order_stackA(int size, char type)
 {
-	int* const	area = {0, 0, 0};
+	int area[3];
 
 	if (size <= 3)
 	{
-		//sort_less_3(from, size, type);
+		if (size != 1)
+			sort_less_3a(size);
 		return ;
 	}
-	partition(from, size, type, area);
-	if (from == A)
+	partition(A, size, type, area);
+	order_stackA(area[2], 'L');
+	order_stackB(area[1], 'M');
+	move_area(B, area[0]);
+	order_stackB(area[0], 'S');
+}
+
+void	order_stackB(int size, char type)
+{
+	int	area[3];
+
+	if (size <= 3)
 	{
-		order_stack(A, area[2], 'L');
-		order_stack(B, area[1], 'M');
-		move_area(B, area[0]);
-		order_stack(B, area[0], 'S');
+		if (size == 1)
+			op_p(B);
+		else
+			sort_less_3b(size);
+		return ;
 	}
-	if (from == B)
-	{
-		order_stack(A, area[2], 'L');
-		move_area(A, area[1]);
-		order_stack(A, area[1], 'M');
-		order_stack(B, area[0], 'S');
-	}
+	partition(B, size, type, area);
+	order_stackA(area[2], 'L');
+	move_area(A, area[1]);
+	order_stackA(area[1], 'M');
+	order_stackB(area[0], 'S');
 }
 
 
@@ -48,8 +58,7 @@ int	main(int argc, char **argv)
 		printf("Error\n");
 		exit(1);
 	}
-	order_stack(A, get_st(A)->size, 'L');
-
+	order_stackA(get_st(A)->size, 'L');
 	/*
 	printf("stackA");
 	printf("\n===================================\n");

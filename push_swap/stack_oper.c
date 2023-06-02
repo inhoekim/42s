@@ -6,13 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 23:58:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 17:12:17 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/02 22:39:30 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	op_r(int stack_idx)
+int	op_r(int stack_idx)
 {
 	const char	label[3] = {'a', 'b', 'r'};
 	int			idx;
@@ -34,9 +34,10 @@ void	op_r(int stack_idx)
 		stack->tail = element;
 	}
 	//ft_printf("r" + label[stack_idx] + "\n");
+	return (FT_TRUE);
 }
 
-void	op_rr(int stack_idx)
+int	op_rr(int stack_idx)
 {
 	const char	label[3] = {'a', 'b', 'r'};
 	int			idx;
@@ -58,9 +59,10 @@ void	op_rr(int stack_idx)
 		stack->front = element;
 	}
 	//ft_printf("rr" + label[stack_idx] + "\n");
+	return (FT_TRUE);
 }
 
-void	op_s(int stack_idx)
+int	op_s(int stack_idx)
 {
 	const char	label[3] = {'a', 'b', 's'};
 	int			idx;
@@ -84,10 +86,11 @@ void	op_s(int stack_idx)
 			get_st(idx)->tail = element;
 	}
 	//ft_printf("rr" + label[stack_idx] + "\n");
+	return (FT_TRUE);
 }
 
 
-void	op_p(int stack_idx)
+int	op_p(int stack_idx)
 {
 	const char	label[2] = {'a', 'b'};
 	t_deque		*stack;
@@ -111,6 +114,7 @@ void	op_p(int stack_idx)
 			stack2->tail = stack2->front;
 	}
 	//ft_printf("rr" + label[stack_idx] + "\n");
+	return (FT_TRUE);
 }
 
 int	push_back(t_deque *stack, int val)
