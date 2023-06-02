@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/01 04:32:42 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/02 18:05:08 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,28 @@ typedef struct	s_format_info
 	int			i;
 	long long	num;
 }t_format_info;
+typedef struct	s_part_info
+{
+	int			idx;
+	int			pivot;
+	int			pivot2;
+	int			remain_l;
+	int			remain_m;
+	int			remain_s;
+	int			*arr;
+}t_part_info;
 void		op_r(int stack_idx);
 void		op_rr(int stack_idx);
 void		op_s(int stack_idx);
 void		op_p(int stack_idx);
 int			push_back(t_deque *stack, int val);
-long long	ft_atoi(const char *str);
-char		**ft_split(const char *s);
 t_deque		*get_st(int type);
+int			check_format(int argc, char **argv);
 int			chk_dup(int *arr);
 int 		*mk_arr(int stack_idx, int size);
+void		move_area(int stack_idx, int area_size);
 int			*mrg_sort(int *arr, int size);
+void		partition(int from, int size, char type, int *area);
+long long	ft_atoi(const char *str);
+char		**ft_split(const char *s);
 #endif

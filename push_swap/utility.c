@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 01:57:52 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/01 03:35:30 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/02 18:00:05 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,46 @@ int *mk_arr(int stack_idx, int size)
 		iter = iter->next;
 	}
 	return (arr);
+}
+
+int	check_format(int argc, char **argv)
+{	
+	t_format_info	info;
+
+	info.idx = 0;
+	info.splited_str = FT_NULL;
+	while (--argc)
+	{	
+		info.splited_str = ft_split(argv[++(info.idx)]);
+		if (info.splited_str == FT_NULL)
+			return (FT_ERR);
+		info.i = -1;
+		while (info.splited_str[++(info.i)])
+		{
+			info.num = ft_atoi((info.splited_str)[info.i]);
+			if ((info.num > FT_INT_MAX) || (info.num < FT_INT_MAX * -1 -1) || \
+			push_back(get_st(A), info.num) == FT_ERR)
+				return (FT_ERR);
+		}
+		info.i = -1;
+		while (info.splited_str[++(info.i)])
+			free(info.splited_str[info.i]);
+		free(info.splited_str);
+	}
+	return (FT_TRUE);
+}
+
+static void	move_area(int stack_idx, int area_size)
+{
+	int idx;
+	int static_area_size;
+
+	idx = -1;
+	static_area_size = get_st(stack_idx)->size;
+	if (2 * area_size < static_area_size)
+		while (++idx < static_area_size)
+			op_rr(stack_idx);
+	else
+		while (++idx < static_area_size - area_size)
+			op_r(stack_idx);
 }
