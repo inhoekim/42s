@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:04:22 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/03 02:48:52 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:53:28 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void init_part(t_part_info *info, int from, int size, int *area)
 	info->idx = -1;
 }
 
-void	partition(int from, int size, char type, int *area)
+void	partition(int from, int size, int *area)
 {	
 	t_part_info	info;
 

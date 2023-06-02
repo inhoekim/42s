@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 01:57:52 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/03 02:38:49 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:55:20 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_deque	*get_st(int type)
 		return (&stacks[A]);
 	if (type == B)
 		return (&stacks[B]);
+	return (FT_NULL);
 }
 
 int	chk_dup(int *arr)

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/03 02:49:13 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:53:49 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ int			chk_dup(int *arr);
 int 		*mk_arr(int stack_idx, int size);
 void		move_area(int stack_idx, int area_size);
 int			*mrg_sort(int *arr, int size);
-void		partition(int from, int size, char type, int *area);
+void		partition(int from, int size, int *area);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
 void		sort_less_3a(int size);
 void		sort_less_3b(int size);
-void		order_stackA(int size, char type);
-void		order_stackB(int size, char type);
+void		order_stackA(int size);
+void		order_stackB(int size);
 #endif

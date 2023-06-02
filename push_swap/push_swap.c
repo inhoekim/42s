@@ -6,14 +6,14 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/03 02:48:25 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/03 02:55:54 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "push_swap.h"
 
-void	order_stackA(int size, char type)
+void	order_stackA(int size)
 {
 	int area[3];
 
@@ -23,14 +23,14 @@ void	order_stackA(int size, char type)
 			sort_less_3a(size);
 		return ;
 	}
-	partition(A, size, type, area);
-	order_stackA(area[2], 'L');
-	order_stackB(area[1], 'M');
+	partition(A, size, area);
+	order_stackA(area[2]);
+	order_stackB(area[1]);
 	move_area(B, area[0]);
-	order_stackB(area[0], 'S');
+	order_stackB(area[0]);
 }
 
-void	order_stackB(int size, char type)
+void	order_stackB(int size)
 {
 	int	area[3];
 
@@ -42,11 +42,11 @@ void	order_stackB(int size, char type)
 			sort_less_3b(size);
 		return ;
 	}
-	partition(B, size, type, area);
-	order_stackA(area[2], 'L');
+	partition(B, size, area);
+	order_stackA(area[2]);
 	move_area(A, area[1]);
-	order_stackA(area[1], 'M');
-	order_stackB(area[0], 'S');
+	order_stackA(area[1]);
+	order_stackB(area[0]);
 }
 
 
@@ -58,8 +58,7 @@ int	main(int argc, char **argv)
 		printf("Error\n");
 		exit(1);
 	}
-	order_stackA(get_st(A)->size, 'L');
-	/*
+	order_stackA(get_st(A)->size);
 	printf("stackA");
 	printf("\n===================================\n");
 	int *arr = mk_arr(A, get_st(A)->size);
@@ -72,6 +71,5 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < get_st(B)->size; i++)
 		printf("%d ", arr[i]);
 	printf("\n===================================\n");
-	*/
 	return (0);
 }
