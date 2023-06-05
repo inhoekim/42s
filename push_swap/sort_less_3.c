@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 02:25:58 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 03:47:40 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 06:04:50 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void	sort_less_3b_sub(t_three_num t)
 static void	sort_less_3a_sub(t_three_num t)
 {
 	if (t.top > t.mid && t.mid > t.bottom)
-		if (!op_s(A) || !op_r(A) || \
-		!op_s(A) || !op_p(A) || !op_rr(A) || !op_p(B))
+		if (!op_s(A) || !op_r(A) || !op_s(A) || !op_rr(A) || !op_s(A))
 			;
 	if (t.top > t.mid && t.mid < t.bottom && t.top > t.bottom)
 		if (!op_s(A) || !op_r(A) || !op_s(A) || !op_rr(A))

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:15:00 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 03:58:33 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 05:48:10 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,16 @@ static void	sort_3b_sub(t_three_num t)
 			;
 }
 
-void	emp_sort_less_3a(int size)
+void	emp_sort_less_4a(int size)
 {
 	t_three_num	t;
 
+	if (size == 4)
+	{
+		emp_sort_4a();
+		sort_less_3a(3);
+		return ;
+	}
 	t.top = get_st(A)->front->num;
 	t.mid = get_st(A)->front->next->num;
 	if (size == 2)
@@ -69,10 +75,15 @@ void	emp_sort_less_3a(int size)
 	}
 }
 
-void	emp_sort_less_3b(int size)
+void	emp_sort_less_4b(int size)
 {
 	t_three_num	t;
 
+	if (size == 4)
+	{
+		emp_sort_4b();
+		size--;
+	}
 	t.top = get_st(B)->front->num;
 	t.mid = get_st(B)->front->next->num;
 	if (size == 2)

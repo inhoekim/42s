@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 03:56:42 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 05:23:18 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	order_stack_a(int size)
 {
 	int	area[3];
 
-	if (size <= 3)
+	if (size <= 4)
 	{
 		if (size != 1)
 		{
-			if (get_st(A)->size <= 3)
-				emp_sort_less_3a(size);
-			else
+			if (get_st(A)->size <= 4)
+				emp_sort_less_4a(size);
+			else if (size == 3 && get_st(A)->size > 3)
 				sort_less_3a(size);
 		}
 		return ;
@@ -40,15 +40,15 @@ void	order_stack_b(int size)
 {
 	int	area[3];
 
-	if (size <= 3)
+	if (size <= 4)
 	{
 		if (size == 1)
 			op_p(B);
 		else
 		{
-			if (get_st(B)->size <= 3)
-				emp_sort_less_3b(size);
-			else
+			if (get_st(B)->size <= 4)
+				emp_sort_less_4b(size);
+			else if (size == 3 && get_st(B)->size > 3)
 				sort_less_3b(size);
 		}
 		return ;
