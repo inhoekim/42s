@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:04:22 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 02:40:03 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 02:52:15 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ void	move_area(int stack_idx, int area_size)
 	static_area_size = get_st(stack_idx)->size - area_size;
 	if (area_size > static_area_size)
 		while (++idx < static_area_size)
-			op_rr(stack_idx);
+			op_r(stack_idx);
 	else
 		while (++idx < area_size)
-			op_r(stack_idx);
+			op_rr(stack_idx);
 }
