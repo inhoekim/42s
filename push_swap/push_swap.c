@@ -13,6 +13,21 @@
 #include <stdio.h>
 #include "push_swap.h"
 
+static void print_log() {
+	printf("stackA");
+	printf("\n===================================\n");
+	int *arr = mk_arr(A, get_st(A)->size);
+	for (int i = 0; i < get_st(A)->size; i++)
+		printf("%d ", arr[i]);
+	printf("\n===================================\n");
+	printf("stackB");
+	printf("\n===================================\n");
+	arr = mk_arr(B, get_st(B)->size);
+	for (int i = 0; i < get_st(B)->size; i++)
+		printf("%d ", arr[i]);
+	printf("\n===================================\n");
+}
+
 void	order_stackA(int size)
 {
 	int area[3];
@@ -59,17 +74,6 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	order_stackA(get_st(A)->size);
-	printf("stackA");
-	printf("\n===================================\n");
-	int *arr = mk_arr(A, get_st(A)->size);
-	for (int i = 0; i < get_st(A)->size; i++)
-		printf("%d ", arr[i]);
-	printf("\n===================================\n");
-	printf("stackB");
-	printf("\n===================================\n");
-	arr = mk_arr(B, get_st(B)->size);
-	for (int i = 0; i < get_st(B)->size; i++)
-		printf("%d ", arr[i]);
-	printf("\n===================================\n");
+	print_log();
 	return (0);
 }

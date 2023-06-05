@@ -77,8 +77,9 @@ int	op_s(int stack_idx)
 		element = get_st(idx)->front;
 		element2 = element->next;
 		element->before = element2;
-		element->next = FT_NULL;
 		element->next = element2->next;
+		if (element->next != FT_NULL)
+			element->next->before = element;
 		element2->before = FT_NULL;
 		element2->next = element;
 		get_st(idx)->front = element2;
@@ -103,10 +104,15 @@ int	op_p(int stack_idx)
 	{
 		element = stack->front;
 		stack->front = element->next;
-		stack->front->before = FT_NULL;
+		if (stack->front != FT_NULL)
+			stack->front->before = FT_NULL;
+		else
+			stack->tail = FT_NULL;
 		element->next = stack2->front;
 		if (stack2->front != FT_NULL)
 			stack2->front->before = element;
+		else
+			stack2->tail = element;
 		stack2->front = element;
 		stack->size--;
 		stack2->size++;

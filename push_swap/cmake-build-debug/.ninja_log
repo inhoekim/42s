@@ -1,0 +1,19 @@
+# ninja log v5
+433	559	7076381248120775	CMakeFiles/push_swap.dir/ft_split.c.obj	c28516e34bfe38dd
+2	86	7076464300359729	CMakeFiles/push_swap.dir/push_swap.c.obj	c373976ca2a180f6
+452	559	7076381248130776	CMakeFiles/push_swap.dir/ft_atoi.c.obj	71853991450dfb71
+3	86	7076451065042477	CMakeFiles/push_swap.dir/merge_sort.c.obj	ce267cd2fb80bbc3
+3	102	7076455092973706	CMakeFiles/push_swap.dir/utility.c.obj	9ac608fe68e0073c
+4	123	7076467369440056	CMakeFiles/push_swap.dir/partition.c.obj	8486247511a31d26
+3	113	7076457450219484	CMakeFiles/push_swap.dir/sort_less_3.c.obj	c6b82c4aa2dd84b4
+3	88	7076405054358686	CMakeFiles/push_swap.dir/stack_oper.c.obj	9479433b93498bc9
+124	276	7076467370940061	push_swap.exe	431bf9ef8924ac13
+3	273	7076483650954898	CMakeFiles/push_swap.dir/ft_atoi.c.obj	cb8ca71f2f5a33ee
+14	285	7076483651074874	CMakeFiles/push_swap.dir/partition.c.obj	a10f1651986327b5
+9	311	7076483651214880	CMakeFiles/push_swap.dir/ft_split.c.obj	c3a230363a940896
+285	401	7076483652114899	CMakeFiles/push_swap.dir/merge_sort.c.obj	4de5f8638f70cb3c
+274	425	7076483652504883	CMakeFiles/push_swap.dir/push_swap.c.obj	7d5782b4e42c406b
+312	442	7076483652644875	CMakeFiles/push_swap.dir/sort_less_3.c.obj	7cc86c365898a304
+401	605	7076483654254897	CMakeFiles/push_swap.dir/stack_oper.c.obj	b2b7e7345596f886
+426	615	7076483654244890	CMakeFiles/push_swap.dir/utility.c.obj	30549c9d43a2dc4b
+615	785	7076483656064877	======push_swap.exe	81138d4fde43e75c

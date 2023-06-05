@@ -51,7 +51,7 @@ int *mk_arr(int stack_idx, int size)
 		return (FT_NULL);
 	iter = get_st(stack_idx)->front;
 	idx = 0;
-	while (iter != FT_NULL)
+	while (idx < size)
 	{
 		arr[idx++] = iter->num;
 		iter = iter->next;
@@ -93,7 +93,7 @@ void	move_area(int stack_idx, int area_size)
 
 	idx = -1;
 	static_area_size = get_st(stack_idx)->size;
-	if (2 * area_size < static_area_size)
+	if (2 * area_size < area_size)
 		while (++idx < static_area_size)
 			op_rr(stack_idx);
 	else

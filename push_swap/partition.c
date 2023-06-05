@@ -17,20 +17,20 @@ static void	proc_part_from_b(t_part_info *info)
 	int		front_num;
 
 	front_num = get_st(B)->front->num;
-	if (front_num < info->pivot)
+	if (front_num < info->pivot && !(info->remain_m == 0 && info->remain_l == 0))
 	{
-		op_p(A);
 		op_r(B);
 		info->remain_s--;
 	}
-	else if (info->pivot <= front_num && front_num < info->pivot2) 
+	else if (info->pivot <= front_num && front_num < info->pivot2)
 	{
-		op_p(A);
+		op_p(B);
+		op_r(A);
 		info->remain_m--;
 	}
-	else if (front_num >= info->pivot2 && !(info->remain_s == 0 && info->remain_m == 0)) 
+	else if (front_num >= info->pivot2)
 	{
-		op_r(A);
+		op_p(B);
 		info->remain_l--;
 	}
 }
@@ -74,7 +74,7 @@ static void init_part(t_part_info *info, int from, int size, int *area)
 }
 
 void	partition(int from, int size, int *area)
-{	
+{
 	t_part_info	info;
 
 	init_part(&info, from, size, area);

@@ -14,8 +14,8 @@
 
 static void	sort_less_3b_sub(int size, t_three_num *t)
 {
-	t->top = get_st(A)->front->num;
-	t->mid = get_st(A)->front->next->num;
+	t->top = get_st(B)->front->num;
+	t->mid = get_st(B)->front->next->num;
 	if (size == 2)
 	{
 		if (t->top < t->mid)
@@ -24,7 +24,7 @@ static void	sort_less_3b_sub(int size, t_three_num *t)
 		op_p(B);
 	}
 	if (size >= 3)
-		t->bottom = get_st(A)->front->next->next->num;
+		t->bottom = get_st(B)->front->next->next->num;
 }
 
 void	sort_less_3a(int size)
@@ -79,7 +79,7 @@ void	sort_less_3b(int size)
 			 if (!op_r(B) || !op_p(B) || !op_p(B) || !op_rr(B) || !op_p(B))
 			 	;
 		if (t.top < t.mid && t.top < t.bottom && t.mid < t.bottom)// case 1 2 3
-			if (!op_r(B) || !op_s(A) || !op_p(B) || !op_p(B) || !op_rr(B) || !op_p(B))
+			if (!op_r(B) || !op_s(B) || !op_p(B) || !op_p(B) || !op_rr(B) || !op_p(B))
 				;
 	}
 }
