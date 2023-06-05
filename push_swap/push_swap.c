@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 01:05:10 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 03:56:42 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	order_stack_a(int size)
 	if (size <= 3)
 	{
 		if (size != 1)
-			sort_less_3a(size);
+		{
+			if (get_st(A)->size <= 3)
+				emp_sort_less_3a(size);
+			else
+				sort_less_3a(size);
+		}
 		return ;
 	}
 	if (partition(A, size, area) == 1)
@@ -40,7 +45,12 @@ void	order_stack_b(int size)
 		if (size == 1)
 			op_p(B);
 		else
-			sort_less_3b(size);
+		{
+			if (get_st(B)->size <= 3)
+				emp_sort_less_3b(size);
+			else
+				sort_less_3b(size);
+		}
 		return ;
 	}
 	if (partition(B, size, area) == -1)

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 00:10:07 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 03:32:52 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
 void		sort_less_3a(int size);
 void		sort_less_3b(int size);
+void		emp_sort_less_3a(int size);
+void		emp_sort_less_3b(int size);
 int			sorted_check(int from, int size, t_part_info *info);
 void		order_stack_a(int size);
 void		order_stack_b(int size);
