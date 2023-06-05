@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:04:22 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 02:52:15 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 06:52:24 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	proc_part_from_b(t_part_info *info)
 	else if (info->pivot <= front_num && front_num < info->pivot2)
 	{
 		op_p(B);
-		op_r(A);
+		if (get_st(A)->size != 1)
+			op_r(A);
 		info->remain_m--;
 	}
 	else if (front_num >= info->pivot2)
@@ -44,7 +45,8 @@ static void	proc_part_from_a(t_part_info *info)
 	if (front_num < info->pivot)
 	{
 		op_p(A);
-		op_r(B);
+		if (get_st(B)->size != 1)
+			op_r(B);
 		info->remain_s--;
 	}
 	else if (info->pivot <= front_num && front_num < info->pivot2)
@@ -55,7 +57,8 @@ static void	proc_part_from_a(t_part_info *info)
 	else if (front_num >= info->pivot2 && \
 	!(info->remain_s == 0 && info->remain_m == 0))
 	{
-		op_r(A);
+		if (get_st(A)->size != 1)
+			op_r(A);
 		info->remain_l--;
 	}
 }
