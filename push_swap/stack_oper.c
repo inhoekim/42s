@@ -6,11 +6,12 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 23:58:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 22:39:30 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/05 18:45:01 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 int	op_r(int stack_idx)
 {
@@ -22,7 +23,7 @@ int	op_r(int stack_idx)
 	idx = 2;
 	while (--idx >= 0)
 	{
-		if((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
+		if ((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
 			continue ;
 		stack = get_st(idx);
 		element = stack->front;
@@ -33,7 +34,7 @@ int	op_r(int stack_idx)
 		element->next = FT_NULL;
 		stack->tail = element;
 	}
-	//ft_printf("r" + label[stack_idx] + "\n");
+	printf("r%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
@@ -47,7 +48,7 @@ int	op_rr(int stack_idx)
 	idx = 2;
 	while (--idx >= 0)
 	{
-		if((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
+		if ((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
 			continue ;
 		stack = get_st(idx);
 		element = stack->tail;
@@ -58,7 +59,7 @@ int	op_rr(int stack_idx)
 		stack->front->before = element;
 		stack->front = element;
 	}
-	//ft_printf("rr" + label[stack_idx] + "\n");
+	printf("rr%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
@@ -72,7 +73,7 @@ int	op_s(int stack_idx)
 	idx = 2;
 	while (--idx >= 0)
 	{
-		if((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
+		if ((stack_idx != AB && stack_idx != idx) || get_st(idx)->size <= 1)
 			continue ;
 		element = get_st(idx)->front;
 		element2 = element->next;
@@ -86,20 +87,14 @@ int	op_s(int stack_idx)
 		if (get_st(idx)->size == 2)
 			get_st(idx)->tail = element;
 	}
-	//ft_printf("rr" + label[stack_idx] + "\n");
+	printf("s%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
-
-int	op_p(int stack_idx)
+static void	op_p_sub(t_deque *stack, t_deque *stack2)
 {
-	const char	label[2] = {'a', 'b'};
-	t_deque		*stack;
-	t_deque		*stack2;
 	t_element	*element;
 
-	stack = get_st(stack_idx);
-	stack2 = get_st((stack_idx + 1) % 2);
 	if (stack->size != 0)
 	{
 		element = stack->front;
@@ -119,28 +114,17 @@ int	op_p(int stack_idx)
 		if (stack2->size == 1)
 			stack2->tail = stack2->front;
 	}
-	//ft_printf("rr" + label[stack_idx] + "\n");
-	return (FT_TRUE);
 }
 
-int	push_back(t_deque *stack, int val)
+int	op_p(int stack_idx)
 {
-	t_element	*element;
+	const char	label[2] = {'b', 'a'};
+	t_deque		*stack;
+	t_deque		*stack2;
 
-	element = (t_element *)malloc(sizeof(t_element));
-	if (element == FT_NULL)
-		return (FT_ERR);
-	element->before = FT_NULL;
-	element->next = FT_NULL;
-	element->num = val;
-	if (stack->size == 0)
-		stack->front = element;
-	else
-	{
-		element->before = stack->tail;
-		stack->tail->next = element;
-	}
-	stack->tail = element;
-	stack->size++;
+	stack = get_st(stack_idx);
+	stack2 = get_st((stack_idx + 1) % 2);
+	op_p_sub(stack, stack2);
+	printf("p%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }

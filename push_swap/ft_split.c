@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 03:16:16 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 17:13:00 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 00:32:57 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,11 @@ static	int	get_split_cnt(char const *s)
 	return (cnt);
 }
 
-static	int	make_each_str(char	**new_strs, char const *s)
-{
+static	int	make_each_str(char	**new_strs, char const *s, int idx)
+{	
 	int		strs_cnt;
-	int		idx;
 	int		str_len;
 
-	idx = 0;
 	strs_cnt = 0;
 	while (s[idx] != '\0')
 	{
@@ -100,9 +98,12 @@ char	**ft_split(const char *s)
 	strs_cnt = get_split_cnt(s);
 	new_strs = (char **)malloc(sizeof(char *) * (strs_cnt + 1));
 	if (strs_cnt == 0 || new_strs == FT_NULL)
+	{
+		free(new_strs);
 		return (FT_NULL);
+	}
 	new_strs[strs_cnt] = FT_NULL;
-	strs_cnt = make_each_str(new_strs, s);
+	strs_cnt = make_each_str(new_strs, s, 0);
 	if (strs_cnt <= 0)
 	{
 		free_all(new_strs, strs_cnt * -1);

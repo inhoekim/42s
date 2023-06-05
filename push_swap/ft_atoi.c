@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:00:39 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/02 17:12:05 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/05 17:47:35 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,28 @@ static int	confirm_sign(const char **str)
 static long long	ft_strtol(const char *str, int sign)
 {
 	long long	num;
-	long long	front;
-	long long	back;
+	long long	f;
+	long long	b;
 	int			idx;
 
 	num = 0;
 	idx = -1;
-	front = (long long)FT_LONG_MAX / 10;
-	back = (long long)FT_LONG_MAX % 10;
+	f = (long long)FT_LONG_MAX / 10;
+	b = (long long)FT_LONG_MAX % 10;
 	while (str[++idx])
 	{
 		if ('0' <= str[idx] && str[idx] <= '9')
 		{
-			if (num > front || (num == front && str[idx] >= back + '0'))
+			if (num > f || (num == f && str[idx] >= b + '0'))
 			{
-				if (sign == -1 && (num > front || (num == front && str[idx] >= '8')))
+				if (sign < 0 && (num > f || (num == f && str[idx] >= '8')))
 					return (((long long)FT_LONG_MAX * -1) - 1);
 				return ((long long)FT_LONG_MAX);
 			}
 			num = (num * 10) + (str[idx] - '0');
 		}
 		else
-			return ((long long)FT_LONG_MAX) ;
+			return ((long long)FT_LONG_MAX);
 	}
 	return (num);
 }

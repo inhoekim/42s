@@ -16,7 +16,7 @@ static void	merge(int *arr, int *new_arr, int left, int right)
 {
 	int	left_arr_idx;
 	int	right_arr_idx;
-	int idx;
+	int	idx;
 
 	idx = left;
 	left_arr_idx = left;
@@ -42,7 +42,7 @@ static void	merge(int *arr, int *new_arr, int left, int right)
 
 static void	merge_proc(int *arr, int *new_arr, int left, int right)
 {
-	int mid;
+	int	mid;
 
 	if (left >= right)
 		return ;
@@ -52,9 +52,9 @@ static void	merge_proc(int *arr, int *new_arr, int left, int right)
 	merge(arr, new_arr, left, right);
 }
 
-int *mrg_sort(int *arr, int size)
+int	*mrg_sort(int *arr, int size)
 {
-	int *new_arr;
+	int	*new_arr;
 
 	if (size == 1)
 		return (arr);
