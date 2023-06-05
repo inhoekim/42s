@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 05:26:25 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 08:00:33 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_deque		*get_st(int type);
 int			check_format(int argc, char **argv);
 int			chk_dup(int *arr);
 int			*mk_arr(int stack_idx, int size);
-void		move_area(int stack_idx, int area_size);
+void		move_area(int stack_idx, int area_size, int rr_size);
 int			*mrg_sort(int *arr, int size);
 int			partition(int from, int size, int *area);
 long long	ft_atoi(const char *str);

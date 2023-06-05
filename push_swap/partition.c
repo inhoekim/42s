@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:04:22 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 06:52:24 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 08:01:15 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,22 @@ static void	proc_part_from_a(t_part_info *info)
 	int		front_num;
 
 	front_num = get_st(A)->front->num;
-	if (front_num < info->pivot)
+	if (info->pivot <= front_num && front_num < info->pivot2)
 	{
 		op_p(A);
 		if (get_st(B)->size != 1)
 			op_r(B);
-		info->remain_s--;
+		info->remain_m--;
 	}
-	else if (info->pivot <= front_num && front_num < info->pivot2)
+	else if (front_num < info->pivot)
 	{
 		op_p(A);
-		info->remain_m--;
+		info->remain_s--;
 	}
 	else if (front_num >= info->pivot2 && \
 	!(info->remain_s == 0 && info->remain_m == 0))
 	{
-		if (get_st(A)->size != 1)
-			op_r(A);
+		op_r(A);
 		info->remain_l--;
 	}
 }
@@ -93,23 +92,29 @@ int	partition(int from, int size, int *area)
 	{
 		while (++(info.idx) < size)
 			proc_part_from_a(&info);
-		move_area(A, area[2] - info.remain_l);
+		move_area(A, area[2] - info.remain_l, area[1]);
 	}
 	else if (from == B)
 	{
 		while (++(info.idx) < size)
 			proc_part_from_b(&info);
-		move_area(B, area[0] - info.remain_s);
+		move_area(B, area[0] - info.remain_s, 0);
 	}
 	free(info.arr);
 	return (is_sorted);
 }
 
-void	move_area(int stack_idx, int area_size)
+void	move_area(int stack_idx, int area_size, int rr_size)
 {
 	int	idx;
 	int	static_area_size;
 
+	while (rr_size && area_size)
+	{
+		op_rr(AB);
+		rr_size--;
+		area_size--;
+	}
 	idx = -1;
 	static_area_size = get_st(stack_idx)->size - area_size;
 	if (area_size > static_area_size)
@@ -118,4 +123,6 @@ void	move_area(int stack_idx, int area_size)
 	else
 		while (++idx < area_size)
 			op_rr(stack_idx);
+	while (rr_size--)
+		op_rr(B);
 }

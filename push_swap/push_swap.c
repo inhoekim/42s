@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 06:36:16 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/06 08:00:18 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	order_stack_a(int size)
 		return ;
 	order_stack_a(area[2]);
 	order_stack_b(area[1]);
-	move_area(B, area[0]);
 	order_stack_b(area[0]);
 }
 
@@ -56,7 +55,7 @@ void	order_stack_b(int size)
 		return ;
 	}
 	order_stack_a(area[2]);
-	move_area(A, area[1]);
+	move_area(A, area[1], 0);
 	order_stack_a(area[1]);
 	order_stack_b(area[0]);
 }
