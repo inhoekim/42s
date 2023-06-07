@@ -6,7 +6,7 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/06/07 09:36:34 by inhkim           ###   ########.fr        #
+#    Updated: 2023/06/07 12:19:36 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS=empty_sort_4.c empty_sort.c ft_atoi.c ft_split.c merge_sort.c\
 partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
 SRCS_OBJS=$(SRCS:.c=.o)
 NAME=push_swap
-PRINTF=./ft_printf
+PRINTF=./lib_printf
 
 all : $(NAME)
 
@@ -36,7 +36,7 @@ fclean : clean
 	make -C $(PRINTF) fclean
 
 re : fclean
-	make -C ./ft_printf fclean
+	make -C ./lib_printf fclean
 	make $(NAME) 
 
 .PHONY : all clean fclean re

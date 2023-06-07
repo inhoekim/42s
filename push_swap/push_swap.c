@@ -6,11 +6,12 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/07 08:41:00 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 12:18:22 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <unistd.h>
 
 void	order_stack_a(int size)
 {
@@ -97,13 +98,13 @@ static void	clear_stack(void)
 }
 
 int	main(int argc, char **argv)
-{
+{	
 	if (argc <= 1)
 		return (0);
 	if (check_format(argc, argv) == FT_ERR || \
 	chk_dup(mrg_sort(mk_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		clear_stack();
 		exit(1);
 	}

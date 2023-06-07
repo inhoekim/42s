@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 02:00:39 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/05 17:47:35 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 12:14:49 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ long long	ft_atoi(const char *str)
 
 	num = 0;
 	sign = confirm_sign(&str);
+	if (*str == FT_NULL)
+		return ((long long)FT_LONG_MAX);
 	num = ft_strtol(str, sign);
 	if (num == FT_LONG_MAX * -1 - 1)
 		return (num);
