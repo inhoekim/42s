@@ -6,12 +6,11 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 23:58:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/05 18:45:01 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 08:41:50 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 int	op_r(int stack_idx)
 {
@@ -34,7 +33,7 @@ int	op_r(int stack_idx)
 		element->next = FT_NULL;
 		stack->tail = element;
 	}
-	printf("r%c\n", label[stack_idx]);
+	ft_printf("r%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
@@ -59,7 +58,7 @@ int	op_rr(int stack_idx)
 		stack->front->before = element;
 		stack->front = element;
 	}
-	printf("rr%c\n", label[stack_idx]);
+	ft_printf("rr%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
@@ -87,7 +86,7 @@ int	op_s(int stack_idx)
 		if (get_st(idx)->size == 2)
 			get_st(idx)->tail = element;
 	}
-	printf("s%c\n", label[stack_idx]);
+	ft_printf("s%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }
 
@@ -125,6 +124,6 @@ int	op_p(int stack_idx)
 	stack = get_st(stack_idx);
 	stack2 = get_st((stack_idx + 1) % 2);
 	op_p_sub(stack, stack2);
-	printf("p%c\n", label[stack_idx]);
+	ft_printf("p%c\n", label[stack_idx]);
 	return (FT_TRUE);
 }

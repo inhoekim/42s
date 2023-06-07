@@ -6,37 +6,37 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/06/07 09:12:28 by inhkim           ###   ########.fr        #
+#    Updated: 2023/06/07 09:36:34 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
-SRCS=ft_check_formats_bonus.c ft_init_format_bonus.c ft_isdigit_bonus.c \
-ft_lstclear_bonus.c ft_lstnew_bonus.c ft_make_hexstr_bonus.c ft_memset_bonus.c \
-ft_print_addr_bonus.c ft_intlen_bonus.c ft_print_char_bonus.c ft_print_format_bonus.c \
-ft_print_hex_bonus.c ft_print_int_bonus.c ft_print_percent_bonus.c \
-ft_print_str_bonus.c ft_print_width_bonus.c ft_print_zero_bonus.c ft_printf_bonus.c \
-ft_putchar_fd_bonus.c ft_putstr_fd_bonus.c ft_strlen_bonus.c ft_itoa_bonus.c ft_err_bonus.c
-SRCS_WITH_PATH=$(addprefix srcs/,$(SRCS))
-SRCS_OBJS=$(SRCS_WITH_PATH:.c=.o)
-NAME=libftprintf.a
+SRCS=empty_sort_4.c empty_sort.c ft_atoi.c ft_split.c merge_sort.c\
+partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
+SRCS_OBJS=$(SRCS:.c=.o)
+NAME=push_swap
+PRINTF=./ft_printf
 
-$(all) : $(NAME)
+all : $(NAME)
 
 $(NAME) : $(SRCS_OBJS)
-	ar rcs $(NAME) $^
+	make -C $(PRINTF) 
+	$(CC) $(CFLAGS) -o $@ $^ $(PRINTF)/libftprintf.a
 	
-$(SRCS_OBJS) : %.o : %.c 
-	$(CC) $(CFLAGS) -c $^ -o $@ -I./includes
+$(SRCS_OBJS): %.o : %.c push_swap.h
+	$(CC) $(CFLAGS) -c $^
 
 clean :
 	rm -f $(SRCS_OBJS)
+	make -C $(PRINTF) clean
 
-fclean : clean 
+fclean : clean
 	rm -f $(NAME)
+	make -C $(PRINTF) fclean
 
-re : fclean 
-	make $(NAME)
+re : fclean
+	make -C ./ft_printf fclean
+	make $(NAME) 
 
-.PHONY : all fclean re clean
+.PHONY : all clean fclean re

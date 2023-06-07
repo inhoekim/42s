@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 05:26:25 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 09:19:28 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void		sort_less_3a(int size);
 void		sort_less_3b(int size);
 void		emp_sort_less_4a(int size);
 void		emp_sort_less_4b(int size);
-void		emp_sort_4a();
-void		emp_sort_4b();
+void		emp_sort_4a(void);
+void		emp_sort_4b(void);
 int			sorted_check(int from, int size, t_part_info *info);
 void		order_stack_a(int size);
 void		order_stack_b(int size);
+int			ft_printf(const char *s, ...);
 #endif

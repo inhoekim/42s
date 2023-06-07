@@ -6,16 +6,16 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 06:36:16 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 08:41:00 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "push_swap.h"
 
 void	order_stack_a(int size)
 {
 	int	area[3];
+
 	if (size == 1)
 		return ;
 	if (size <= 4 && get_st(A)->size <= 4)
@@ -98,14 +98,12 @@ static void	clear_stack(void)
 
 int	main(int argc, char **argv)
 {
-	t_element	*iter;
-
 	if (argc <= 1)
 		return (0);
 	if (check_format(argc, argv) == FT_ERR || \
 	chk_dup(mrg_sort(mk_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		clear_stack();
 		exit(1);
 	}

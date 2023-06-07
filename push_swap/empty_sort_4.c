@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 05:01:12 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 05:53:55 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/07 08:02:19 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	find_max(int stack_idx)
 	return (max_idx);
 }
 
-void	emp_sort_4a()
+void	emp_sort_4a(void)
 {
 	int	idx;
 
@@ -50,7 +50,7 @@ void	emp_sort_4a()
 		op_rr(A);
 }
 
-void	emp_sort_4b()
+void	emp_sort_4b(void)
 {
 	int	idx;
 
