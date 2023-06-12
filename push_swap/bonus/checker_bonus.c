@@ -22,11 +22,11 @@ static int	proc_stack_op_sub(char *s)
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r' && s[3] == '\n')
 		return (op_rr(AB));
 	else if (s[0] == 's' && s[1] == 'a'&& s[2] == '\n')
-		return (op_rr(A));
+		return (op_s(A));
 	else if (s[0] == 's' && s[1] == 'a' && s[2] == '\n')
-		return (op_rr(B));
+		return (op_s(B));
 	else if (s[0] == 's' && s[1] == 's' && s[2] == '\n')
-		return (op_rr(B));
+		return (op_s(AB));
 	else
 		return (FT_ERR);
 }
@@ -38,11 +38,11 @@ static int	proc_stack_op(char *s)
 	else if (s[0] == 'p' && s[1] == 'b' && s[2] == '\n')
 		return (op_p(A));
 	else if (s[0] == 'r' && s[1] == 'a' && s[2] == '\n')
-		return (op_p(A));
+		return (op_r(A));
 	else if (s[0] == 'r' && s[1] == 'b' && s[2] == '\n')
-		return (op_p(B));
+		return (op_r(B));
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == '\n')
-		return (op_p(AB));
+		return (op_r(AB));
 	else
 		return (proc_stack_op_sub(s));
 }

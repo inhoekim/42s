@@ -22,13 +22,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e8074458-52b5-4de9-ac6f-791358749eea" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bonus/checker_bonus.c" beforeDir="false" afterPath="$PROJECT_DIR$/bonus/checker_bonus.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +79,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="checker_bonus.c" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="1 2 3" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="push_swap" RUN_TARGET_NAME="checker_bonus.c" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="checker_bonus.c" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="3 2 1" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="push_swap" RUN_TARGET_NAME="checker_bonus.c" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -99,7 +95,7 @@
       <updated>1685934893184</updated>
       <workItem from="1685934894497" duration="8744000" />
       <workItem from="1686226770276" duration="91000" />
-      <workItem from="1686600427557" duration="5441000" />
+      <workItem from="1686600427557" duration="6356000" />
     </task>
     <servers />
   </component>
@@ -133,176 +129,6 @@
           <url>file://$PROJECT_DIR$/push_swap.c</url>
           <line>44</line>
           <option name="timeStamp" value="450" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>88</line>
-          <option name="timeStamp" value="451" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>87</line>
-          <option name="timeStamp" value="452" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>86</line>
-          <option name="timeStamp" value="453" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>85</line>
-          <option name="timeStamp" value="454" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>84</line>
-          <option name="timeStamp" value="455" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>83</line>
-          <option name="timeStamp" value="456" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>82</line>
-          <option name="timeStamp" value="457" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>81</line>
-          <option name="timeStamp" value="458" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>80</line>
-          <option name="timeStamp" value="459" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>79</line>
-          <option name="timeStamp" value="460" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>78</line>
-          <option name="timeStamp" value="461" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>75</line>
-          <option name="timeStamp" value="463" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>74</line>
-          <option name="timeStamp" value="464" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>36</line>
-          <option name="timeStamp" value="465" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>35</line>
-          <option name="timeStamp" value="466" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>42</line>
-          <option name="timeStamp" value="467" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>43</line>
-          <option name="timeStamp" value="468" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>47</line>
-          <option name="timeStamp" value="469" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>55</line>
-          <option name="timeStamp" value="470" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>54</line>
-          <option name="timeStamp" value="471" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>59</line>
-          <option name="timeStamp" value="472" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>60</line>
-          <option name="timeStamp" value="473" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/chk_util_bonus.c</url>
-          <line>63</line>
-          <option name="timeStamp" value="474" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>54</line>
-          <option name="timeStamp" value="475" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>55</line>
-          <option name="timeStamp" value="476" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>56</line>
-          <option name="timeStamp" value="477" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>57</line>
-          <option name="timeStamp" value="478" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>58</line>
-          <option name="timeStamp" value="479" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>61</line>
-          <option name="timeStamp" value="481" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>62</line>
-          <option name="timeStamp" value="482" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>59</line>
-          <option name="timeStamp" value="483" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>60</line>
-          <option name="timeStamp" value="484" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>64</line>
-          <option name="timeStamp" value="485" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
-          <line>63</line>
-          <option name="timeStamp" value="486" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/bonus/utility_bonus.c</url>
@@ -353,6 +179,16 @@
           <url>file://$PROJECT_DIR$/bonus/utility_bonus.c</url>
           <line>91</line>
           <option name="timeStamp" value="498" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
+          <line>83</line>
+          <option name="timeStamp" value="515" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/bonus/checker_bonus.c</url>
+          <line>84</line>
+          <option name="timeStamp" value="516" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
