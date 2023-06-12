@@ -23,7 +23,7 @@ static int	proc_stack_op_sub(char *s)
 		return (op_rr(AB));
 	else if (s[0] == 's' && s[1] == 'a'&& s[2] == '\n')
 		return (op_s(A));
-	else if (s[0] == 's' && s[1] == 'a' && s[2] == '\n')
+	else if (s[0] == 's' && s[1] == 'b' && s[2] == '\n')
 		return (op_s(B));
 	else if (s[0] == 's' && s[1] == 's' && s[2] == '\n')
 		return (op_s(AB));

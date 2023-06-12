@@ -21,8 +21,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e8074458-52b5-4de9-ac6f-791358749eea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bonus/checker_bonus.c" beforeDir="false" afterPath="$PROJECT_DIR$/bonus/checker_bonus.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,7 @@
       <updated>1685934893184</updated>
       <workItem from="1685934894497" duration="8744000" />
       <workItem from="1686226770276" duration="91000" />
-      <workItem from="1686600427557" duration="7621000" />
+      <workItem from="1686600427557" duration="7963000" />
     </task>
     <servers />
   </component>
