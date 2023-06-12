@@ -52,16 +52,19 @@ static void	merge_proc(int *arr, int *new_arr, int left, int right)
 	merge(arr, new_arr, left, right);
 }
 
-int	*mrg_sort(int *arr, int size)
+int	**mrg_sort(int **arr, int size)
 {
 	int	*new_arr;
 
 	if (size == 1)
 		return (arr);
 	new_arr = (int *)malloc(sizeof(int) * size);
-	if (arr == FT_NULL || new_arr == FT_NULL)
+	if (*arr == FT_NULL || new_arr == FT_NULL)
+	{
+		free(new_arr);
 		return (FT_NULL);
-	merge_proc(arr, new_arr, 0, size - 1);
+	}
+	merge_proc(*arr, new_arr, 0, size - 1);
 	free(new_arr);
 	return (arr);
 }

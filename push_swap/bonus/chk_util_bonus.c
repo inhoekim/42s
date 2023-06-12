@@ -48,20 +48,17 @@ int	check_format(int argc, char **argv)
 	return (FT_TRUE);
 }
 
-int	chk_dup(int *arr)
+int	chk_dup(int **arr)
 {
 	int	i;
 
-	if (arr == FT_NULL)
+	if (*arr == FT_NULL)
 		return (FT_ERR);
 	i = 0;
 	while (i < get_st(A)->size - 1)
 	{
-		if (arr[i] == arr[i + 1])
-		{
-			free(arr);
+		if ((*arr)[i] == (*arr)[i + 1])
 			return (FT_ERR);
-		}
 		i++;
 	}
 	return (FT_TRUE);

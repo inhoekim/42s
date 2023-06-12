@@ -23,19 +23,19 @@ t_deque	*get_st(int type)
 	return (FT_NULL);
 }
 
-int	*mk_arr(int *arr, int size)
+int	**mk_arr(int **arr, int size)
 {
 	t_element	*iter;
 	int			idx;
 
-	arr = (int *)malloc(sizeof(int) * size);
-	if (arr == FT_NULL)
+	*arr = (int *)malloc(sizeof(int) * size);
+	if (*arr == FT_NULL)
 		return (FT_NULL);
 	iter = get_st(A)->front;
 	idx = 0;
 	while (idx < size)
 	{
-		arr[idx++] = iter->num;
+		(*arr)[idx++] = iter->num;
 		iter = iter->next;
 	}
 	return (arr);

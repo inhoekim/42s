@@ -14,8 +14,8 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror
 SRCS=check_util.c empty_sort_4.c empty_sort.c ft_atoi.c ft_split.c \
 merge_sort.c partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
-BONUS_SRCS=checker_bonus.c check_util_bonus.c ft_atoi_bonus.c ft_split_bonus.c get_next_line_bonus \
-get_next_line_utils_bonus merge_sort_bonus.c stack_oper_bonus.c utility_bonus.c
+BONUS_SRCS=checker_bonus.c check_util_bonus.c ft_atoi_bonus.c ft_split_bonus.c get_next_line_bonus.c \
+get_next_line_utils_bonus.c merge_sort_bonus.c stack_oper_bonus.c utility_bonus.c
 SRCS_WITH_PATH=$(addprefix main/,$(SRCS))
 BONUS_WITH_PATH=$(addprefix bonus/,$(BONUS_SRCS))
 SRCS_OBJS=$(SRCS_WITH_PATH:.c=.o)
