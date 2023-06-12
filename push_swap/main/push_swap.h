@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/12 11:27:08 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/12 19:31:58 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int			op_r(int stack_idx);
 int			op_rr(int stack_idx);
 int			op_s(int stack_idx);
 int			op_p(int stack_idx);
-int			push_back(t_deque *stack, int val);
 t_deque		*get_st(int type);
 int			check_format(int argc, char **argv);
 int			chk_dup(int *arr);
