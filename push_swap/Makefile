@@ -32,7 +32,7 @@ $(NAME) : $(SRCS_OBJS)
 	
 $(SRCS_OBJS): %.o : %.c ./main/push_swap.h
 	$(CC) $(CFLAGS) -c $^ -I./main
-	@mv -f $^ ./main
+	@mv -f $(patsubst main/,$^) ./main/
 
 clean :
 	rm -f $(SRCS_OBJS)
@@ -56,6 +56,6 @@ $(BONUS_NAME) : $(BONUS_OBJS)
 
 $(BONUS_OBJS) : %.o : %.c ./bonus/get_next_line_bonus.h ./bonus/push_swap_bonus.h
 	$(CC) $(CFLAGS) -c $^ -I./bonus
-	@mv -f $^ ./bonus
+	@mv -f $(patsubst bonus/,$^) ./bonus/
 
 .PHONY : all clean fclean re bonus
