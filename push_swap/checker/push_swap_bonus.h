@@ -50,6 +50,7 @@ int			chk_dup(int *arr);
 int			*mk_arr(int stack_idx, int size);
 int			*mrg_sort(int *arr, int size);
 int			push_back(t_deque *stack, int val);
+void		clear_stack(void);
 int			sorted_check(int *arr);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);

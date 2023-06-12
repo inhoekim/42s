@@ -64,6 +64,5 @@ int	chk_dup(int *arr)
 		}
 		i++;
 	}
-	free(arr);
 	return (FT_TRUE);
 }

@@ -65,6 +65,7 @@ t_deque		*get_st(int type);
 int			check_format(int argc, char **argv);
 int			chk_dup(int *arr);
 int			*mk_arr(int stack_idx, int size);
+void		clear_stack(void);
 void		move_area(int stack_idx, int area_size);
 int			*mrg_sort(int *arr, int size);
 int			partition(int from, int size, int *area);

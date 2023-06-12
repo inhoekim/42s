@@ -13,6 +13,24 @@
 #include <unistd.h>
 #include "push_swap_bonus.h"
 
+static int	proc_stack_op_sub(char *s)
+{
+	if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a' && s[3] == '\n')
+		return (op_rr(A));
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'b' && s[3] == '\n')
+		return (op_rr(B));
+	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r' && s[3] == '\n')
+		return (op_rr(AB));
+	else if (s[0] == 's' && s[1] == 'a'&& s[2] == '\n')
+		return (op_rr(A));
+	else if (s[0] == 's' && s[1] == 'a' && s[2] == '\n')
+		return (op_rr(B));
+	else if (s[0] == 's' && s[1] == 's' && s[2] == '\n')
+		return (op_rr(B));
+	else
+		return (FT_ERR);
+}
+
 static int	proc_stack_op(char *s)
 {
 	if (s[0] == 'p' && s[1] == 'a' && s[2] == '\n')
@@ -27,24 +45,6 @@ static int	proc_stack_op(char *s)
 		return (op_p(AB));
 	else
 		return (proc_stack_op_sub(s));
-}
-
-static int	proc_stack_op_sub(char *s)
-{
-	if (s[0] == 'r' && s[1] == 'r' && s[2] == 'a' && s[3] == '\n')
-		return (op_rr(A));
-	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'b' && s[3] == '\n')
-		return (op_rr(B));
-	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r' && s[3] == '\n')
-		return (op_rr(AB));
-	else if (s[0] == 's' && s[1] == 'a'&& s[2] == '\n')
-		return (op_rr(A));
-	else if (s[0] == 's' && s[1] == 'a' && s[2] == '\n')
-		return (op_rr(B));
-	else if (s[0] == 's' && s[1] == 's' && s[2] == '\n')
-		return (op_rr(B));								
-	else
-		return (FT_ERR);
 }
 
 static int	read_oper(void)
@@ -67,18 +67,23 @@ static int	read_oper(void)
 
 int main(int argc, char **argv)
 {
+	int *arr;
+
 	if (argc <= 1)
 		return (0);
 	if (check_format(argc, argv) == FT_ERR || \
-	chk_dup(mrg_sort(mk_arr(A, get_st(A)->size), get_st(A)->size)) == FT_ERR\
+	chk_dup(mrg_sort(arr, get_st(A)->size)) == FT_ERR\
 	 || read_oper() == FT_ERR)	
 	{
 		write(2, "Error\n", 6);
+		clear_stack();
 		exit(1);
 	}
-	if (get_st(B)->size != 0 || sorted_check(A))
+	if (get_st(B)->size != 0 || sorted_check(arr))
 		write(1, "KO\n", 3);
 	else
-		wrtie(1, "OK\n", 3);
+		write(1, "OK\n", 3);
+	free(arr);
 	clear_stack();
+	return (0);
 }

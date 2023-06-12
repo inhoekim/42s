@@ -63,3 +63,16 @@ int	push_back(t_deque *stack, int val)
 	stack->size++;
 	return (FT_TRUE);
 }
+
+void	clear_stack(void)
+{
+	t_element	*iter;
+
+	iter = get_st(A)->front;
+	while (iter != FT_NULL)
+	{
+		get_st(A)->front = iter->next;
+		free(iter);
+		iter = get_st(A)->front;
+	}
+}

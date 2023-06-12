@@ -62,6 +62,6 @@ int	*mrg_sort(int *arr, int size)
 	if (arr == FT_NULL || new_arr == FT_NULL)
 		return (FT_NULL);
 	merge_proc(arr, new_arr, 0, size - 1);
-	free(arr);
-	return (new_arr);
+	free(new_arr);
+	return (arr);
 }

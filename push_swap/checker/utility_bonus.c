@@ -64,13 +64,24 @@ int	push_back(t_deque *stack, int val)
 	return (FT_TRUE);
 }
 
+void	clear_stack(void)
+{
+	t_element	*iter;
+
+	iter = get_st(A)->front;
+	while (iter != FT_NULL)
+	{
+		get_st(A)->front = iter->next;
+		free(iter);
+		iter = get_st(A)->front;
+	}
+}
+
 int	sorted_check(int *arr)
 {
 	t_element	*iter;
 	int			idx;
-	int			flag;
 
-	flag = 1;
 	idx = -1;
 	iter = get_st(A)->front;
 	while (++idx < get_st(A)->size)

@@ -76,19 +76,6 @@ void	order_stack_b(int size)
 	order_stack_b(area[0]);
 }
 
-static void	clear_stack(void)
-{
-	t_element	*iter;
-
-	iter = get_st(A)->front;
-	while (iter != FT_NULL)
-	{
-		get_st(A)->front = iter->next;
-		free(iter);
-		iter = get_st(A)->front;
-	}
-}
-
 int	main(int argc, char **argv)
 {	
 	if (argc <= 1)
