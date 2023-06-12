@@ -27,12 +27,12 @@ PRINTF=./lib_printf
 all : $(NAME)
 
 $(NAME) : $(SRCS_OBJS)
-	make -C $(PRINTF) 
-	@mv -f *.o ./main
+	make -C $(PRINTF)
 	$(CC) $(CFLAGS) -o $@ $^ $(PRINTF)/libftprintf.a
 	
 $(SRCS_OBJS): %.o : %.c ./main/push_swap.h
 	$(CC) $(CFLAGS) -c $^ -I./main
+	@mv -f $^ ./main
 
 clean :
 	rm -f $(SRCS_OBJS)
@@ -52,10 +52,10 @@ re : fclean
 bonus : $(BONUS_NAME)
 
 $(BONUS_NAME) : $(BONUS_OBJS)
-	@mv -f *_bonus.o ./bonus
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(BONUS_OBJS) : %.o : %.c ./bonus/get_next_line_bonus.h ./bonus/push_swap_bonus.h
 	$(CC) $(CFLAGS) -c $^ -I./bonus
+	@mv -f $^ ./bonus
 
 .PHONY : all clean fclean re bonus
