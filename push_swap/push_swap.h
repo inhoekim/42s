@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:48:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/07 09:19:28 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:27:08 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_format_info
 typedef struct s_part_info
 {
 	int			idx;
+	int			size;
 	int			pivot;
 	int			pivot2;
 	int			remain_l;
@@ -68,6 +69,7 @@ int			*mk_arr(int stack_idx, int size);
 void		move_area(int stack_idx, int area_size);
 int			*mrg_sort(int *arr, int size);
 int			partition(int from, int size, int *area);
+int			push_back(t_deque *stack, int val);
 long long	ft_atoi(const char *str);
 char		**ft_split(const char *s);
 void		sort_less_3a(int size);

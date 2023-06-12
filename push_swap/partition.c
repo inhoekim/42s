@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:04:22 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/06 06:52:24 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:21:19 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	proc_part_from_a(t_part_info *info)
 	if (front_num < info->pivot)
 	{
 		op_p(A);
-		if (get_st(B)->size != 1)
+		if (get_st(B)->size != 1 && info->size != 5)
 			op_r(B);
 		info->remain_s--;
 	}
@@ -75,6 +75,7 @@ static void	init_part(t_part_info *info, int from, int size, int *area)
 	area[2] = size / 3 + size % 3;
 	info->remain_l = area[2];
 	info->idx = -1;
+	info->size = size;
 }
 
 int	partition(int from, int size, int *area)

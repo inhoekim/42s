@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/06/07 12:19:36 by inhkim           ###   ########.fr        #
+#    Created: 2023/06/10 05:28:44 by inhkim            #+#    #+#              #
+#    Updated: 2023/06/12 12:06:16 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
-SRCS=empty_sort_4.c empty_sort.c ft_atoi.c ft_split.c merge_sort.c\
-partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
+SRCS=check_util.c empty_sort_4.c empty_sort.c ft_atoi.c ft_split.c \
+merge_sort.c partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
 SRCS_OBJS=$(SRCS:.c=.o)
 NAME=push_swap
 PRINTF=./lib_printf

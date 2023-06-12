@@ -6,12 +6,23 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 22:49:18 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/07 12:18:22 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/12 11:31:47 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+
+static void	check_two(int stack_idx)
+{
+	int	head_num;
+	int	next_num;
+
+	head_num = get_st(stack_idx)->front->num;
+	next_num = get_st(stack_idx)->front->next->num;
+	if (head_num < next_num)
+		op_s(stack_idx);
+}
 
 void	order_stack_a(int size)
 {
@@ -32,8 +43,11 @@ void	order_stack_a(int size)
 	if (partition(A, size, area) == 1)
 		return ;
 	order_stack_a(area[2]);
+	if (size == 5)
+		check_two(B);
 	order_stack_b(area[1]);
-	move_area(B, area[0]);
+	if (size != 5)
+		move_area(B, area[0]);
 	order_stack_b(area[0]);
 }
 
@@ -60,28 +74,6 @@ void	order_stack_b(int size)
 	move_area(A, area[1]);
 	order_stack_a(area[1]);
 	order_stack_b(area[0]);
-}
-
-int	push_back(t_deque *stack, int val)
-{
-	t_element	*element;
-
-	element = (t_element *)malloc(sizeof(t_element));
-	if (element == FT_NULL)
-		return (FT_ERR);
-	element->before = FT_NULL;
-	element->next = FT_NULL;
-	element->num = val;
-	if (stack->size == 0)
-		stack->front = element;
-	else
-	{
-		element->before = stack->tail;
-		stack->tail->next = element;
-	}
-	stack->tail = element;
-	stack->size++;
-	return (FT_TRUE);
 }
 
 static void	clear_stack(void)
