@@ -47,7 +47,7 @@ int			op_p(int stack_idx);
 t_deque		*get_st(int type);
 int			check_format(int argc, char **argv);
 int			chk_dup(int *arr);
-int			*mk_arr(int stack_idx, int size);
+int			*mk_arr(int *arr, int size);
 int			*mrg_sort(int *arr, int size);
 int			push_back(t_deque *stack, int val);
 void		clear_stack(void);

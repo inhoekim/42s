@@ -72,10 +72,11 @@ int main(int argc, char **argv)
 	if (argc <= 1)
 		return (0);
 	if (check_format(argc, argv) == FT_ERR || \
-	chk_dup(mrg_sort(arr, get_st(A)->size)) == FT_ERR\
-	 || read_oper() == FT_ERR)	
+	chk_dup(mrg_sort(mk_arr(arr, get_st(A)->size), get_st(A)->size)) == FT_ERR\
+	 || read_oper() == FT_ERR)
 	{
 		write(2, "Error\n", 6);
+		free(arr);
 		clear_stack();
 		exit(1);
 	}

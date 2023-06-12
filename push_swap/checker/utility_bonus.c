@@ -23,16 +23,15 @@ t_deque	*get_st(int type)
 	return (FT_NULL);
 }
 
-int	*mk_arr(int stack_idx, int size)
+int	*mk_arr(int *arr, int size)
 {
 	t_element	*iter;
-	int			*arr;
 	int			idx;
 
 	arr = (int *)malloc(sizeof(int) * size);
 	if (arr == FT_NULL)
 		return (FT_NULL);
-	iter = get_st(stack_idx)->front;
+	iter = get_st(A)->front;
 	idx = 0;
 	while (idx < size)
 	{
