@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "push_swap::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-push_swap-Debug-d2df1e64e5168d6ea784.json",
-					"name" : "push_swap",
+					"id" : "checker_bonus.c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-checker_bonus.c-Debug-bb533fec913797227097.json",
+					"name" : "checker_bonus.c",
 					"projectIndex" : 0
 				}
 			]

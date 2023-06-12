@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "======push_swap.exe"
+			"path" : "======checker_bonus.c.exe"
 		},
 		{
-			"path" : "======push_swap.pdb"
+			"path" : "======checker_bonus.c.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -55,7 +55,7 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "D:/42s/push_swap/."
+					"path" : "D:/42s/push_swap/./bonus"
 				}
 			],
 			"language" : "C",
@@ -74,13 +74,14 @@
 				2,
 				3,
 				4,
+				5,
 				6,
 				7,
 				8
 			]
 		}
 	],
-	"id" : "push_swap::@6890427a1f51a3e7e1df",
+	"id" : "checker_bonus.c::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -100,8 +101,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "push_swap",
-	"nameOnDisk" : "======push_swap.exe",
+	"name" : "checker_bonus.c",
+	"nameOnDisk" : "======checker_bonus.c.exe",
 	"paths" : 
 	{
 		"build" : ".",
@@ -118,16 +119,10 @@
 				2,
 				3,
 				4,
+				5,
 				6,
 				7,
 				8
-			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				5
 			]
 		}
 	],
@@ -136,54 +131,55 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ft_atoi.c",
+			"path" : "bonus/chk_util_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "ft_split.c",
+			"path" : "bonus/ft_atoi_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "merge_sort.c",
+			"path" : "bonus/ft_split_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "partition.c",
+			"path" : "bonus/get_next_line_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "push_swap.c",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "push_swap.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "sort_less_3.c",
+			"path" : "bonus/merge_sort_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "stack_oper.c",
+			"path" : "bonus/get_next_line_utils_bonus.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "utility.c",
+			"path" : "bonus/stack_oper_bonus.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bonus/utility_bonus.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "bonus/checker_bonus.c",
 			"sourceGroupIndex" : 0
 		}
 	],

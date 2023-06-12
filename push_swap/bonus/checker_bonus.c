@@ -81,7 +81,7 @@ int main(int argc, char **argv)
 		clear_stack();
 		exit(1);
 	}
-	if (get_st(B)->size != 0 || sorted_check(arr))
+	if (get_st(B)->size != 0 || sorted_check(arr) == FT_ERR)
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);

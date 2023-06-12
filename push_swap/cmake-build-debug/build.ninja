@@ -41,87 +41,94 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = D$:/42s/push_swap/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target push_swap
+# Object build statements for EXECUTABLE target checker_bonus.c
 
 
 #############################################
-# Order-only phony target for push_swap
+# Order-only phony target for checker_bonus.c
 
-build cmake_object_order_depends_target_push_swap: phony || CMakeFiles/push_swap.dir
+build cmake_object_order_depends_target_checker_bonus.c: phony || CMakeFiles/checker_bonus.c.dir
 
-build CMakeFiles/push_swap.dir/ft_atoi.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/ft_atoi.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\ft_atoi.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/chk_util_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/chk_util_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\chk_util_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/ft_split.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/ft_split.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\ft_split.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/ft_atoi_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/ft_atoi_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\ft_atoi_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/merge_sort.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/merge_sort.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\merge_sort.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/ft_split_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/ft_split_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\ft_split_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/partition.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/partition.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\partition.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/get_next_line_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/get_next_line_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\get_next_line_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/push_swap.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/push_swap.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\push_swap.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/merge_sort_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/merge_sort_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\merge_sort_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/sort_less_3.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/sort_less_3.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\sort_less_3.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/get_next_line_utils_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/get_next_line_utils_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\get_next_line_utils_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/stack_oper.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/stack_oper.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\stack_oper.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/stack_oper_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/stack_oper_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\stack_oper_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
-build CMakeFiles/push_swap.dir/utility.c.obj: C_COMPILER__push_swap_Debug D$:/42s/push_swap/utility.c || cmake_object_order_depends_target_push_swap
-  DEP_FILE = CMakeFiles\push_swap.dir\utility.c.obj.d
+build CMakeFiles/checker_bonus.c.dir/bonus/utility_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/utility_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\utility_bonus.c.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu11
-  INCLUDES = -ID:/42s/push_swap/.
-  OBJECT_DIR = CMakeFiles\push_swap.dir
-  OBJECT_FILE_DIR = CMakeFiles\push_swap.dir
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
+
+build CMakeFiles/checker_bonus.c.dir/bonus/checker_bonus.c.obj: C_COMPILER__checker_bonus.2ec_Debug D$:/42s/push_swap/bonus/checker_bonus.c || cmake_object_order_depends_target_checker_bonus.c
+  DEP_FILE = CMakeFiles\checker_bonus.c.dir\bonus\checker_bonus.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu11
+  INCLUDES = -ID:/42s/push_swap/./bonus
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
+  OBJECT_FILE_DIR = CMakeFiles\checker_bonus.c.dir\bonus
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target push_swap
+# Link build statements for EXECUTABLE target checker_bonus.c
 
 
 #############################################
-# Link the executable ======push_swap.exe
+# Link the executable ======checker_bonus.c.exe
 
-build ======push_swap.exe: C_EXECUTABLE_LINKER__push_swap_Debug CMakeFiles/push_swap.dir/ft_atoi.c.obj CMakeFiles/push_swap.dir/ft_split.c.obj CMakeFiles/push_swap.dir/merge_sort.c.obj CMakeFiles/push_swap.dir/partition.c.obj CMakeFiles/push_swap.dir/push_swap.c.obj CMakeFiles/push_swap.dir/sort_less_3.c.obj CMakeFiles/push_swap.dir/stack_oper.c.obj CMakeFiles/push_swap.dir/utility.c.obj
+build ======checker_bonus.c.exe: C_EXECUTABLE_LINKER__checker_bonus.2ec_Debug CMakeFiles/checker_bonus.c.dir/bonus/chk_util_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/ft_atoi_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/ft_split_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/get_next_line_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/merge_sort_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/get_next_line_utils_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/stack_oper_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/utility_bonus.c.obj CMakeFiles/checker_bonus.c.dir/bonus/checker_bonus.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\push_swap.dir
+  OBJECT_DIR = CMakeFiles\checker_bonus.c.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = ======push_swap.exe
-  TARGET_IMPLIB = libpush_swap.dll.a
-  TARGET_PDB = push_swap.exe.dbg
+  TARGET_FILE = ======checker_bonus.c.exe
+  TARGET_IMPLIB = libchecker_bonus.c.dll.a
+  TARGET_PDB = checker_bonus.c.exe.dbg
 
 
 #############################################
@@ -149,7 +156,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build push_swap: phony ======push_swap.exe
+build checker_bonus.c: phony ======checker_bonus.c.exe
 
 # =============================================================================
 # Folder targets.
@@ -159,7 +166,7 @@ build push_swap: phony ======push_swap.exe
 #############################################
 # Folder: D:/42s/push_swap/cmake-build-debug
 
-build all: phony ======push_swap.exe
+build all: phony ======checker_bonus.c.exe
 
 # =============================================================================
 # Built-in targets
