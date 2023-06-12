@@ -17,7 +17,7 @@ merge_sort.c partition.c push_swap.c sort_less_3.c stack_oper.c utility.c
 BONUS_SRCS=checker_bonus.c check_util_bonus.c ft_atoi_bonus.c ft_split_bonus.c get_next_line_bonus \
 get_next_line_utils_bonus merge_sort_bonus.c stack_oper_bonus.c utility_bonus.c
 SRCS_WITH_PATH=$(addprefix main/,$(SRCS))
-BONUS_WITH_PATH=$(addprefix checker/,$(BONUS_SRCS))
+BONUS_WITH_PATH=$(addprefix bonus/,$(BONUS_SRCS))
 SRCS_OBJS=$(SRCS_WITH_PATH:.c=.o)
 BONUS_OBJS=$(BONUS_WITH_PATH:.c=.o)
 BONUS_NAME=checker
@@ -52,10 +52,10 @@ re : fclean
 bonus : $(BONUS_NAME)
 
 $(BONUS_NAME) : $(BONUS_OBJS)
-	@mv -f *.o ./checker
+	@mv -f *.o ./bonus
 	$(CC) $(CFLAGS) -o $@ $^
 
-$(BONUS_OBJS) : %.o : %.c ./checker/get_next_line_bonus.h ./checker/push_swap_bonus.h
-	$(CC) $(CFLAGS) -c $^ -I./checker
+$(BONUS_OBJS) : %.o : %.c ./bonus/get_next_line_bonus.h ./bonus/push_swap_bonus.h
+	$(CC) $(CFLAGS) -c $^ -I./bonus
 
 .PHONY : all clean fclean re bonus
