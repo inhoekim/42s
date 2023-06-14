@@ -1,14 +1,14 @@
 #include "so_long.h"
 #include "utils.h"
 
-int	ft_strlen(char *str)
+int	ft_strlen(char *str, char end)
 {
 	long long	cnt;
 
 	cnt = 0;
 	if (str == FT_NULL)
 		return (-1);
-	while (*str != FT_NULL)
+	while (*str != FT_NULL && *str != end)
 	{
 		if (cnt == INT_MAX)
 			return (-1);
@@ -28,8 +28,9 @@ int	chk_str(char *dst, char *src)
 		if (*src != '0' && *src != '1' && *src != 'C' \
 		&& *src != 'E' && *src != 'P' && *src != 'X')
 			return (FT_ERR);
-		dst[idx] = src[idx];
+		dst[idx] = *src;
 		idx++;
+		src++;
 	}
 	return (FT_TRUE);
 }

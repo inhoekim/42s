@@ -56,7 +56,7 @@ int	chk_format()
 	if (chk_wall() == FT_ERR)
 		return (FT_ERR);
 	make_map_info();
-	if (m->info.exit_cnt != 1 || m->info.player_cnt != 1 || m->info.target_cnt >= 1)
+	if (m->info.exit_cnt != 1 || m->info.player_cnt != 1 || m->info.target_cnt < 1)
 		return (FT_ERR);
 	return (FT_TRUE);
 }
@@ -77,20 +77,18 @@ static int	chk_element(t_dfs_info *d)
 
 t_dfs_info	*chk_path(t_pair curr, t_dfs_info *d)
 {
+	int		idx;
 	char	**map;
 
 	map = get_map()->map;
 	map[curr.y][curr.x] |= MSB;
-	d->idx = -1;
-	while (++(d->idx) < 4)
+	idx = -1;
+	while (++idx < 4)
 	{
-		d->ny = curr.y + dirs[d->idx][0];
-		d->nx = curr.x + dirs[d->idx][1];
-		if (d->ny < 0 || d->ny == get_map()->info.size.y \
-		|| d->nx < 0 || d->nx == get_map()->info.size.x)
-			continue ;
+		d->ny = curr.y + dirs[idx][0];
+		d->nx = curr.x + dirs[idx][1];
 		d->ch = map[d->ny][d->nx] & ~MSB;
-		if (map[d->ny][d->nx] & MSB || chk_element(d))
+		if ((map[d->ny][d->nx] & MSB) >> 7 || chk_element(d))
 			continue;
 		d->nc.y = d->ny;
 		d->nc.x = d->nx;

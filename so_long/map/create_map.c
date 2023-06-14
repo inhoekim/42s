@@ -1,8 +1,8 @@
 #include <fcntl.h>
 #include <stdlib.h>
-#include "/gnl/get_next_line.h"
-#include "/map/map.h"
-#include "/utils/utils.h"
+#include "gnl/get_next_line.h"
+#include "map/map.h"
+#include "utils/utils.h"
 #include "so_long.h"
 
 static void	regist_size(char **file)
@@ -14,10 +14,10 @@ static void	regist_size(char **file)
 	idx = 0;
 	fd = open(file, O_RDONLY);
 	str = get_next_line(fd);
-	get_map()->info.size.x = ft_strlen(str);
+	get_map()->info.size.x = ft_strlen(str, '\n');
 	while (str != FT_NULL)
 	{
-		if (ft_strlen(str) != get_map()->info.size.x)
+		if (ft_strlen(str, '\n') != get_map()->info.size.x)
 		{
 			idx = -1;
 			free(str);
@@ -51,6 +51,7 @@ static int	alloc_map(char **file)
 		}
 		free(str);
 		str = get_next_line(fd);
+		idx++;
 	}
 	return (FT_TRUE);
 }
@@ -83,4 +84,3 @@ int	create_map(char **file)
 	}
 	return (FT_TRUE);
 }
-

@@ -17,13 +17,13 @@ typedef struct s_map{
 typedef struct s_dfs_info{
 	int		ny;
 	int		nx;
-	int		idx;
 	int		taget_cnt;
 	int		visited_exit;
 	char	ch;
 	t_pair	nc;
 }t_dfs_info;
 t_map		*get_map();
+int			create_map(char **file);
 void		clear_map(int cnt);
 int			chk_format();
 t_dfs_info	*chk_path(t_pair curr, t_dfs_info *d);
