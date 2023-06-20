@@ -63,6 +63,25 @@ static int chk_d(t_dfs_info *d)
 	return (FT_TRUE);
 }
 
+static void	reset_visited()
+{
+	char	**m;
+	int 	idx_y;
+	int 	idx_x;
+
+
+	m = get_map()->map;
+	idx_y = -1;
+	while (++idx_y < get_map()->info.size.y)
+	{
+		idx_x = -1;
+		while (++idx_x < get_map()->info.size.x)
+		{
+			m[idx_y][idx_x] |= ~MSB;
+		}
+	}
+}
+
 int	create_map(char **file)
 {
 	t_dfs_info	d;
@@ -82,5 +101,6 @@ int	create_map(char **file)
 		clear_map(get_map()->info.size.y - 1);
 		return (FT_ERR);
 	}
+	reset_visited();
 	return (FT_TRUE);
 }
