@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 01:39:33 by inhkim            #+#    #+#             */
+/*   Updated: 2023/06/21 01:39:33 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>
 #include <stdlib.h>
-#include "gnl/get_next_line.h"
-#include "map/map.h"
-#include "utils/utils.h"
-#include "so_long.h"
+#include "../gnl/get_next_line.h"
+#include "map.h"
+#include "../utils/utils.h"
+#include "../so_long.h"
 
-static void	regist_size(char **file)
+static void	regist_size(char *file)
 {
 	int		fd;
 	char	*str;
@@ -30,7 +42,7 @@ static void	regist_size(char **file)
 	get_map()->info.size.y = idx;
 }
 
-static int	alloc_map(char **file)
+static int	alloc_map(char *file)
 {
 	int 	fd;
 	int 	idx;
@@ -82,7 +94,7 @@ static void	reset_visited()
 	}
 }
 
-int	create_map(char **file)
+int	create_map(char *file)
 {
 	t_dfs_info	d;
 

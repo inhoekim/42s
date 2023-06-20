@@ -1,7 +1,19 @@
-#include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 01:39:21 by inhkim            #+#    #+#             */
+/*   Updated: 2023/06/21 01:39:23 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../so_long.h"
 #include "map.h"
 
-static const int dirs[4][2] = {{-1, 0}, {1, 0}, {0 ,-1}, {0, 1}};
+static const int g_dirs[4][2] = {{-1, 0}, {1, 0}, {0 ,-1}, {0, 1}};
 
 static int	chk_wall()
 {
@@ -28,6 +40,7 @@ static void	make_map_info()
 	int		idx_x;
 
 	idx_y = -1;
+	m = get_map();
 	while (++idx_y < m->info.size.y)
 	{
 		idx_x = -1;
@@ -85,8 +98,8 @@ t_dfs_info	*chk_path(t_pair curr, t_dfs_info *d)
 	idx = -1;
 	while (++idx < 4)
 	{
-		d->ny = curr.y + dirs[idx][0];
-		d->nx = curr.x + dirs[idx][1];
+		d->ny = curr.y + g_dirs[idx][0];
+		d->nx = curr.x + g_dirs[idx][1];
 		d->ch = map[d->ny][d->nx] & ~MSB;
 		if ((map[d->ny][d->nx] & MSB) >> 7 || chk_element(d))
 			continue;
