@@ -16,6 +16,7 @@
  # define FT_TRUE 1
  # define FT_ERR -1
 # include <mlx.h>
+# include <stdio.h>
 typedef struct s_pair{
 	int	x;
 	int	y;
@@ -26,6 +27,11 @@ typedef struct s_player
 	int			is_dead;
 	int			frame;
 }t_player;
+typedef struct s_enemy{
+	t_pair curr;
+	int	frame;
+	int dir;
+}t_enemy;
 typedef struct s_item{
 	t_pair	curr;
 	int		frame;
@@ -53,9 +59,12 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_player	player;
+	t_imgs		imgs;
 	int			item_cnt;
+	int			img_size;
 	int			moves;
-	int			door;
+	int			bright_lv;
+	int			dark_cnt;
 }t_game;
 int	game_exit();
 #endif
