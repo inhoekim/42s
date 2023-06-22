@@ -23,7 +23,7 @@ int	game_exit()
 
 static void	game_start(t_game *game)
 {
-	if (init_game(&game) == FT_ERR)
+	if (init_game(game) == FT_ERR)
 	{
 		perror("[Error] allocation failed");
 		exit (1);
