@@ -15,7 +15,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 #-fsanitize=address -g3
-MLX_FLAGS = cc -L./mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 MAIN = main.c error.c
 
