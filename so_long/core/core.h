@@ -26,4 +26,5 @@ int		key_input(int key);
 void	alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
+int		render(t_game *g);
 #endif

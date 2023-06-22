@@ -1,5 +1,6 @@
 
 #include "../so_long.h"
+#include "core.h"
 
 static void	player_update(t_game *game)
 {
@@ -41,6 +42,6 @@ int	frame_update(t_game *game)
 	//effect_update();
 	if (game->bright_lv != 0)
 		bright_update(game);
-	//render();
+	render(game);
 	return (FT_TRUE);
 }
