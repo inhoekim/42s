@@ -42,4 +42,5 @@ int	frame_update(t_game *game)
 	if (game->bright_lv != 0)
 		bright_update(game);
 	//render();
+	return (FT_TRUE);
 }

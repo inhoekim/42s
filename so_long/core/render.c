@@ -15,10 +15,10 @@
 
 void	render_player(t_game *g)
 {
-	t_map 	*m;
+	//t_map 	*m;
 	t_pair	center;
 
-	m = get_map();
+	//m = get_map();
 	center.y = WIN_Y / 2;
 	center.x = WIN_X / 2;
 	mlx_put_image_to_window(g->mlx, g->win, g->imgs.p_imgs[g->player.img_idx], WIN_Y / 2, WIN_X / 2);
