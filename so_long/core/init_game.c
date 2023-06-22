@@ -50,16 +50,18 @@ static int	alloc_enemy_lst(t_game *game)
 
 int	init_game(t_game *game)
 {
+	if (alloc_enemy_lst(game) == FT_ERR)
+		return (FT_ERR);
 	game->player.curr = get_map()->player;
 	game->player.is_dead = 0;
 	game->player.frame = 0;
 	alloc_img(game);
 	game->enemy_lst.next = FT_NULL;
-	alloc_enemy_lst(game);
 	game->enemy_lst.frame = 0;
 	game->item.frame = 0;
 	game->item.cnt = 0;
 	game->moves = 0;
 	game->bright_lv = 2;
 	game->dark_cnt = 0;
+	return (FT_TRUE);
 }
