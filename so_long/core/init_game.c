@@ -55,11 +55,14 @@ int	init_game(t_game *game)
 	game->player.curr = get_map()->player;
 	game->player.is_dead = 0;
 	game->player.frame = 0;
+	game->player.img_idx = 0;
 	alloc_img(game);
 	game->enemy_lst.next = FT_NULL;
 	game->enemy_lst.frame = 0;
+	game->enemy_lst.img_idx = 0;
 	game->item.frame = 0;
 	game->item.cnt = 0;
+	game->item.img_idx = 0;
 	game->moves = 0;
 	game->bright_lv = 2;
 	game->dark_cnt = 0;

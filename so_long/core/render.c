@@ -21,7 +21,8 @@ void	render_player(t_game *g)
 	//m = get_map();
 	center.y = WIN_Y / 2;
 	center.x = WIN_X / 2;
-	mlx_put_image_to_window(g->mlx, g->win, g->imgs.p_imgs[g->player.img_idx], WIN_Y / 2, WIN_X / 2);
+	mlx_put_image_to_window(g->mlx, g->win,\
+	g->imgs.p_imgs[g->player.img_idx], WIN_X / 2, WIN_Y / 2);
 }
 
 int	render(t_game *g)
