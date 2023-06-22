@@ -28,31 +28,17 @@ typedef struct s_player
 	int			frame;
 }t_player;
 typedef struct s_enemy{
-	t_pair curr;
-	int	frame;
-	int dir;
+	t_pair 			curr;
+	int 			dir;
+	struct s_enemy	*next;
 }t_enemy;
-typedef struct s_item{
-	t_pair	curr;
-	int		frame;
-}t_item;
-typedef struct s_item_lst{
-	t_pair	curr;
-	int		frame;
-}t_item_lst;
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*window;
-	void	*img;
-	int		weight;
-	int		height;
-}t_mlx;
 typedef struct s_imgs{
 	void	*p_imgs[3];
 	void	*e_imgs[3];
 	void	*d_imgs[2];
 	void	*i_imgs[3];
+	void	*w_img;
+	void	*b_imgs[3];
 }t_imgs;
 typedef struct s_game
 {
@@ -60,8 +46,11 @@ typedef struct s_game
 	void		*win;
 	t_player	player;
 	t_imgs		imgs;
+	t_enemy		enemy_lst;
+	int 		img_size;
+	int 		enemy_frame;
+	int 		item_frame;
 	int			item_cnt;
-	int			img_size;
 	int			moves;
 	int			bright_lv;
 	int			dark_cnt;

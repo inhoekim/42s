@@ -38,7 +38,7 @@ int	chk_str(char *dst, char *src)
 	while (*src && *src != '\n')
 	{
 		if (*src != '0' && *src != '1' && *src != 'C' \
-		&& *src != 'E' && *src != 'P' && *src != 'X')
+		&& *src != 'E' && *src != 'P' && *src != 'H' && *src != 'V')
 			return (FT_ERR);
 		dst[idx] = *src;
 		idx++;
