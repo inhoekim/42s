@@ -31,11 +31,11 @@ static int	alloc_enemy_lst(t_game *game)
 	t_map	*m;
 
 	m = get_map();
-	y = 0;
-	while (y < m->info.size.y)
+	y = -1;
+	while (++y < m->info.size.y)
 	{
-		x = 0;
-		while (x < m->info.size.x)
+		x = -1;
+		while (++x < m->info.size.x)
 		{
 			if (m->map[y][x] == 'H')
 				if (push_enemy(game, y, x, 0))
