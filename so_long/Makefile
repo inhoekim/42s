@@ -15,7 +15,7 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 #-fsanitize=address -g3
-MLX_FLAGS = -Lmlx -lmlx -framework Metal -framework Metalkit
+MLX_FLAGS = cc -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 MAIN = main.c error.c
 
@@ -37,10 +37,10 @@ OBJS = *.o
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
+	arch -x86_64 $(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
 $(OBJS) : $(SRCS)
-	$(CC) $(CFLAGS) -c $^
+	arch -x86_64 $(CC) $(CFLAGS) -c $^
 
 clean :
 	rm -f $(OBJS)
