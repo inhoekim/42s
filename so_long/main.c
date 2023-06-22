@@ -12,7 +12,6 @@
 
 #include "map/map.h"
 #include "core/core.h"
-#include "lib_printf/includes/ft_printf_bonus.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,12 +28,12 @@ static void	game_start(t_game *game)
 		perror("[Error] allocation failed");
 		exit (1);
 	}
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, WIN_X, WIN_Y, "so_long");
-	mlx_hook(game.win, 2, 0, &key_input, &game);
-	mlx_hook(game.win, 17, 0, &game_exit, &game);
-	mlx_loop_hook(game.mlx, &frame_update, &game);
-	mlx_loop(game.mlx);
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, WIN_X, WIN_Y, "so_long");
+	mlx_hook(game->win, 2, 0, &key_input, &game);
+	mlx_hook(game->win, 17, 0, &game_exit, &game);
+	mlx_loop_hook(game->mlx, &frame_update, &game);
+	mlx_loop(game->mlx);
 }
 
 int	main(int argc, char** argv)

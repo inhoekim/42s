@@ -17,7 +17,7 @@
  # define FT_ERR -1
 # define WIN_X 1024
 # define WIN_Y 640
-# include <mlx.h>
+# include "mlx/mlx.h"
 # include <stdio.h>
 typedef struct s_pair{
 	int	x;
