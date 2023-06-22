@@ -23,12 +23,12 @@ int	game_exit()
 
 static void	game_start(t_game *game)
 {
+	game->mlx = mlx_init();
 	if (init_game(game) == FT_ERR)
 	{
 		perror("[Error] allocation failed");
 		exit (1);
 	}
-	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIN_X, WIN_Y, "so_long");
 	mlx_hook(game->win, 2, 0, &key_input, game);
 	mlx_hook(game->win, 17, 0, &game_exit, game);
