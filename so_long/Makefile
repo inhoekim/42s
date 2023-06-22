@@ -12,10 +12,10 @@
 
 NAME = so_long
 
-CC = cc
+CC = arch
 CFLAGS = -Wall -Wextra -Werror 
 #-fsanitize=address -g3
-MLX_FLAGS = -lmlx -Lmlx_beta -framework Metal -framework MetalKit
+MLX_FLAGS = -x86_64 -Lmlx -lmlx -framework Metal -framework Metalkit
 
 MAIN = main.c error.c
 
