@@ -30,9 +30,9 @@ static void	game_start(t_game *game)
 	}
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WIN_X, WIN_Y, "so_long");
-	mlx_hook(game->win, 2, 0, &key_input, &game);
-	mlx_hook(game->win, 17, 0, &game_exit, &game);
-	mlx_loop_hook(game->mlx, &frame_update, &game);
+	mlx_hook(game->win, 2, 0, &key_input, game);
+	mlx_hook(game->win, 17, 0, &game_exit, game);
+	mlx_loop_hook(game->mlx, &frame_update, game);
 	mlx_loop(game->mlx);
 }
 
