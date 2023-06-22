@@ -22,6 +22,21 @@ int	game_exit()
 	exit(0);
 }
 
+static void	game_start(t_game *game)
+{
+	if (init_game(&game) == FT_ERR)
+	{
+		perror("[Error] allocation failed");
+		exit (1);
+	}
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, WIN_X, WIN_Y, "so_long");
+	mlx_hook(game.win, 2, 0, &key_input, &game);
+	mlx_hook(game.win, 17, 0, &game_exit, &game);
+	mlx_loop_hook(game.mlx, &frame_update, &game);
+	mlx_loop(game.mlx);
+}
+
 int	main(int argc, char** argv)
 {
 	t_game	game;
@@ -29,25 +44,14 @@ int	main(int argc, char** argv)
 	if (argc != 2)
 	{
 		perror("[Error] wrong file name");
-		// ft_printf("[Error] wrong file name\n");
-		return (1);
+		exit (1);
 	}
 	if (create_map(argv[1]) == FT_ERR)
 	{
 		perror("[Error] abnormal map file");
-		return (1);
+		exit (1);
 	}
-	init_game(&game);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1000, 600, "so_long");
-
-	alloc_img(&game);
-	game.moves = 0;
-	mlx_hook(game.win, 2, 0, &key_input, &game);
-	mlx_hook(game.win, 17, 0, &game_exit, &game);
-	mlx_loop_hook(game.mlx, &frame_update, &game);
-	mlx_loop(game.mlx);
-	///imgs->d_imgs[0] = mlx_xpm_file_to_image(mlx, "enemy", &mlx->weight, &mlx->height);
-	//mlx_put_image_to_window();
+	game_start(&game);
+	clear_map(get_map()->info.size.y - 1);
 	return (0);
 }

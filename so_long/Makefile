@@ -15,14 +15,14 @@ NAME = so_long
 CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 #-fsanitize=address -g3
-MLX_FLAGS = -lmlx -framework OpenGl -framework AppKit -Imlx 
+MLX_FLAGS = -lmlx -Lmlx_beta -framework Metal -framework MetalKit
 
 MAIN = main.c error.c
 
 MAP = check_map.c create_map.c init_map.c
 MAP_PATH = $(addprefix map/,$(MAP))
 
-CORE = key_input.c
+CORE = key_input.c frame_update.c alloc_img.c render.c init_game.c
 CORE_PATH = $(addprefix core/,$(CORE))
 
 UTILS = str_utils.c
@@ -34,27 +34,21 @@ GNL_PATH = $(addprefix gnl/,$(GNL))
 SRCS = $(MAIN) $(MAP_PATH) $(CORE_PATH) $(UTILS_PATH) $(GNL_PATH)
 OBJS = *.o
 
-PRINTF=./lib_printf
-
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	make -C $(PRINTF)
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ $(PRINTF)/libftprintf.a -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
 $(OBJS) : $(SRCS)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
 	rm -f $(OBJS)
-	make -C $(PRINTF) clean
 
 fclean : clean
 	rm -f $(NAME)
-	make -C $(PRINTF) fclean
 
 re : fclean
-	make -C ./lib_printf fclean
 	make $(NAME)
 
 .PHONY : all clean fclean re

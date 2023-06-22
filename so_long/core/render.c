@@ -10,27 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../so_long.h"
+#include "../map/map.h"
+
+void	render_player(t_game *g)
+{
+	t_map 	*m;
+	t_pair	center;
+
+	m = get_map();
+	center.y = WIN_Y / 2;
+	center.x = WIN_X / 2;
+	mlx_put_image_to_window(g->mlx, g->win, g->imgs.p_imgs[g->player.img_idx], WIN_Y / 2, WIN_X / 2);
+}
 
 int	render(t_game *g)
 {
-	if (g->player.frame == 0 || g->player.frame == 30 || g->moves == 0 || g->moves == 20 || g->moves == 40)
-		mlx_clear_window(g->mlx, g->win);
-	if (g->player.frame <= 30)
-		mlx_put_image_to_window(g->mlx, g->win, g->imgs.p_imgs[1], 0, 0);
-	else if (g->player.frame <= 60)
-		mlx_put_image_to_window(g->mlx, g->win, g->imgs.p_imgs[2], 0, 0);
-	else
-		g->player.frame = 0;
-	g->player.frame++;
+	mlx_clear_window(g->mlx, g->win);
 
-	if (g->moves <= 20)
-		mlx_put_image_to_window(g->mlx, g->win, g->imgs.i_imgs[0], 128, 0);
-	else if (g->player.frame <= 40)
-		mlx_put_image_to_window(g->mlx, g->win, g->imgs.i_imgs[1], 128, 0);
-	else if (g->player.frame <= 60)
-		mlx_put_image_to_window(g->mlx, g->win, g->imgs.i_imgs[2], 128, 0);
-	else
-		g->moves = 0;
-	g->moves++;
+	render_player(g);
+	//render_bringht();
 	return (1);
 }

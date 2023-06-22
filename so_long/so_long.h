@@ -15,6 +15,8 @@
  # define FT_NULL 0
  # define FT_TRUE 1
  # define FT_ERR -1
+# define WIN_X 1024
+# define WIN_Y 640
 # include <mlx.h>
 # include <stdio.h>
 typedef struct s_pair{
@@ -25,13 +27,21 @@ typedef struct s_player
 {
 	t_pair		curr;
 	int			is_dead;
-	int			frame;
+	int 		img_idx;
+	int 		frame;
 }t_player;
 typedef struct s_enemy{
 	t_pair 			curr;
 	int 			dir;
+	int 			img_idx;
+	int 			frame;
 	struct s_enemy	*next;
 }t_enemy;
+typedef struct s_item{
+	int	img_idx;
+	int	frame;
+	int	cnt;
+}t_item;
 typedef struct s_imgs{
 	void	*p_imgs[3];
 	void	*e_imgs[3];
@@ -44,13 +54,11 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	t_player	player;
 	t_imgs		imgs;
+	t_player	player;
+	t_item		item;
 	t_enemy		enemy_lst;
 	int 		img_size;
-	int 		enemy_frame;
-	int 		item_frame;
-	int			item_cnt;
 	int			moves;
 	int			bright_lv;
 	int			dark_cnt;

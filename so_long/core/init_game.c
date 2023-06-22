@@ -56,9 +56,9 @@ int	init_game(t_game *game)
 	alloc_img(game);
 	game->enemy_lst.next = FT_NULL;
 	alloc_enemy_lst(game);
-	game->enemy_frame = 0;
-	game->item_frame = 0;
-	game->item_cnt = 0;
+	game->enemy_lst.frame = 0;
+	game->item.frame = 0;
+	game->item.cnt = 0;
 	game->moves = 0;
 	game->bright_lv = 2;
 	game->dark_cnt = 0;
