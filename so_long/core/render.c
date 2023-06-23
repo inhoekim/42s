@@ -34,6 +34,7 @@ static void	render_element(t_game *g, int dy, int dx)
 	int 	center_x;
 	int 	center_y;
 
+	m = get_map();
 	if (m->player.y + dy < 0 || m->player.y + dy >= m->info.size.y || \
 	m->player.x + dx < 0 || m->player.x + dx >= m->info.size.x)
 		return ;

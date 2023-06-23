@@ -41,7 +41,7 @@ int	frame_update(t_game *game)
 	etc_update(game);
 	//effect_update();
 	if (game->bright_lv != 0)
-		bright_update(game);
+		;//bright_update(game);
 	render(game);
 	return (FT_TRUE);
 }

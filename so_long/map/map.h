@@ -12,7 +12,7 @@
 
 #ifndef MAP_H
  # define MAP_H
- # define MSB (0x80)
+ # define MSB (0b10000000)
  # include "../so_long.h"
 typedef struct s_map_info{
 	int		player_cnt;

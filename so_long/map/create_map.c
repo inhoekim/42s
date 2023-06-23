@@ -88,7 +88,8 @@ static void	reset_visited()
 		idx_x = -1;
 		while (++idx_x < get_map()->info.size.x)
 		{
-			m[idx_y][idx_x] |= ~MSB;
+			if (m[idx_y][idx_x] & MSB)
+				m[idx_y][idx_x] |= (char)~MSB;
 		}
 	}
 }
