@@ -7,7 +7,7 @@ static void	player_update(t_game *game)
 	if (!game->player.is_dead)
 	{
 		(game->player.frame)++;
-		if (game->player.frame == 15)
+		if (game->player.frame == 8)
 		{
 			game->player.img_idx = (game->player.img_idx + 1) % 3;
 			game->player.frame = 0;
@@ -19,8 +19,8 @@ static void	etc_update(t_game *game)
 {
 	(game->item.frame)++;
 	(game->enemy_lst.frame)++;
-	if (game->item.frame == 15)
-		game->item.img_idx = (game->item.img_idx + 1) % 3;
+	if (game->item.frame == 4)
+		game->item.img_idx = (game->item.img_idx + 1) % 6;
 	if (game->enemy_lst.frame == 15)
 		game->enemy_lst.img_idx = (game->enemy_lst.img_idx + 1) % 3;
 }
