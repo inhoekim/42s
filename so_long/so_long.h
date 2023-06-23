@@ -59,6 +59,8 @@ typedef struct s_game
 	t_item		item;
 	t_enemy		enemy_lst;
 	int 		img_size;
+	int 		light_size_y;
+	int 		light_size_x;
 	int			moves;
 	int			bright_lv;
 	int			dark_cnt;

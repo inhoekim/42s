@@ -28,7 +28,7 @@ static void	etc_update(t_game *game)
 static void	bright_update(t_game *game)
 {
 	game->dark_cnt++;
-	if (game->dark_cnt == 100000000)
+	if (game->dark_cnt == 10000)
 	{
 		(game->bright_lv)--;
 		game->dark_cnt = 0;
