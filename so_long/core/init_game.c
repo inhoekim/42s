@@ -38,10 +38,10 @@ static int	alloc_enemy_lst(t_game *game)
 		while (++x < m->info.size.x)
 		{
 			if (m->map[y][x] == 'H')
-				if (push_enemy(game, y, x, 0))
+				if (push_enemy(game, y, x, 0) == FT_ERR)
 					return (FT_ERR);
 			if (m->map[y][x] == 'V')
-				if (push_enemy(game, y, x, 1))
+				if (push_enemy(game, y, x, 1) == FT_ERR)
 					return (FT_ERR);
 		}
 	}

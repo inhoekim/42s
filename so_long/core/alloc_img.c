@@ -46,9 +46,9 @@ static void	alloc_etc_img(t_game *game)
 	game->imgs.b_imgs[0] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/light/3.xpm", &(game->light_size_x), &(game->light_size_y));
 	game->imgs.d_imgs[0] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/etc/do.xpm", &(game->img_size), &(game->img_size));
-	game->imgs.d_imgs[1] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/etc/dc.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.d_imgs[1] = mlx_xpm_file_to_image\
+	(game->mlx, "imgs/etc/do.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.w_img = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/etc/wall.xpm", &(game->img_size), &(game->img_size));
 }

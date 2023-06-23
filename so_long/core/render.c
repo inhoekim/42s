@@ -44,6 +44,12 @@ static void	render_element(t_game *g, int dy, int dx)
 	if (type == '1')
 		mlx_put_image_to_window(g->mlx, g->win,\
 	g->imgs.w_img, center_x + dx * 64, center_y + dy * 64);
+	if (type == 'C')
+		mlx_put_image_to_window(g->mlx, g->win,\
+	g->imgs.i_imgs[g->item.img_idx], center_x + dx * 64, center_y + dy * 64);
+	if (type == 'E')
+		mlx_put_image_to_window(g->mlx, g->win,\
+	g->imgs.d_imgs[(g->item.cnt == get_map()->info.target_cnt)], center_x + dx * 64, center_y + dy * 64);
 }
 
 static void	render_player(t_game *g)
@@ -59,25 +65,28 @@ static void	render_map(t_game *g)
 {
 	t_render_info	ri;
 
-	ri.iy = 0;
+	ri.iy = -1;
 	while (++ri.iy <= 4) {
-		render_element(g, -ri.iy, 0);
-		if (ri.iy != 4)
-			render_element(g, ri.iy, 0);
+		ri.ix = -1;
+		while (++ri.ix <= 8) {
+			render_element(g, ri.iy, ri.ix);
+			render_element(g, ri.iy, -ri.ix);
+		}
 	}
-	ri.ix = 0;
-	while (++ri.ix <= 8) {
-		render_element(g, 0, ri.ix);
-		if (ri.ix != 8)
-			render_element(g, 0, -ri.ix);
+	ri.iy = -1;
+	while (++ri.iy <= 4) {
+		ri.ix = -1;
+		while (++ri.ix <= 8) {
+			render_element(g, -ri.iy, ri.ix);
+			render_element(g, -ri.iy, -ri.ix);
+		}
 	}
-
 }
 
 int	render(t_game *g)
 {
 	mlx_clear_window(g->mlx, g->win);
-	render_player(g);
 	render_map(g);
+	render_player(g);
 	return (1);
 }
