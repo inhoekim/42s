@@ -46,7 +46,7 @@ typedef struct s_imgs{
 	void	*p_imgs[3];
 	void	*e_imgs[3];
 	void	*d_imgs[2];
-	void	*i_imgs[3];
+	void	*i_imgs[6];
 	void	*w_img;
 	void	*b_imgs[3];
 }t_imgs;

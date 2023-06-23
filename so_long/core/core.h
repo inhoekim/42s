@@ -22,6 +22,11 @@ enum e_keys
 	RESET = 15,
 	ESC = 53
 };
+typedef struct s_render_info{
+	t_pair	coord;
+	int 	iy;
+	int 	ix;
+}t_render_info;
 int		key_input(int key);
 void	alloc_img(t_game *game);
 int		init_game(t_game *game);
