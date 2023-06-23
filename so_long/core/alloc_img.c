@@ -33,12 +33,12 @@ static void	alloc_item_img(t_game *game)
 
 static void	alloc_etc_img(t_game *game)
 {
-	game->imgs.b_imgs[0] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/bright/1.xpm", &(game->light_size_x), &(game->light_size_y));
-	game->imgs.b_imgs[1] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/bright/2.xpm", &(game->light_size_x), &(game->light_size_y));
 	game->imgs.b_imgs[2] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/bright/1.xpm", &(game->light_size_x), &(game->light_size_y));
+	(game->mlx, "imgs/light/1.xpm", &(game->light_size_x), &(game->light_size_y));
+	game->imgs.b_imgs[1] = mlx_xpm_file_to_image\
+	(game->mlx, "imgs/light/2.xpm", &(game->light_size_x), &(game->light_size_y));
+	game->imgs.b_imgs[0] = mlx_xpm_file_to_image\
+	(game->mlx, "imgs/light/3.xpm", &(game->light_size_x), &(game->light_size_y));
 	/*
 	game->imgs.d_imgs[0] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/door/1.xpm", &(game->img_size), &(game->img_size));
