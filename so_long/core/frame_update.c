@@ -20,7 +20,10 @@ static void	etc_update(t_game *game)
 	(game->item.frame)++;
 	(game->enemy_lst.frame)++;
 	if (game->item.frame == 4)
+	{
 		game->item.img_idx = (game->item.img_idx + 1) % 6;
+		game->item.frame = 0;
+	}
 	if (game->enemy_lst.frame == 15)
 		game->enemy_lst.img_idx = (game->enemy_lst.img_idx + 1) % 3;
 }
