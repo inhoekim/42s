@@ -27,7 +27,7 @@ typedef struct s_render_info{
 	int 	iy;
 	int 	ix;
 }t_render_info;
-int		key_input(int key);
+int		key_input(int key, t_game *game);
 void	alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
