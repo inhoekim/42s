@@ -61,5 +61,5 @@ void	alloc_img(t_game *game)
 	alloc_player_img(game);
 	alloc_etc_img(game);
 	alloc_item_img(game);
-	//alloc_enemy_img(game);
+	alloc_enemy_img(game);
 }

@@ -6,26 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 00:05:06 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/21 00:05:07 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/27 02:39:46 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../map/map.h"
 #include "core.h"
-
-/*
-void	render_element(char type)
-{
-	if (type == 'V' || type == 'H') {
-
-	}
-	else if (type == '1') {
-
-	}
-	else if (type == '')
-}
-*/
 
 static void	render_element(t_game *g, int dy, int dx)
 {
@@ -50,6 +37,9 @@ static void	render_element(t_game *g, int dy, int dx)
 	if (type == 'E')
 		mlx_put_image_to_window(g->mlx, g->win,\
 	g->imgs.d_imgs[(g->item.cnt == get_map()->info.target_cnt)], center_x + dx * 64, center_y + dy * 64);
+	if (type == 'V' || type == 'H')
+		mlx_put_image_to_window(g->mlx, g->win,\
+	g->imgs.e_imgs[g->enemy_lst.img_idx], center_x + dx * 64, center_y + dy * 64);
 }
 
 static void	render_player(t_game *g)

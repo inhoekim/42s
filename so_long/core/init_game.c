@@ -17,7 +17,7 @@ int y, int x, int dir)
 	enemy->curr.x = x;
 	enemy->dir = dir;
 	enemy->next = FT_NULL;
-	iter = &game->enemy_lst;
+	iter = &(game->enemy_lst);
 	while (iter->next != FT_NULL)
 		iter = iter->next;
 	iter->next = enemy;
@@ -50,21 +50,21 @@ static int	alloc_enemy_lst(t_game *game)
 
 int	init_game(t_game *game)
 {
+	game->enemy_lst.next = FT_NULL;
+	game->enemy_lst.frame = 0;
+	game->enemy_lst.img_idx = 0;
 	if (alloc_enemy_lst(game) == FT_ERR)
 		return (FT_ERR);
 	game->player.curr = get_map()->player;
 	game->player.is_dead = 0;
 	game->player.frame = 0;
-	game->player.img_idx = 0;
-	alloc_img(game);
-	game->enemy_lst.next = FT_NULL;
-	game->enemy_lst.frame = 0;
-	game->enemy_lst.img_idx = 0;
+	game->player.img_idx = 0;	
 	game->item.frame = 0;
 	game->item.cnt = 0;
 	game->item.img_idx = 0;
 	game->moves = 0;
-	game->bright_lv = 2;
+	game->bright_lv = 1;
 	game->dark_cnt = 0;
+	alloc_img(game);
 	return (FT_TRUE);
 }
