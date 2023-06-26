@@ -35,6 +35,7 @@ typedef struct s_enemy{
 	int 			dir;
 	int 			img_idx;
 	int 			frame;
+	char			type;
 	struct s_enemy	*next;
 }t_enemy;
 typedef struct s_item{
@@ -64,6 +65,7 @@ typedef struct s_game
 	int			moves;
 	int			bright_lv;
 	int			dark_cnt;
+	int			enemy_move_delay;
 }t_game;
 int	game_exit();
 #endif

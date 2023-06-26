@@ -1,5 +1,6 @@
 
 #include "../so_long.h"
+#include "../map/map.h"
 #include "core.h"
 
 static void	player_update(t_game *game)
@@ -29,30 +30,63 @@ static void	etc_update(t_game *game)
 		game->enemy_lst.img_idx = (game->enemy_lst.img_idx + 1) % 3;
 		game->enemy_lst.frame = 0;
 	}
-}
-
-static void	bright_update(t_game *game)
-{
-	game->dark_cnt++;
-	if (game->dark_cnt == 250)
+	if (game->bright_lv != 0)
 	{
-		(game->bright_lv)--;
-		game->dark_cnt = 0;
+		game->dark_cnt++;
+		if (game->dark_cnt == 250)
+		{
+			(game->bright_lv)--;
+			game->dark_cnt = 0;
+		}
 	}
 }
 
-static void	enemy_move()
+static void	enemy_move_sub(t_enemy *e)
 {
+	const int	dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
+	int 		ny;
+	int 		nx;
 
+	ny = e->curr.y + dirs[e->dir][0];
+	nx = e->curr.x + dirs[e->dir][1];
+	if ((get_map()->map)[ny][nx] == 'P')
+		;//dead_player()
+	if ((get_map()->map)[ny][nx] != '0')
+	{
+		e->dir = (e->dir + 2) % 4;
+		ny = e->curr.y + dirs[e->dir][0];
+		nx = e->curr.x + dirs[e->dir][1];			
+	}
+	if ((get_map()->map)[ny][nx] != '0')
+		return ;
+	(get_map()->map)[e->curr.y][e->curr.x] = '0';
+	(get_map()->map)[ny][nx] = e->type;
+	e->curr.y = ny;
+	e->curr.x = nx;
+}
+
+static void	enemy_move(t_game *g)
+{
+	t_enemy *e;
+	
+	e = g->enemy_lst.next;
+	while (e != FT_NULL)
+	{
+		enemy_move_sub(e);
+		e = e->next;
+	}
 }
 
 int	frame_update(t_game *game)
 {
+	(game->enemy_move_delay)++;
 	player_update(game);
 	etc_update(game);
-	if (game->bright_lv != 0)
-		bright_update(game);
-	enemy_move();
+	if (game->enemy_move_delay == 100)
+	{
+		enemy_move(game);
+		game->enemy_move_delay = 0;
+	}
 	render(game);
 	return (FT_TRUE);
 }

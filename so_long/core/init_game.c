@@ -21,6 +21,10 @@ int y, int x, int dir)
 	while (iter->next != FT_NULL)
 		iter = iter->next;
 	iter->next = enemy;
+	if (dir == 0)
+		enemy->type = 'H';
+	else
+		enemy->type = 'V';
 	return (FT_TRUE);
 }
 
@@ -65,6 +69,7 @@ int	init_game(t_game *game)
 	game->moves = 0;
 	game->bright_lv = 1;
 	game->dark_cnt = 0;
+	game->enemy_move_delay = 0;
 	alloc_img(game);
 	return (FT_TRUE);
 }
