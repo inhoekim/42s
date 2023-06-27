@@ -9,7 +9,7 @@ static void	alloc_dead_img2(t_game *game)
 	game->imgs.dead_imgs[10] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/dead/10.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.dead_imgs[11] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/player/11.xpm", &(game->img_size), &(game->img_size));
+	(game->mlx, "imgs/dead/11.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.dead_imgs[12] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/dead/12.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.dead_imgs[13] = mlx_xpm_file_to_image\

@@ -1,6 +1,7 @@
 
 #include "../so_long.h"
 #include "../map/map.h"
+#include <stdlib.h>
 #include "core.h"
 
 static void	player_update(t_game *game)
@@ -51,6 +52,17 @@ static void	etc_update(t_game *game)
 	}
 }
 
+static void remove_enemy(t_game *g, t_enemy *e)
+{
+	t_enemy	*iter;
+
+	iter = g->enemy_lst.next;
+	while (iter != e)
+		iter = iter->next;
+	iter->next = e->next;
+	free(e);
+}
+
 static void	move_enemy(t_game *g, \
 int ny, int nx, const int dirs[4][2])
 {
@@ -61,8 +73,11 @@ int ny, int nx, const int dirs[4][2])
 	{
 		ny = e->curr.y + dirs[e->dir][0];
 		nx = e->curr.x + dirs[e->dir][1];
-		if ((get_map()->map)[ny][nx] == 'P')
+		if ((get_map()->map)[ny][nx] == 'P' && !g->player.is_dead)
+		{
 			player_die(g);
+			remove_enemy(g, e);
+		}
 		if ((get_map()->map)[ny][nx] != '0')
 		{
 			e->dir = (e->dir + 2) % 4;
