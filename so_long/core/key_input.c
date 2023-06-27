@@ -13,18 +13,26 @@
 #include "../so_long.h"
 #include "../map/map.h"
 #include "core.h"
+#include "../utils/utils.h"
+#include <unistd.h>
+
+static void	modify_data(t_game *g, int y, int x)
+{
+	(get_map()->map)[y][x] = 'P';
+	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
+	get_map()->player.y = y;
+	get_map()->player.x = x;
+	g->player.curr.y = y;
+	g->player.curr.x = x;
+}
 
 static void	change_map(t_game *g, int y, int x)
 {
 	if ((get_map()->map)[y][x] == '1')
 		return ;
-	if ((get_map()->map)[y][x] == 'C')
-	{
-		g->item.cnt++;
-		if (g->bright_lv != 2)
-			g->bright_lv++;
-		g->dark_cnt = 0;
-	}
+	g->moves++;
+	write(1, &"move_cnt : ", 11);
+	write(1, ft_itoa(g->moves), num_len(g->moves));
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
@@ -37,12 +45,14 @@ static void	change_map(t_game *g, int y, int x)
 		player_die(g);
 		return ;
 	}
-	(get_map()->map)[y][x] = 'P';
-	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
-	get_map()->player.y = y;
-	get_map()->player.x = x;
-	g->player.curr.y = y;
-	g->player.curr.x = x;
+	if ((get_map()->map)[y][x] == 'C')
+	{
+		g->item.cnt++;
+		if (g->bright_lv != 2)
+			g->bright_lv++;
+		g->dark_cnt = 0;
+	}
+	modify_data(g, y, x);
 }
 
 static void	move_player(t_game *g, int key)

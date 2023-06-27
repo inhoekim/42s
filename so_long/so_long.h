@@ -54,19 +54,19 @@ typedef struct s_imgs{
 }t_imgs;
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	t_imgs		imgs;
-	t_player	player;
-	t_item		item;
-	t_enemy		enemy_lst;
-	int 		img_size;
-	int 		light_size_y;
-	int 		light_size_x;
-	int			moves;
-	int			bright_lv;
-	int			dark_cnt;
-	int			enemy_move_delay;
+	void			*mlx;
+	void			*win;
+	t_imgs			imgs;
+	t_player		player;
+	t_item			item;
+	t_enemy			enemy_lst;
+	int 			img_size;
+	int 			light_size_y;
+	int 			light_size_x;
+	int				bright_lv;
+	int				dark_cnt;
+	int				enemy_move_delay;
+	unsigned long	moves;
 }t_game;
 int	game_exit();
 #endif
