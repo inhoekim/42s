@@ -57,9 +57,14 @@ static void remove_enemy(t_game *g, t_enemy *e)
 	t_enemy	*iter;
 
 	iter = g->enemy_lst.next;
-	while (iter != e)
-		iter = iter->next;
-	iter->next = e->next;
+	if (iter == e)
+		g->enemy_lst.next = iter->next;
+	else
+	{
+		while (iter->next != e)
+			iter = iter->next;
+		iter->next = e->next;
+	}
 	free(e);
 }
 
