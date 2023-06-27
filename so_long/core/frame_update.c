@@ -52,22 +52,6 @@ static void	etc_update(t_game *game)
 	}
 }
 
-static void remove_enemy(t_game *g, t_enemy *e)
-{
-	t_enemy	*iter;
-
-	iter = g->enemy_lst.next;
-	if (iter == e)
-		g->enemy_lst.next = iter->next;
-	else
-	{
-		while (iter->next != e)
-			iter = iter->next;
-		iter->next = e->next;
-	}
-	free(e);
-}
-
 static void	move_enemy(t_game *g, \
 int ny, int nx, const int dirs[4][2])
 {
@@ -81,7 +65,7 @@ int ny, int nx, const int dirs[4][2])
 		if ((get_map()->map)[ny][nx] == 'P' && !g->player.is_dead)
 		{
 			player_die(g);
-			remove_enemy(g, e);
+			return ;
 		}
 		if ((get_map()->map)[ny][nx] != '0')
 		{
