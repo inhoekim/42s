@@ -25,17 +25,17 @@ static void	change_map(t_game *g, int y, int x)
 			g->bright_lv++;
 		g->dark_cnt = 0;
 	}
-	if ((get_map()->map)[y][x] == 'V' || (get_map()->map)[y][x] == 'H')
-	{
-		player_die(g);
-		return ;
-	}
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
 			game_exit();
 		else
 			return ;
+	}
+	if ((get_map()->map)[y][x] == 'V' || (get_map()->map)[y][x] == 'H')
+	{
+		player_die(g);
+		return ;
 	}
 	(get_map()->map)[y][x] = 'P';
 	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';

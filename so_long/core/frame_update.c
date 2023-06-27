@@ -87,14 +87,13 @@ int	frame_update(t_game *game)
 	const int	dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
 	(game->enemy_move_delay)++;
-	if (game->enemy_move_delay == 10)
+	if (game->enemy_move_delay == 100)
 	{
 		move_enemy(game, 0, 0, dirs);
 		game->enemy_move_delay = 0;
 	}
 	player_update(game);
 	etc_update(game);
-
 	render(game);
 	return (FT_TRUE);
 }
