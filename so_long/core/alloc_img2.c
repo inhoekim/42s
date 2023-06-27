@@ -36,6 +36,7 @@ void	alloc_dead_img(t_game *game)
 	(game->mlx, "imgs/dead/6.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.dead_imgs[7] = mlx_xpm_file_to_image\
 	(game->mlx, "imgs/dead/7.xpm", &(game->img_size), &(game->img_size));
+	alloc_dead_img2(game);
 }
 
 void	alloc_player_img(t_game *game)

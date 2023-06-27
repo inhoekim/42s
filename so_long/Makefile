@@ -21,7 +21,7 @@ MAIN = main.c error.c
 MAP = check_map.c create_map.c init_map.c
 MAP_PATH = $(addprefix map/,$(MAP))
 
-CORE = key_input.c frame_update.c alloc_img.c render.c init_game.c
+CORE = key_input.c frame_update.c alloc_img.c alloc_img2.c render.c init_game.c
 CORE_PATH = $(addprefix core/,$(CORE))
 
 UTILS = str_utils.c
