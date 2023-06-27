@@ -58,6 +58,7 @@ void	player_die(t_game *g)
 {
 	g->player.is_dead = FT_TRUE;
 	g->player.frame = 0;
+	g->player.img_idx = 0;
 }
 
 int	key_input(int key, t_game *g)

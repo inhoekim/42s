@@ -86,7 +86,7 @@ int	frame_update(t_game *game)
 	(game->enemy_move_delay)++;
 	player_update(game);
 	etc_update(game);
-	if (game->enemy_move_delay == 100)
+	if (game->enemy_move_delay == 10)
 	{
 		move_enemy(game, 0, 0, dirs);
 		game->enemy_move_delay = 0;
