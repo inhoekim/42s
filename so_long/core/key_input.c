@@ -26,7 +26,7 @@ static void	change_map(t_game *g, int y, int x)
 		g->dark_cnt = 0;
 	}
 	if ((get_map()->map)[y][x] == 'V' || (get_map()->map)[y][x] == 'H')
-		player_die();
+		player_die(g);
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)

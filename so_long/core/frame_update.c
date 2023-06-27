@@ -60,7 +60,7 @@ int ny, int nx, const int dirs[4][2])
 		ny = e->curr.y + dirs[e->dir][0];
 		nx = e->curr.x + dirs[e->dir][1];
 		if ((get_map()->map)[ny][nx] == 'P')
-			player_die();
+			player_die(g);
 		if ((get_map()->map)[ny][nx] != '0')
 		{
 			e->dir = (e->dir + 2) % 4;
