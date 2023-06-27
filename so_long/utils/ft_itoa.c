@@ -35,8 +35,8 @@ char	*ft_itoa(unsigned int n)
 	num_alpha = (char *)malloc(sizeof(char) * (len + 2));
 	if (num_alpha == FT_NULL)
 		return (FT_NULL);
-	num_alpha[len - 1] = '\n';
-	num_alpha[len] = '\0';
+	num_alpha[len] = '\n';
+	num_alpha[len + 1] = '\0';
 	recur_set_str(num_alpha, n, 0, len - 1);
 	return (num_alpha);
 }
