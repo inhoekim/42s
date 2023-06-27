@@ -5,7 +5,7 @@
 
 static void	player_update(t_game *game)
 {
-	if (game->player.is_dead && game->player.img_idx == 14)
+	if (game->player.is_dead && game->player.img_idx == 11)
 		return ;
 	(game->player.frame)++;
 	if (!game->player.is_dead)

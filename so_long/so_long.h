@@ -50,7 +50,7 @@ typedef struct s_imgs{
 	void	*i_imgs[6];
 	void	*w_img;
 	void	*b_imgs[3];
-	void	*dead_imgs[15];
+	void	*dead_imgs[12];
 }t_imgs;
 typedef struct s_game
 {
