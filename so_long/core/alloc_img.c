@@ -1,15 +1,6 @@
 
 #include "../so_long.h"
-
-static void	alloc_player_img(t_game *game)
-{
-	game->imgs.p_imgs[0] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/player/1.xpm", &(game->img_size), &(game->img_size));
-	game->imgs.p_imgs[1] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/player/2.xpm", &(game->img_size), &(game->img_size));
-	game->imgs.p_imgs[2] = mlx_xpm_file_to_image\
-	(game->mlx, "imgs/player/3.xpm", &(game->img_size), &(game->img_size));
-}
+#include "core.h"
 
 static void	alloc_enemy_img(t_game *game)
 {
@@ -59,6 +50,7 @@ void	alloc_img(t_game *game)
 	game->light_size_y = WIN_Y;
 	game->light_size_x = WIN_X;
 	alloc_player_img(game);
+	alloc_dead_img(game);
 	alloc_etc_img(game);
 	alloc_item_img(game);
 	alloc_enemy_img(game);

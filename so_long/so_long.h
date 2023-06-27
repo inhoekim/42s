@@ -44,12 +44,13 @@ typedef struct s_item{
 	int	cnt;
 }t_item;
 typedef struct s_imgs{
-	void	*p_imgs[3];
+	void	*p_imgs[10];
 	void	*e_imgs[3];
 	void	*d_imgs[2];
 	void	*i_imgs[6];
 	void	*w_img;
 	void	*b_imgs[3];
+	void	*dead_imgs[14];
 }t_imgs;
 typedef struct s_game
 {

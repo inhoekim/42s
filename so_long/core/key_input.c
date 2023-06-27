@@ -25,10 +25,8 @@ static void	change_map(t_game *g, int y, int x)
 			g->bright_lv++;
 		g->dark_cnt = 0;
 	}
-	/*
-	if ((get_map()->map)[y][x] == 'V')
-		player_dead();
-	*/
+	if ((get_map()->map)[y][x] == 'V' || (get_map()->map)[y][x] == 'H')
+		player_die();
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
@@ -56,12 +54,18 @@ static void	move_player(t_game *g, int key)
 		change_map(g, g->player.curr.y, g->player.curr.x + 1);
 }
 
+void	player_die(t_game *g)
+{
+	g->player.is_dead = FT_TRUE;
+	g->player.frame = 0;
+}
+
 int	key_input(int key, t_game *g)
 {
 	if (key == ESC)
 		game_exit();
-	if (key == UP || key == DOWN || \
-	key == LEFT || key == RIGHT)
+	if ((key == UP || key == DOWN || \
+	key == LEFT || key == RIGHT) && !g->player.is_dead)
 		move_player(g, key);
 	/*
 	else if (key == RESET)

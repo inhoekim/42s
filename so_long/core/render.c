@@ -44,11 +44,20 @@ static void	render_element(t_game *g, int dy, int dx)
 
 static void	render_player(t_game *g)
 {
-	mlx_put_image_to_window(g->mlx, g->win,\
-	g->imgs.p_imgs[g->player.img_idx], \
-	(WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
-	mlx_put_image_to_window(g->mlx, g->win,\
-	g->imgs.b_imgs[g->bright_lv], 0, 0);
+	if (!g->player.is_dead)
+	{
+		mlx_put_image_to_window(g->mlx, g->win, \
+    g->imgs.p_imgs[g->player.img_idx], \
+    (WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
+	}
+	else
+	{
+		mlx_put_image_to_window(g->mlx, g->win, \
+    g->imgs.dead_imgs[g->player.img_idx], \
+    (WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
+	}
+	mlx_put_image_to_window(g->mlx, g->win, \
+    g->imgs.b_imgs[g->bright_lv], 0, 0);
 }
 
 static void	render_map(t_game *g)
