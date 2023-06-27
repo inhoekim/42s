@@ -1,7 +1,6 @@
 
 #include "../so_long.h"
 #include "../map/map.h"
-#include <stdlib.h>
 #include "core.h"
 
 static void	player_update(t_game *game)
