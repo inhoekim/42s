@@ -32,7 +32,7 @@ static void	change_map(t_game *g, int y, int x)
 		return ;
 	g->moves++;
 	write(1, &"move_cnt : ", 11);
-	write(1, ft_itoa(g->moves), num_len(g->moves));
+	write(1, ft_itoa(g->moves), num_len(g->moves) + 1);
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
