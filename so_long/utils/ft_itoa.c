@@ -31,7 +31,7 @@ char	*ft_itoa(unsigned long n)
 	char			*num_alpha;
 	unsigned long	num_len;
 
-	num_len = get_int_len(n);
+	num_len = num_len(n);
 	num_alpha = (char *)malloc(sizeof(char) * (num_len + 1));
 	if (num_alpha == FT_NULL)
 		return (FT_NULL);

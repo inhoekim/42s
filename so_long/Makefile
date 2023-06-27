@@ -24,7 +24,7 @@ MAP_PATH = $(addprefix map/,$(MAP))
 CORE = key_input.c frame_update.c alloc_img.c alloc_img2.c render.c init_game.c
 CORE_PATH = $(addprefix core/,$(CORE))
 
-UTILS = str_utils.c
+UTILS = str_utils.c ft_itoa.c
 UTILS_PATH = $(addprefix utils/,$(UTILS))
 
 GNL = get_next_line_utils.c get_next_line.c
