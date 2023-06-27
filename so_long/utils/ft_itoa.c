@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include "../so_long.h"
 
-static void	recur_set_str(char *str, unsigned long num, \
-unsigned long depth, unsigned long num_len)
+static void	recur_set_str(char *str, unsigned int num, \
+unsigned int depth, unsigned int num_len)
 {
 	if (num / 10 == 0)
 	{
@@ -13,9 +13,9 @@ unsigned long depth, unsigned long num_len)
 	str[num_len - depth] = (num % 10) + '0';
 }
 
-unsigned long	num_len(unsigned long n)
+unsigned int	num_len(unsigned int n)
 {
-	unsigned long	len;
+	unsigned int	len;
 
 	len = 1;
 	while (n / 10 != 0)
@@ -26,16 +26,16 @@ unsigned long	num_len(unsigned long n)
 	return (len);
 }
 
-char	*ft_itoa(unsigned long n)
+char	*ft_itoa(unsigned int n)
 {
 	char			*num_alpha;
-	unsigned long	num_len;
+	unsigned int	len;
 
-	num_len = num_len(n);
-	num_alpha = (char *)malloc(sizeof(char) * (num_len + 1));
+	len = num_len(n);
+	num_alpha = (char *)malloc(sizeof(char) * (len + 1));
 	if (num_alpha == FT_NULL)
 		return (FT_NULL);
-	num_alpha[num_len] = '\0';
-	recur_set_str(num_alpha, n, 0, num_len - 1);
+	num_alpha[len] = '\0';
+	recur_set_str(num_alpha, n, 0, len - 1);
 	return (num_alpha);
 }
