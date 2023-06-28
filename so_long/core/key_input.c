@@ -6,11 +6,10 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/27 01:14:44 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/28 18:58:00 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
 #include "../map/map.h"
 #include "core.h"
 #include "../utils/utils.h"
@@ -36,7 +35,7 @@ static void	change_map(t_game *g, int y, int x)
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
-			game_exit();
+			game_exit(g);
 		else
 			return ;
 	}
@@ -77,13 +76,9 @@ void	player_die(t_game *g)
 int	key_input(int key, t_game *g)
 {
 	if (key == ESC)
-		game_exit();
+		game_exit(g);
 	if ((key == UP || key == DOWN || \
 	key == LEFT || key == RIGHT) && !g->player.is_dead)
 		move_player(g, key);
-	/*
-	else if (key == RESET)
-		game_reset();
-	 */
 	return (FT_TRUE);
 }

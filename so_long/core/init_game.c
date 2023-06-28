@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/28 15:31:16 by inhkim            #+#    #+#             */
+/*   Updated: 2023/06/28 15:31:17 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../so_long.h"
 #include "../map/map.h"
 #include "core.h"
 #include <stdlib.h>
 
-static int	push_enemy(t_game *game,\
+static int	push_enemy(t_game *game, \
 int y, int x, int dir)
 {
 	t_enemy	*enemy;
@@ -62,7 +72,7 @@ int	init_game(t_game *game)
 	game->player.curr = get_map()->player;
 	game->player.is_dead = 0;
 	game->player.frame = 0;
-	game->player.img_idx = 0;	
+	game->player.img_idx = 0;
 	game->item.frame = 0;
 	game->item.cnt = 0;
 	game->item.img_idx = 0;

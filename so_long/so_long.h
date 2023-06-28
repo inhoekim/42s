@@ -11,14 +11,15 @@
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
- # define SO_LONG_H
- # define FT_NULL 0
- # define FT_TRUE 1
- # define FT_ERR -1
+# define SO_LONG_H
+# define FT_NULL 0
+# define FT_TRUE 1
+# define FT_ERR -1
 # define WIN_X 1024
 # define WIN_Y 640
 # include "mlx/mlx.h"
 # include <stdio.h>
+
 typedef struct s_pair{
 	int	x;
 	int	y;
@@ -27,14 +28,14 @@ typedef struct s_player
 {
 	t_pair		curr;
 	int			is_dead;
-	int 		img_idx;
-	int 		frame;
+	int			img_idx;
+	int			frame;
 }t_player;
 typedef struct s_enemy{
-	t_pair 			curr;
-	int 			dir;
-	int 			img_idx;
-	int 			frame;
+	t_pair			curr;
+	int				dir;
+	int				img_idx;
+	int				frame;
 	char			type;
 	struct s_enemy	*next;
 }t_enemy;
@@ -60,13 +61,13 @@ typedef struct s_game
 	t_player		player;
 	t_item			item;
 	t_enemy			enemy_lst;
-	int 			img_size;
-	int 			light_size_y;
-	int 			light_size_x;
+	int				img_size;
+	int				light_size_y;
+	int				light_size_x;
 	int				bright_lv;
 	int				dark_cnt;
 	int				enemy_move_delay;
 	unsigned long	moves;
 }t_game;
-int	game_exit();
+int	game_exit(t_game *game);
 #endif

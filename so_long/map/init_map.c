@@ -13,7 +13,7 @@
 #include "map.h"
 #include <stdlib.h>
 
-t_map	*get_map()
+t_map	*get_map(void)
 {
 	static t_map	map;
 

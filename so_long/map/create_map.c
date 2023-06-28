@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <stdlib.h>
 #include "../gnl/get_next_line.h"
 #include "map.h"
 #include "../utils/utils.h"
@@ -20,12 +19,12 @@ static void	regist_size(char *file)
 {
 	int		fd;
 	char	*str;
-	int 	idx;
+	int		idx;
 
 	idx = 0;
 	fd = open(file, O_RDONLY);
 	str = get_next_line(fd);
-	get_map()->info.size.x = ft_strlen(str, '\n');
+	(get_map()->info).size.x = ft_strlen(str, '\n');
 	while (str != FT_NULL)
 	{
 		if (ft_strlen(str, '\n') != get_map()->info.size.x)
@@ -43,8 +42,8 @@ static void	regist_size(char *file)
 
 static int	alloc_map(char *file)
 {
-	int 	fd;
-	int 	idx;
+	int		fd;
+	int		idx;
 	char	*str;
 
 	fd = open(file, O_RDONLY);
@@ -52,7 +51,8 @@ static int	alloc_map(char *file)
 	idx = 0;
 	while (str != FT_NULL)
 	{
-		(get_map()->map)[idx] = (char *)malloc(sizeof(char *) * get_map()->info.size.x);
+		(get_map()->map)[idx] = \
+		(char *)malloc(sizeof(char *) * get_map()->info.size.x);
 		if ((get_map()->map)[idx] == FT_NULL || \
 		chk_str((get_map()->map)[idx], str) == FT_ERR)
 		{
@@ -67,19 +67,18 @@ static int	alloc_map(char *file)
 	return (FT_TRUE);
 }
 
-static int chk_d(t_dfs_info *d)
+static int	chk_d(t_dfs_info *d)
 {
 	if (!(d->visited_exit) || d->taget_cnt != get_map()->info.target_cnt)
 		return (FT_ERR);
 	return (FT_TRUE);
 }
 
-static void	reset_visited()
+static void	reset_visited(void)
 {
 	char	**m;
-	int 	idx_y;
-	int 	idx_x;
-
+	int		idx_y;
+	int		idx_x;
 
 	m = get_map()->map;
 	idx_y = -1;
@@ -89,7 +88,7 @@ static void	reset_visited()
 		while (++idx_x < get_map()->info.size.x)
 		{
 			if ((m[idx_y][idx_x] & MSB) != 0)
-				m[idx_y][idx_x] &= (char)~MSB;
+				m[idx_y][idx_x] &= (char) ~MSB;
 		}
 	}
 }
@@ -101,14 +100,15 @@ int	create_map(char *file)
 	regist_size(file);
 	if (get_map()->info.size.y <= 0 || get_map()->info.size.x <= 0)
 		return (FT_ERR);
-	get_map()->map = (char **)malloc(sizeof(char*) * get_map()->info.size.y);
+	get_map()->map = (char **) malloc(sizeof(char *) * get_map()->info.size.y);
 	if (get_map()->map == FT_NULL)
 		return (FT_ERR);
 	if (alloc_map(file) == FT_ERR)
 		return (FT_ERR);
 	d.taget_cnt = 0;
 	d.visited_exit = 0;
-	if (chk_format() == FT_ERR || chk_d(chk_path(get_map()->player, &d)) == FT_ERR)
+	if (chk_format() == FT_ERR || chk_d(chk_path(get_map()->player, &d)) \
+	== FT_ERR)
 	{
 		clear_map(get_map()->info.size.y - 1);
 		return (FT_ERR);

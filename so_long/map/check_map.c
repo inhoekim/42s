@@ -10,14 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
 #include "map.h"
 
-static const int g_dirs[4][2] = {{-1, 0}, {1, 0}, {0 ,-1}, {0, 1}};
-
-static int	chk_wall()
+static int	chk_wall(void)
 {
-	int	idx;
+	int		idx;
 	t_map	*m;
 
 	idx = -1;
@@ -32,7 +29,7 @@ static int	chk_wall()
 	return (FT_TRUE);
 }
 
-static void	make_map_info()
+static void	make_map_info(void)
 {
 	t_map	*m;
 	char	ch;
@@ -61,7 +58,7 @@ static void	make_map_info()
 	}
 }
 
-int	chk_format()
+int	chk_format(void)
 {
 	t_map	*m;
 
@@ -69,7 +66,8 @@ int	chk_format()
 	if (chk_wall() == FT_ERR)
 		return (FT_ERR);
 	make_map_info();
-	if (m->info.exit_cnt != 1 || m->info.player_cnt != 1 || m->info.target_cnt < 1)
+	if (m->info.exit_cnt != 1 || m->info.player_cnt != 1 \
+	|| m->info.target_cnt < 1)
 		return (FT_ERR);
 	return (FT_TRUE);
 }
@@ -90,19 +88,20 @@ static int	chk_element(t_dfs_info *d)
 
 t_dfs_info	*chk_path(t_pair curr, t_dfs_info *d)
 {
-	int		idx;
-	char	**map;
+	int			idx;
+	char		**map;
+	const int	dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 	map = get_map()->map;
 	map[curr.y][curr.x] |= MSB;
 	idx = -1;
 	while (++idx < 4)
 	{
-		d->ny = curr.y + g_dirs[idx][0];
-		d->nx = curr.x + g_dirs[idx][1];
+		d->ny = curr.y + dirs[idx][0];
+		d->nx = curr.x + dirs[idx][1];
 		d->ch = map[d->ny][d->nx] & ~MSB;
 		if ((map[d->ny][d->nx] & MSB) >> 7 || chk_element(d))
-			continue;
+			continue ;
 		d->nc.y = d->ny;
 		d->nc.x = d->nx;
 		chk_path(d->nc, d);

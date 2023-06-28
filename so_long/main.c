@@ -12,13 +12,25 @@
 
 #include "map/map.h"
 #include "core/core.h"
-#include <stdio.h>
 #include <stdlib.h>
 
-int	game_exit()
+static void	free_all(t_game *g)
 {
-	//free_all();
-	exit(0);
+	int		i;
+	t_enemy	*iter;
+	t_enemy	*next_iter;
+
+	i = -1;
+	while (++i < get_map()->info.size.y)
+		free((get_map()->map)[i]);
+	free(get_map()->map);
+	iter = g->enemy_lst.next;
+	while (iter != FT_NULL)
+	{
+		next_iter = iter->next;
+		free(iter);
+		iter = next_iter;
+	}
 }
 
 static void	game_start(t_game *game)
@@ -36,7 +48,13 @@ static void	game_start(t_game *game)
 	mlx_loop(game->mlx);
 }
 
-int	main(int argc, char** argv)
+int	game_exit(t_game *game)
+{
+	free_all(game);
+	exit(0);
+}
+
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
@@ -52,5 +70,6 @@ int	main(int argc, char** argv)
 	}
 	game_start(&game);
 	clear_map(get_map()->info.size.y - 1);
+	free_all(&game);
 	return (0);
 }

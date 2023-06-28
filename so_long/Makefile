@@ -6,17 +6,17 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/06/27 03:52:34 by inhkim           ###   ########.fr        #
+#    Updated: 2023/06/28 18:51:11 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 CC = cc
-CFLAGS = -fsanitize=address -g3 #-Wall -Wextra -Werror
+CFLAGS = -fsanitize=address -g3 -Wall -Wextra -Werror
 MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
 
-MAIN = main.c error.c
+MAIN = main.c
 
 MAP = check_map.c create_map.c init_map.c
 MAP_PATH = $(addprefix map/,$(MAP))
@@ -36,10 +36,10 @@ OBJS = *.o
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	arch -x86_64 $(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
 $(OBJS) : $(SRCS)
-	arch -x86_64 $(CC) $(CFLAGS) -c $^
+	$(CC) $(CFLAGS) -c $^
 
 clean :
 	rm -f $(OBJS)
