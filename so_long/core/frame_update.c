@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:31:10 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/28 15:31:11 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/30 13:22:21 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,14 @@ static void	etc_update(t_game *game)
 		game->item.img_idx = (game->item.img_idx + 1) % 6;
 		game->item.frame = 0;
 	}
-	if (game->enemy_lst.frame == 6)
-	{
+	if (game->enemy_lst.frame == 6) {
 		game->enemy_lst.img_idx = (game->enemy_lst.img_idx + 1) % 3;
 		game->enemy_lst.frame = 0;
 	}
 	if (game->bright_lv != 0)
 	{
 		game->dark_cnt++;
-		if (game->dark_cnt == 500)
+		if (game->dark_cnt == 100)
 		{
 			(game->bright_lv)--;
 			game->dark_cnt = 0;
@@ -92,7 +91,10 @@ int ny, int nx, const int dirs[4][2])
 			nx = e->curr.x + dirs[e->dir][1];
 		}
 		if ((get_map()->map)[ny][nx] != '0')
-			return ;
+		{
+			e = e->next;
+			continue ;	
+		}
 		modify_data(e, ny, nx);
 		e = e->next;
 	}
@@ -103,7 +105,7 @@ int	frame_update(t_game *game)
 	const int	dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
 	(game->enemy_move_delay)++;
-	if (game->enemy_move_delay == 45)
+	if (game->enemy_move_delay == 35)
 	{
 		move_enemy(game, 0, 0, dirs);
 		game->enemy_move_delay = 0;
