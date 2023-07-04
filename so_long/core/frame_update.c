@@ -6,12 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:31:10 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/30 13:22:21 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/30 18:26:07 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 #include "../map/map.h"
+#include "../utils/utils.h"
 #include "core.h"
 
 static void	player_update(t_game *game)
@@ -46,14 +47,15 @@ static void	etc_update(t_game *game)
 		game->item.img_idx = (game->item.img_idx + 1) % 6;
 		game->item.frame = 0;
 	}
-	if (game->enemy_lst.frame == 6) {
+	if (game->enemy_lst.frame == 6)
+	{
 		game->enemy_lst.img_idx = (game->enemy_lst.img_idx + 1) % 3;
 		game->enemy_lst.frame = 0;
 	}
 	if (game->bright_lv != 0)
 	{
 		game->dark_cnt++;
-		if (game->dark_cnt == 100)
+		if (game->dark_cnt == 300)
 		{
 			(game->bright_lv)--;
 			game->dark_cnt = 0;
@@ -70,32 +72,31 @@ void	modify_data(t_enemy *e, int ny, int nx)
 }
 
 static void	move_enemy(t_game *g, \
-int ny, int nx, const int dirs[4][2])
+t_enemy *e, const int dirs[4][2])
 {
-	t_enemy	*e;
+	t_pair	n;
 
-	e = g->enemy_lst.next;
 	while (e != FT_NULL)
 	{
-		ny = e->curr.y + dirs[e->dir][0];
-		nx = e->curr.x + dirs[e->dir][1];
-		if ((get_map()->map)[ny][nx] == 'P' && !g->player.is_dead)
+		n.y = e->curr.y + dirs[e->dir][0];
+		n.x = e->curr.x + dirs[e->dir][1];
+		if ((get_map()->map)[n.y][n.x] == 'P' && !g->player.is_dead)
 		{
 			player_die(g);
 			return ;
 		}
-		if ((get_map()->map)[ny][nx] != '0')
+		if ((get_map()->map)[n.y][n.x] != '0')
 		{
 			e->dir = (e->dir + 2) % 4;
-			ny = e->curr.y + dirs[e->dir][0];
-			nx = e->curr.x + dirs[e->dir][1];
+			n.y = e->curr.y + dirs[e->dir][0];
+			n.x = e->curr.x + dirs[e->dir][1];
 		}
-		if ((get_map()->map)[ny][nx] != '0')
+		if ((get_map()->map)[n.y][n.x] != '0')
 		{
 			e = e->next;
-			continue ;	
+			continue ;
 		}
-		modify_data(e, ny, nx);
+		modify_data(e, n.y, n.x);
 		e = e->next;
 	}
 }
@@ -105,13 +106,35 @@ int	frame_update(t_game *game)
 	const int	dirs[4][2] = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
 	(game->enemy_move_delay)++;
-	if (game->enemy_move_delay == 35)
+	if (game->enemy_move_delay == 20)
 	{
-		move_enemy(game, 0, 0, dirs);
+		move_enemy(game, game->enemy_lst.next, dirs);
 		game->enemy_move_delay = 0;
 	}
 	player_update(game);
 	etc_update(game);
 	render(game);
+	mlx_string_put(game->mlx, game->win, \
+	0, 0, 0x00FF0000, ft_itoa(game->moves));
+	if (game->player.is_dead)
+	{
+		mlx_string_put(game->mlx, game->win, \
+		(WIN_X / 2) - 35, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
+		if (game->enemy_move_delay == 0)
+			mlx_string_put(game->mlx, game->win, \
+			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF0000, "PRESS [ESC] YOU LOSE!!");
+		if (game->enemy_move_delay == 3)
+			mlx_string_put(game->mlx, game->win, \
+			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF9900, "PRESS [ESC] YOU LOSE!!");
+		if (game->enemy_move_delay == 6)
+			mlx_string_put(game->mlx, game->win, \
+			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FFFF00, "PRESS [ESC] YOU LOSE!!");
+		if (game->enemy_move_delay == 9)
+			mlx_string_put(game->mlx, game->win, \
+			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x0000FF00, "PRESS [ESC] YOU LOSE!!");
+		if (game->enemy_move_delay == 12)
+			mlx_string_put(game->mlx, game->win, \
+			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x000000FF, "PRESS [ESC] YOU LOSE!!");
+	}
 	return (FT_TRUE);
 }

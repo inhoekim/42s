@@ -6,7 +6,7 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/06/28 18:51:11 by inhkim           ###   ########.fr        #
+#    Updated: 2023/07/04 18:33:39 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ OBJS = *.o
 all : $(NAME)
 
 $(NAME) : $(OBJS)
+	make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
 $(OBJS) : $(SRCS)
