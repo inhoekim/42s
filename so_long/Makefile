@@ -34,14 +34,8 @@ GNL = get_next_line_utils.c get_next_line.c
 GNL_PATH = $(addprefix gnl/,$(GNL))
 
 # ------------------------------------ SRCS ----------------------------------------#
-SRCS = $(MAIN) $(MAP) $(CORE) $(UTILS) $(GNL)
 SRCS_WITH_PATH = $(MAIN) $(MAP_PATH) $(CORE_PATH) $(UTILS_PATH) $(GNL_PATH)
-BONUS = $(MAIN) $(MAP) $(CORE_BONUS) $(UTILS) $(GNL)
 BONUS_WITH_PATH = $(MAIN) $(MAP_PATH) $(CORE_BONUS_PATH) $(UTILS_PATH) $(GNL_PATH)
-
-#------------------------------------- OBJS ----------------------------------------#
-SRCS_OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS:.c=.o)
 
 #------------------------------------- RULES ----------------------------------------#
 
@@ -49,24 +43,24 @@ all : $(NAME)
 
 $(NAME) : _MANDATORY
 
-_MANDATORY : $(SRCS:.c=.o)
+_MANDATORY : $(SRCS_WITH_PATH:.c=.o)
 	@rm -f _BONUS
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
-$(SRCS:.c=.o) : %.o : %.c
+$(SRCS_WITH_PATH:.c=.o) : $(SRCS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
 bonus : _BONUS
 
-_BONUS : $(BONUS:.c=.o)
+_BONUS : $(BONUS_WITH_PATH:.c=.o)
 	@rm -f _MANDATORY
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
-$(BONUS:.c=.o) : %.o : %.c
+$(BONUS_WITH_PATH:.c=.o) : $(BONUS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
