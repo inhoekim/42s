@@ -50,7 +50,7 @@ _MANDATORY : $(SRCS_WITH_PATH:.c=.o)
 	touch $@
 
 $(SRCS_WITH_PATH:.c=.o) : %.o : %.c
-	$(CC) $(CFLAGS) -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 bonus : _BONUS
 
@@ -61,7 +61,7 @@ _BONUS : $(BONUS_WITH_PATH:.c=.o)
 	touch $@
 
 $(CORE_BONUS_PATH:.c=.o) : %.o : %.c
-	$(CC) $(CFLAGS) -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 clean :
 	@rm -f _MANDATORY _BONUS
