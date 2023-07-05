@@ -40,7 +40,7 @@ BONUS = $(MAIN) $(MAP) $(CORE_BONUS) $(UTILS) $(GNL)
 BONUS_WITH_PATH = $(MAIN) $(MAP_PATH) $(CORE_BONUS_PATH) $(UTILS_PATH) $(GNL_PATH)
 
 #------------------------------------- OBJS ----------------------------------------#
-SRCS_OBJS = (SRCS:.c=.o)
+SRCS_OBJS = $(SRCS:.c=.o)
 BONUS_OBJS = $(BONUS:.c=.o)
 
 #------------------------------------- RULES ----------------------------------------#
@@ -59,7 +59,7 @@ bonus : $(BONUS_OBJS)
 	make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 
-$(BONUS_OBJS) : $(BONUS_WITH_PATH)
+$(CORE_BONUS) : $(CORE_BONUS_PATH)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
