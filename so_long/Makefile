@@ -46,7 +46,7 @@ $(NAME) : _MANDATORY
 _MANDATORY : $(SRCS_WITH_PATH:.c=.o)
 	@rm -f _BONUS
 	@make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $^ -o $(NAME)
 	touch $@
 
 $(SRCS_WITH_PATH:.c=.o) : %.o : %.c
@@ -57,7 +57,7 @@ bonus : _BONUS
 _BONUS : $(BONUS_WITH_PATH:.c=.o)
 	@rm -f _MANDATORY
 	@make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $^ -o $(NAME)
 	touch $@
 
 $(CORE_BONUS_PATH:.c=.o) : %.o : %.c
