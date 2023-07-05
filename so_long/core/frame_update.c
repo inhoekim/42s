@@ -113,6 +113,5 @@ int	frame_update(t_game *game)
 	player_update(game);
 	etc_update(game);
 	render(game);
-	render_dying_msg(game);
 	return (FT_TRUE);
 }

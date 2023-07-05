@@ -47,7 +47,7 @@ BONUS_OBJS = $(BONUS:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : MANDATORY
+$(NAME) : _MANDATORY
 
 MANDATORY : $(SRCS_OBJS)
 	@rm -f BONUS
@@ -58,7 +58,7 @@ MANDATORY : $(SRCS_OBJS)
 $(SRCS_OBJS) : $(SRCS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
-bonus : BONUS
+bonus : _BONUS
 
 BONUS : $(BONUS_OBJS)
 	@rm -f MANDATORY
