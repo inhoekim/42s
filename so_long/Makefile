@@ -49,7 +49,7 @@ all : $(NAME)
 
 $(NAME) : _MANDATORY
 
-MANDATORY : $(SRCS_OBJS)
+_MANDATORY : $(SRCS_OBJS)
 	@rm -f BONUS
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
@@ -60,7 +60,7 @@ $(SRCS_OBJS) : $(SRCS_WITH_PATH)
 
 bonus : _BONUS
 
-BONUS : $(BONUS_OBJS)
+_BONUS : $(BONUS_OBJS)
 	@rm -f MANDATORY
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
