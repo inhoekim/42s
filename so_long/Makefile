@@ -47,17 +47,22 @@ BONUS_OBJS = $(BONUS:.c=.o)
 
 all : $(NAME)
 
-$(NAME) : $(SRCS_OBJS)
+$(NAME) : MANDATORY
+
+MANDATORY : $(SRCS_OBJS)
 	@make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
-	
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
+	touch $@
+
 $(SRCS_OBJS) : $(SRCS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
-bonus : $(BONUS_OBJS)
-	@rm -f $(NAME)
+bonus : BONUS
+
+BONUS : $(BONUS_OBJS)
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
+	touch $@
 
 $(CORE_BONUS:.c=.o) : $(CORE_BONUS_PATH)
 	$(CC) $(CFLAGS) -c $^
@@ -69,6 +74,6 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean
-	make $(NAME)
+	make all
 
 .PHONY : all clean fclean re bonus
