@@ -33,29 +33,37 @@ UTILS_PATH = $(addprefix utils/,$(UTILS))
 GNL = get_next_line_utils.c get_next_line.c
 GNL_PATH = $(addprefix gnl/,$(GNL))
 
-SRCS = $(MAIN) $(MAP_PATH) $(CORE_PATH) $(UTILS_PATH) $(GNL_PATH)
-BONUS_SRCS = $(MAIN) $(MAP_PATH) $(CORE_BONUS_PATH) $(UTILS_PATH) $(GNL_PATH)
-OBJS = *.o
-BONUS_OBJS = *.o
+# ------------------------------------ SRCS ----------------------------------------#
+SRCS = $(MAIN) $(MAP) $(CORE) $(UTILS) $(GNL)
+SRCS_WITH_PATH = $(MAIN) $(MAP_PATH) $(CORE_PATH) $(UTILS_PATH) $(GNL_PATH)
+BONUS = $(MAIN) $(MAP) $(CORE_BONUS) $(UTILS) $(GNL)
+BONUS_WITH_PATH = $(MAIN) $(MAP_PATH) $(CORE_BONUS_PATH) $(UTILS_PATH) $(GNL_PATH)
+
+#------------------------------------- OBJS ----------------------------------------#
+SRCS_OBJS = (SRCS:.c=.o)
+BONUS_OBJS = $(BONUS:.c=.o)
+
+#------------------------------------- RULES ----------------------------------------#
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(SRCS_OBJS)
 	make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
-$(OBJS) : $(SRCS)
+$(SRCS_OBJS) : $(SRCS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
 bonus : $(BONUS_OBJS)
+	@rm -f $(NAME)
 	make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 
-$(BONUS_OBJS) : $(BONUS_SRCS)
+$(BONUS_OBJS) : $(BONUS_WITH_PATH)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	rm -f $(NAME)
