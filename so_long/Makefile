@@ -46,26 +46,26 @@ $(NAME) : _MANDATORY
 _MANDATORY : $(SRCS_WITH_PATH:.c=.o)
 	@rm -f _BONUS
 	@make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
 $(SRCS_WITH_PATH:.c=.o) : %.o : %.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 bonus : _BONUS
 
 _BONUS : $(BONUS_WITH_PATH:.c=.o)
 	@rm -f _MANDATORY
 	@make -C ./mlx
-	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $^ -o $(NAME)
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
 $(CORE_BONUS_PATH:.c=.o) : %.o : %.c
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) -c $^ -o $@
 
 clean :
 	@rm -f _MANDATORY _BONUS
-	rm -f $(SRCS_WITH_PATH:.c=.o) $(CORE_BONUS:.c=.o)
+	rm -f $(SRCS_WITH_PATH:.c=.o) $(CORE_BONUS_PATH:.c=.o)
 
 fclean : clean
 	rm -f $(NAME)
