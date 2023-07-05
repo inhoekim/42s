@@ -1,5 +1,6 @@
 #include "../map/map.h"
 #include "core_bonus.h"
+#include "../utils/utils.h"
 
 static void	render_element(t_game *g, int dy, int dx)
 {
@@ -80,21 +81,8 @@ void	render_dying_msg(t_game *game)
 	{
 		mlx_string_put(game->mlx, game->win, \
 		(WIN_X / 2) - 35, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
-		if (game->enemy_move_delay == 0)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE !! PRESS [ESC] !");
-		if (game->enemy_move_delay == 3)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF9900, "YOU LOSE !! PRESS [ESC] !");
-		if (game->enemy_move_delay == 6)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FFFF00, "YOU LOSE !! PRESS [ESC] !");
-		if (game->enemy_move_delay == 9)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x0000FF00, "YOU LOSE !! PRESS [ESC] !");
-		if (game->enemy_move_delay == 12)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x000000FF, "YOU LOSE !! PRESS [ESC] !");
+		mlx_string_put(game->mlx, game->win, \
+		(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE !! PRESS [ESC] !");
 	}
 }
 
@@ -103,5 +91,7 @@ void	render(t_game *g)
 	mlx_clear_window(g->mlx, g->win);
 	render_map(g);
 	render_player(g);
+	mlx_string_put(g->mlx, g->win, \
+		0, 0, 0x00FF0000, ft_itoa(g->moves));
 	render_dying_msg(g);
 }

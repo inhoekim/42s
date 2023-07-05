@@ -50,6 +50,7 @@ all : $(NAME)
 $(NAME) : MANDATORY
 
 MANDATORY : $(SRCS_OBJS)
+	@rm -f BONUS
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
@@ -60,6 +61,7 @@ $(SRCS_OBJS) : $(SRCS_WITH_PATH)
 bonus : BONUS
 
 BONUS : $(BONUS_OBJS)
+	@rm -f MANDATORY
 	@make -C ./mlx
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
