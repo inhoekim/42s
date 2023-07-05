@@ -36,5 +36,4 @@ void	render(t_game *g);
 void	alloc_player_img(t_game *game);
 void	alloc_dead_img(t_game *game);
 void	player_die(t_game *g);
-void	render_dying_msg(t_game *game);
 #endif

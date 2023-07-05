@@ -114,8 +114,5 @@ int	frame_update(t_game *game)
 	player_update(game);
 	etc_update(game);
 	render(game);
-	mlx_string_put(game->mlx, game->win, \
-	0, 0, 0x00FF0000, ft_itoa(game->moves));
-	render_dying_msg(game);
 	return (FT_TRUE);
 }
