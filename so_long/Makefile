@@ -49,8 +49,8 @@ _MANDATORY : $(SRCS_WITH_PATH:.c=.o)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
-$(SRCS_WITH_PATH:.c=.o) : $(SRCS_WITH_PATH)
-	$(CC) $(CFLAGS) -c $^
+$(SRCS_WITH_PATH:.c=.o) : %.o : %.c
+	$(CC) $(CFLAGS) -o $^
 
 bonus : _BONUS
 
@@ -60,8 +60,8 @@ _BONUS : $(BONUS_WITH_PATH:.c=.o)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $(NAME)
 	touch $@
 
-$(BONUS_WITH_PATH:.c=.o) : $(BONUS_WITH_PATH)
-	$(CC) $(CFLAGS) -c $^
+$(CORE_BONUS_PATH:.c=.o) : %.o : %.c
+	$(CC) $(CFLAGS) -o $^
 
 clean :
 	@rm -f _MANDATORY _BONUS
