@@ -80,9 +80,9 @@ void	render_dying_msg(t_game *game)
 	if (game->player.is_dead)
 	{
 		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 35, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
+		(WIN_X / 2) - 30, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
 		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE !! PRESS [ESC] !");
+		(WIN_X / 2) - 90, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE.. PRESS [ESC] !");
 	}
 }
 
@@ -92,6 +92,6 @@ void	render(t_game *g)
 	render_map(g);
 	render_player(g);
 	mlx_string_put(g->mlx, g->win, \
-		0, 0, 0x00FF0000, ft_itoa(g->moves));
+		0, 10, 0x00FF0000, ft_itoa(g->moves));
 	render_dying_msg(g);
 }
