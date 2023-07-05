@@ -12,7 +12,6 @@
 
 #include "../so_long.h"
 #include "../map/map.h"
-#include "../utils/utils.h"
 #include "core.h"
 
 static void	player_update(t_game *game)
@@ -63,7 +62,7 @@ static void	etc_update(t_game *game)
 	}
 }
 
-void	modify_data(t_enemy *e, int ny, int nx)
+static void	modify_data(t_enemy *e, int ny, int nx)
 {
 	(get_map()->map)[e->curr.y][e->curr.x] = '0';
 	(get_map()->map)[ny][nx] = e->type;
@@ -114,27 +113,6 @@ int	frame_update(t_game *game)
 	player_update(game);
 	etc_update(game);
 	render(game);
-	mlx_string_put(game->mlx, game->win, \
-	0, 0, 0x00FF0000, ft_itoa(game->moves));
-	if (game->player.is_dead)
-	{
-		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 35, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
-		if (game->enemy_move_delay == 0)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF0000, "PRESS [ESC] YOU LOSE!!");
-		if (game->enemy_move_delay == 3)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FF9900, "PRESS [ESC] YOU LOSE!!");
-		if (game->enemy_move_delay == 6)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x00FFFF00, "PRESS [ESC] YOU LOSE!!");
-		if (game->enemy_move_delay == 9)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x0000FF00, "PRESS [ESC] YOU LOSE!!");
-		if (game->enemy_move_delay == 12)
-			mlx_string_put(game->mlx, game->win, \
-			(WIN_X / 2) - 95, (WIN_Y / 5) * 4, 0x000000FF, "PRESS [ESC] YOU LOSE!!");
-	}
+	render_dying_msg(game);
 	return (FT_TRUE);
 }

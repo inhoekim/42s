@@ -24,6 +24,9 @@ MAP_PATH = $(addprefix map/,$(MAP))
 CORE = key_input.c frame_update.c alloc_img.c alloc_img2.c render.c init_game.c
 CORE_PATH = $(addprefix core/,$(CORE))
 
+CORE_BONUS = key_input_bonus.c frame_update_bonus.c alloc_img_bonus.c alloc_img2_bonus.c render_bonus.c init_game_bonus.c
+CORE_BONUS_PATH = $(addprefix bonus/,$(CORE_BONUS))
+
 UTILS = str_utils.c ft_itoa.c
 UTILS_PATH = $(addprefix utils/,$(UTILS))
 
@@ -31,7 +34,9 @@ GNL = get_next_line_utils.c get_next_line.c
 GNL_PATH = $(addprefix gnl/,$(GNL))
 
 SRCS = $(MAIN) $(MAP_PATH) $(CORE_PATH) $(UTILS_PATH) $(GNL_PATH)
+BONUS_SRCS = $(MAIN) $(MAP_PATH) $(CORE_BONUS_PATH) $(UTILS_PATH) $(GNL_PATH)
 OBJS = *.o
+BONUS_OBJS = *.o
 
 all : $(NAME)
 
@@ -40,6 +45,13 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
 	
 $(OBJS) : $(SRCS)
+	$(CC) $(CFLAGS) -c $^
+
+bonus : $(BONUS_OBJS)
+	make -C ./mlx
+	$(CC) $(CFLAGS) $(MLX_FLAGS) $^ -o $@
+
+$(BONUS_OBJS) : $(BONUS_SRCS)
 	$(CC) $(CFLAGS) -c $^
 
 clean :
@@ -51,4 +63,4 @@ fclean : clean
 re : fclean
 	make $(NAME)
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

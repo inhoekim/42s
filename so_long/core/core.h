@@ -32,8 +32,9 @@ int		key_input(int key, t_game *game);
 void	alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
-int		render(t_game *g);
+void	render(t_game *g);
 void	alloc_player_img(t_game *game);
 void	alloc_dead_img(t_game *game);
 void	player_die(t_game *g);
+void	render_dying_msg(t_game *game);
 #endif

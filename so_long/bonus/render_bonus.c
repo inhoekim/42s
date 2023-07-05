@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/21 00:05:06 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/30 18:31:50 by inhkim           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../map/map.h"
-#include "core.h"
+#include "core_bonus.h"
 
 static void	render_element(t_game *g, int dy, int dx)
 {
@@ -115,4 +103,5 @@ void	render(t_game *g)
 	mlx_clear_window(g->mlx, g->win);
 	render_map(g);
 	render_player(g);
+	render_dying_msg(g);
 }
