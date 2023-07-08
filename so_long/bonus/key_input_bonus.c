@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/08 09:03:42 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/08 10:25:19 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 static void	modify_data(t_game *g, int y, int x)
 {
+	if ((get_map()->map)[y][x] == 'C')
+	{
+		g->item.cnt++;
+		if (g->bright_lv != 2)
+			g->bright_lv++;
+		g->dark_cnt = 0;
+	}
 	(get_map()->map)[y][x] = 'P';
 	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
 	get_map()->player.y = y;
@@ -25,27 +32,19 @@ static void	modify_data(t_game *g, int y, int x)
 
 static void	change_map(t_game *g, int y, int x)
 {
-	if ((get_map()->map)[y][x] == '1')
+	char	**m;
+
+	m = get_map()->map;
+	if (m[y][x] == '1' || \
+	(m[y][x] == 'E' && g->item.cnt != get_map()->info.target_cnt))
 		return ;
 	g->moves++;
-	if ((get_map()->map)[y][x] == 'E')
-	{
-		if (g->item.cnt == get_map()->info.target_cnt)
-			game_exit(g);
-		else
-			return ;
-	}
-	if ((get_map()->map)[y][x] == 'V' || (get_map()->map)[y][x] == 'H')
+	if (m[y][x] == 'E')
+		game_exit(g);
+	if (m[y][x] == 'V' || m[y][x] == 'H')
 	{
 		player_die(g);
 		return ;
-	}
-	if ((get_map()->map)[y][x] == 'C')
-	{
-		g->item.cnt++;
-		if (g->bright_lv != 2)
-			g->bright_lv++;
-		g->dark_cnt = 0;
 	}
 	modify_data(g, y, x);
 }
