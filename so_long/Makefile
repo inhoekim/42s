@@ -6,14 +6,14 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/07/04 18:33:39 by inhkim           ###   ########.fr        #
+#    Updated: 2023/07/08 09:02:39 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
 CC = cc
-CFLAGS = -fsanitize=address -g3 -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 MAIN = main.c

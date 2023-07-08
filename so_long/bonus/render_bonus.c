@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/08 09:03:46 by inhkim            #+#    #+#             */
+/*   Updated: 2023/07/08 09:03:47 by inhkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../map/map.h"
 #include "core_bonus.h"
 #include "../utils/utils.h"
@@ -79,10 +91,10 @@ static void	render_dying_msg(t_game *game)
 {
 	if (game->player.is_dead)
 	{
-		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 30, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
-		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 80, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE... PRESS [ESC] !");
+		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 30, \
+		(WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
+		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 80, \
+		(WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE... PRESS [ESC] !");
 	}
 }
 
@@ -92,6 +104,6 @@ void	render(t_game *g)
 	render_map(g);
 	render_player(g);
 	mlx_string_put(g->mlx, g->win, \
-		0, 10, 0x00FF0000, ft_itoa(g->moves));
+		15, 20, 0x00FF0000, ft_itoa(g->moves));
 	render_dying_msg(g);
 }

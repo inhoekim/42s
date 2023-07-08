@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 00:05:06 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/30 18:31:50 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/08 09:04:48 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,10 @@ static void	render_dying_msg(t_game *game)
 {
 	if (game->player.is_dead)
 	{
-		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 30, (WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
-		mlx_string_put(game->mlx, game->win, \
-		(WIN_X / 2) - 80, (WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE... PRESS [ESC] !");
+		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 30, \
+		(WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
+		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 80, \
+		(WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE... PRESS [ESC] !");
 	}
 }
 
