@@ -1,3 +1,0 @@
-D:/42s/push_swap/cmake-build-debug/CMakeFiles/checker_bonus.c.dir
-D:/42s/push_swap/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/42s/push_swap/cmake-build-debug/CMakeFiles/rebuild_cache.dir

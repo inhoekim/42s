@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 14:39:44 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/12 19:43:00 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/06/19 15:02:18 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	proc_stack_op_sub(char *s)
 		return (op_rr(B));
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r' && s[3] == '\n')
 		return (op_rr(AB));
-	else if (s[0] == 's' && s[1] == 'a'&& s[2] == '\n')
+	else if (s[0] == 's' && s[1] == 'a' && s[2] == '\n')
 		return (op_s(A));
 	else if (s[0] == 's' && s[1] == 'b' && s[2] == '\n')
 		return (op_s(B));
@@ -65,16 +65,16 @@ static int	read_oper(void)
 	return (FT_TRUE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int *arr;
+	int	*arr;
 
 	if (argc <= 1)
 		return (0);
 	arr = FT_NULL;
 	if (check_format(argc, argv) == FT_ERR || \
-	chk_dup(mrg_sort(mk_arr(&arr, get_st(A)->size), get_st(A)->size)) == FT_ERR\
-	 || read_oper() == FT_ERR)
+	chk_dup(mrg_sort(mk_arr(&arr, get_st(A)->size), get_st(A)->size)) == FT_ERR \
+	|| read_oper() == FT_ERR)
 	{
 		write(2, "Error\n", 6);
 		free(arr);
