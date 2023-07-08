@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/30 18:49:03 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/08 09:36:19 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 #include "core.h"
 #include "../utils/utils.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 static void	modify_data(t_game *g, int y, int x)
 {
+	if ((get_map()->map)[y][x] == 'C')
+	{
+		g->item.cnt++;
+		if (g->bright_lv != 2)
+			g->bright_lv++;
+		g->dark_cnt = 0;
+	}
 	(get_map()->map)[y][x] = 'P';
 	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
 	get_map()->player.y = y;
@@ -27,11 +35,15 @@ static void	modify_data(t_game *g, int y, int x)
 
 static void	change_map(t_game *g, int y, int x)
 {
+	char	*move_str;
+
 	if ((get_map()->map)[y][x] == '1')
 		return ;
 	g->moves++;
+	move_str = ft_itoa(g->moves);
 	write(1, &"move_cnt : ", 11);
-	write(1, ft_itoa(g->moves), num_len(g->moves) + 1);
+	write(1, move_str, num_len(g->moves) + 1);
+	free(move_str);
 	if ((get_map()->map)[y][x] == 'E')
 	{
 		if (g->item.cnt == get_map()->info.target_cnt)
@@ -43,13 +55,6 @@ static void	change_map(t_game *g, int y, int x)
 	{
 		player_die(g);
 		return ;
-	}
-	if ((get_map()->map)[y][x] == 'C')
-	{
-		g->item.cnt++;
-		if (g->bright_lv != 2)
-			g->bright_lv++;
-		g->dark_cnt = 0;
 	}
 	modify_data(g, y, x);
 }

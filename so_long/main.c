@@ -69,7 +69,5 @@ int	main(int argc, char **argv)
 		exit (1);
 	}
 	game_start(&game);
-	clear_map(get_map()->info.size.y - 1);
-	free_all(&game);
-	return (0);
+	return (game_exit(&game));
 }
