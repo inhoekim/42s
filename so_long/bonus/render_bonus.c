@@ -6,13 +6,14 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:46 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/08 09:03:47 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/08 09:52:33 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../map/map.h"
 #include "core_bonus.h"
 #include "../utils/utils.h"
+#include <stdlib.h>
 
 static void	render_element(t_game *g, int dy, int dx)
 {
@@ -99,11 +100,15 @@ static void	render_dying_msg(t_game *game)
 }
 
 void	render(t_game *g)
-{
+{	
+	char	*move_str;
+
 	mlx_clear_window(g->mlx, g->win);
 	render_map(g);
 	render_player(g);
+	move_str = ft_itoa(g->moves);
 	mlx_string_put(g->mlx, g->win, \
-		15, 20, 0x00FF0000, ft_itoa(g->moves));
+		15, 20, 0x00FF0000, move_str);
+	free(move_str);
 	render_dying_msg(g);
 }
