@@ -14,6 +14,7 @@
 #include "../gnl/get_next_line.h"
 #include "map.h"
 #include "../utils/utils.h"
+#include <stdio.h>
 
 static void	regist_size(char *file)
 {
@@ -38,6 +39,7 @@ static void	regist_size(char *file)
 		str = get_next_line(fd);
 	}
 	get_map()->info.size.y = idx;
+	close(fd);
 }
 
 static int	alloc_map(char *file)
@@ -58,12 +60,14 @@ static int	alloc_map(char *file)
 		{
 			clear_map(idx);
 			free(str);
+			close(fd);
 			return (FT_ERR);
 		}
 		free(str);
 		str = get_next_line(fd);
 		idx++;
 	}
+	close(fd);
 	return (FT_TRUE);
 }
 
@@ -98,7 +102,8 @@ int	create_map(char *file)
 	t_dfs_info	d;
 
 	regist_size(file);
-	if (get_map()->info.size.y <= 0 || get_map()->info.size.x <= 0)
+	if (get_map()->info.size.y <= 0 || get_map()->info.size.x <= 0 || \
+	get_map()->info.size.y * get_map()->info.size.x > 12000)
 		return (FT_ERR);
 	get_map()->map = (char **) malloc(sizeof(char *) * get_map()->info.size.y);
 	if (get_map()->map == FT_NULL)
