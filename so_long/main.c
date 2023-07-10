@@ -49,6 +49,20 @@ static void	game_start(t_game *game)
 	mlx_loop(game->mlx);
 }
 
+static int	chk_file_format(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	while (str[idx] != FT_NULL)
+		idx++;
+	idx -= 4;
+	if (str[idx] == '.' && \
+	str[idx + 1] == 'b' && str[idx + 2] == 'e' && str[idx + 3] == 'r')
+		return (FT_TRUE);
+	return (FT_ERR);
+}
+
 int	game_exit(t_game *game)
 {
 	free_all(game);
@@ -59,7 +73,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2)
+	if (argc != 2 || chk_file_format(argv[1]) == FT_ERR)
 	{
 		write(2, &"[Error] wrong file name\n", 24);
 		exit (1);
