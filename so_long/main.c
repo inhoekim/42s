@@ -13,6 +13,7 @@
 #include "map/map.h"
 #include "core/core.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 static void	free_all(t_game *g)
 {
@@ -60,12 +61,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		perror("[Error] wrong file name");
+		write(2, &"[Error] wrong file name\n", 24);
 		exit (1);
 	}
 	if (create_map(argv[1]) == FT_ERR)
 	{
-		perror("[Error] abnormal map file");
+		write(2, &"[Error] abnormal map file\n", 26);
 		exit (1);
 	}
 	game_start(&game);

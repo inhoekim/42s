@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/08 10:22:44 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/10 10:22:35 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,21 @@
 
 static void	modify_data(t_game *g, int y, int x)
 {
-	if ((get_map()->map)[y][x] == 'C')
+	char	**m;
+
+	m = get_map()->map;
+	if (m[y][x] == 'C')
 	{
 		g->item.cnt++;
 		if (g->bright_lv != 2)
 			g->bright_lv++;
 		g->dark_cnt = 0;
 	}
-	(get_map()->map)[y][x] = 'P';
-	(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
+	if (m[y][x] != 'E' && m[g->player.curr.y][g->player.curr.x] != 'E')
+	{
+		(get_map()->map)[y][x] = 'P';
+		(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
+	}
 	get_map()->player.y = y;
 	get_map()->player.x = x;
 	g->player.curr.y = y;
@@ -39,15 +45,14 @@ static void	change_map(t_game *g, int y, int x)
 	char	**m;
 
 	m = get_map()->map;
-	if (m[y][x] == '1' || \
-	(m[y][x] == 'E' && g->item.cnt != get_map()->info.target_cnt))
+	if (m[y][x] == '1')
 		return ;
 	g->moves++;
 	move_str = ft_itoa(g->moves);
 	write(1, &"move_cnt : ", 11);
 	write(1, move_str, num_len(g->moves) + 1);
 	free(move_str);
-	if (m[y][x] == 'E')
+	if (m[y][x] == 'E' && g->item.cnt == get_map()->info.target_cnt)
 		game_exit(g);
 	if (m[y][x] == 'V' || m[y][x] == 'H')
 	{
