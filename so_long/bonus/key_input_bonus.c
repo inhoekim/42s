@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/10 10:24:06 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/07/10 10:34:00 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ static void	modify_data(t_game *g, int y, int x)
 			g->bright_lv++;
 		g->dark_cnt = 0;
 	}
-	if (m[y][x] != 'E' && m[g->player.curr.y][g->player.curr.x] != 'E')
-	{
+	if (m[y][x] != 'E')
 		(get_map()->map)[y][x] = 'P';
+	if (m[g->player.curr.y][g->player.curr.x] != 'E')
 		(get_map()->map)[g->player.curr.y][g->player.curr.x] = '0';
-	}
 	get_map()->player.y = y;
 	get_map()->player.x = x;
 	g->player.curr.y = y;

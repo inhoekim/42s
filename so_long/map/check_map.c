@@ -77,10 +77,7 @@ static int	chk_element(t_dfs_info *d)
 	if (d->ch == '1')
 		return (1);
 	else if (d->ch == 'E')
-	{
 		d->visited_exit++;
-		return (1);
-	}
 	else if (d->ch == 'C')
 		d->taget_cnt++;
 	return (0);
