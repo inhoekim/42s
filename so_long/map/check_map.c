@@ -62,9 +62,9 @@ int	chk_format(void)
 {
 	t_map	*m;
 
-	m = get_map();
 	if (chk_wall() == FT_ERR)
 		return (FT_ERR);
+	m = get_map();
 	make_map_info();
 	if (m->info.exit_cnt != 1 || m->info.player_cnt != 1 \
 	|| m->info.target_cnt < 1)

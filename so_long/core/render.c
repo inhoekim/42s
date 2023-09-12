@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 00:05:06 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/08 09:04:48 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/13 00:11:32 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,13 @@ static void	render_element(t_game *g, int dy, int dx)
 		mlx_put_image_to_window(g->mlx, g->win, \
 		g->imgs.d_imgs[(g->item.cnt == get_map()->info.target_cnt)], \
 		c_x + dx * 64, c_y + dy * 64);
-	if (type == 'V' || type == 'H')
-		mlx_put_image_to_window(g->mlx, g->win, \
-		g->imgs.e_imgs[g->enemy_lst.img_idx], c_x + dx * 64, c_y + dy * 64);
 }
 
 static void	render_player(t_game *g)
 {
-	if (!g->player.is_dead)
-	{
-		mlx_put_image_to_window(g->mlx, g->win, \
-		g->imgs.p_imgs[g->player.img_idx], \
-		(WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
-	}
-	else
-	{
-		mlx_put_image_to_window(g->mlx, g->win, \
-		g->imgs.dead_imgs[g->player.img_idx], \
-		(WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
-	}
+	mlx_put_image_to_window(g->mlx, g->win, \
+	g->imgs.p_imgs[g->player.img_idx], \
+	(WIN_X / 2) - g->img_size / 2, (WIN_Y / 2) - g->img_size / 2);
 	mlx_put_image_to_window(g->mlx, g->win, \
 	g->imgs.b_imgs[g->bright_lv], 0, 0);
 }
@@ -86,21 +74,9 @@ static void	render_map(t_game *g)
 	}
 }
 
-static void	render_dying_msg(t_game *game)
-{
-	if (game->player.is_dead)
-	{
-		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 30, \
-		(WIN_Y / 4) * 3, 0x00FF0000, "GAME OVER");
-		mlx_string_put(game->mlx, game->win, (WIN_X / 2) - 80, \
-		(WIN_Y / 5) * 4, 0x00FF0000, "YOU LOSE... PRESS [ESC] !");
-	}
-}
-
 void	render(t_game *g)
 {
 	mlx_clear_window(g->mlx, g->win);
 	render_map(g);
 	render_player(g);
-	render_dying_msg(g);
 }

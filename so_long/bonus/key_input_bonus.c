@@ -6,15 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/12 20:51:19 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/13 00:54:24 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../map/map.h"
 #include "core_bonus.h"
 #include "../utils/utils.h"
-#include <unistd.h>
-#include <stdlib.h>
 
 static void	modify_data(t_game *g, int y, int x)
 {
@@ -40,17 +38,12 @@ static void	modify_data(t_game *g, int y, int x)
 
 static void	change_map(t_game *g, int y, int x)
 {
-	char	*move_str;
 	char	**m;
 
 	m = get_map()->map;
 	if (m[y][x] == '1')
 		return ;
 	g->moves++;
-	move_str = ft_itoa(g->moves);
-	write(1, &"move_cnt : ", 11);
-	write(1, move_str, num_len(g->moves) + 1);
-	free(move_str);
 	if (m[y][x] == 'E' && g->item.cnt == get_map()->info.target_cnt)
 		game_exit(g);
 	if (m[y][x] == 'V' || m[y][x] == 'H')

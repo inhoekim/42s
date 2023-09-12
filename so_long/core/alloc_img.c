@@ -13,16 +13,6 @@
 #include "../so_long.h"
 #include "core.h"
 
-static void	alloc_enemy_img(t_game *game)
-{
-	game->imgs.e_imgs[0] = mlx_xpm_file_to_image(game->mlx, \
-	"textures/enemy/1.xpm", &(game->img_size), &(game->img_size));
-	game->imgs.e_imgs[1] = mlx_xpm_file_to_image(game->mlx, \
-	"textures/enemy/2.xpm", &(game->img_size), &(game->img_size));
-	game->imgs.e_imgs[2] = mlx_xpm_file_to_image(game->mlx, \
-	"textures/enemy/3.xpm", &(game->img_size), &(game->img_size));
-}
-
 static void	alloc_item_img(t_game *game)
 {
 	game->imgs.i_imgs[0] = mlx_xpm_file_to_image(game->mlx, \
@@ -55,14 +45,36 @@ static void	alloc_etc_img(t_game *game)
 	"textures/etc/wall.xpm", &(game->img_size), &(game->img_size));
 }
 
+static void	alloc_player_img(t_game *game)
+{
+	game->imgs.p_imgs[0] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/0.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[1] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/1.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[2] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/2.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[3] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/3.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[4] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/4.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[5] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/5.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[6] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/6.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[7] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/7.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[8] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/8.xpm", &(game->img_size), &(game->img_size));
+	game->imgs.p_imgs[9] = mlx_xpm_file_to_image(game->mlx, \
+	"textures/player/9.xpm", &(game->img_size), &(game->img_size));
+}
+
 void	alloc_img(t_game *game)
 {
 	game->img_size = 64;
 	game->light_size_y = WIN_Y;
 	game->light_size_x = WIN_X;
 	alloc_player_img(game);
-	alloc_dead_img(game);
 	alloc_etc_img(game);
 	alloc_item_img(game);
-	alloc_enemy_img(game);
 }

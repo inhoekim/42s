@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:45:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/04 20:47:28 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/12 23:45:48 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	player_update(t_game *game)
 	{
 		if (game->player.frame == 5)
 		{
-			game->player.img_idx = (game->player.img_idx + 1) % 15;
+			game->player.img_idx = (game->player.img_idx + 1) % 12;
 			game->player.frame = 0;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/10 10:33:08 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/13 00:15:33 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,6 @@ static void	change_map(t_game *g, int y, int x)
 	free(move_str);
 	if (m[y][x] == 'E' && g->item.cnt == get_map()->info.target_cnt)
 		game_exit(g);
-	if (m[y][x] == 'V' || m[y][x] == 'H')
-	{
-		player_die(g);
-		return ;
-	}
 	modify_data(g, y, x);
 }
 
@@ -73,19 +68,12 @@ static void	move_player(t_game *g, int key)
 		change_map(g, g->player.curr.y, g->player.curr.x + 1);
 }
 
-void	player_die(t_game *g)
-{
-	g->player.is_dead = FT_TRUE;
-	g->player.frame = 0;
-	g->player.img_idx = 0;
-}
-
 int	key_input(int key, t_game *g)
 {
 	if (key == ESC)
 		game_exit(g);
 	if ((key == UP || key == DOWN || \
-	key == LEFT || key == RIGHT) && !g->player.is_dead)
+	key == LEFT || key == RIGHT))
 		move_player(g, key);
 	return (FT_TRUE);
 }

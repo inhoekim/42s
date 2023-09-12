@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 20:38:57 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/04 18:39:52 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/12 23:58:13 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,4 @@ void	alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
 void	render(t_game *g);
-void	alloc_player_img(t_game *game);
-void	alloc_dead_img(t_game *game);
-void	player_die(t_game *g);
 #endif

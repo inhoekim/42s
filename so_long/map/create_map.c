@@ -14,7 +14,6 @@
 #include "../gnl/get_next_line.h"
 #include "map.h"
 #include "../utils/utils.h"
-#include <stdio.h>
 
 static void	regist_size(char *file)
 {

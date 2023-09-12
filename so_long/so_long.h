@@ -18,7 +18,6 @@
 # define WIN_X 1024
 # define WIN_Y 640
 # include "mlx/mlx.h"
-# include <stdio.h>
 
 typedef struct s_pair{
 	int	x;

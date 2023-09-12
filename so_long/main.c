@@ -39,7 +39,7 @@ static void	game_start(t_game *game)
 	game->mlx = mlx_init();
 	if (init_game(game) == FT_ERR)
 	{
-		perror("[Error] allocation failed");
+		write(2, "[Error] allocation failed\n", 26);
 		exit (1);
 	}
 	game->win = mlx_new_window(game->mlx, WIN_X, WIN_Y, "so_long");
@@ -57,8 +57,8 @@ static int	chk_file_format(char *str)
 	while (str[idx] != FT_NULL)
 		idx++;
 	idx -= 4;
-	if (str[idx] == '.' && \
-	str[idx + 1] == 'b' && str[idx + 2] == 'e' && str[idx + 3] == 'r')
+	if (idx < 0 || (str[idx] == '.' && \
+	str[idx + 1] == 'b' && str[idx + 2] == 'e' && str[idx + 3] == 'r'))
 		return (FT_TRUE);
 	return (FT_ERR);
 }
