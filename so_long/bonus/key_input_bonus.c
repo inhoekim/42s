@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/13 00:54:24 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 23:20:45 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ static void	change_map(t_game *g, int y, int x)
 	m = get_map()->map;
 	if (m[y][x] == '1')
 		return ;
-	g->moves++;
+	if (g->moves != INT_MAX)
+		g->moves++;
 	if (m[y][x] == 'E' && g->item.cnt == get_map()->info.target_cnt)
 		game_exit(g);
 	if (m[y][x] == 'V' || m[y][x] == 'H')

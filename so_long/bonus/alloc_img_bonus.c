@@ -71,8 +71,9 @@ int	alloc_img(t_game *game)
 	game->img_size = 64;
 	game->light_size_y = WIN_Y;
 	game->light_size_x = WIN_X;
-	if (alloc_player_img(game) && alloc_dead_img(game) && \
-	alloc_etc_img(game) && alloc_item_img(game) && alloc_enemy_img(game))
+	if (alloc_player_img(game) == FT_ERR || alloc_dead_img(game) == FT_ERR \
+	|| alloc_etc_img(game) == FT_ERR || alloc_item_img(game) == FT_ERR || \
+	alloc_enemy_img(game) == FT_ERR)
 		return (FT_ERR);
 	return (FT_TRUE);
 }

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/14 22:02:21 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 23:19:35 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include "../utils/utils.h"
 #include <unistd.h>
 #include <stdlib.h>
+
+static void	up_move_cnt(t_game *g)
+{
+	if (g->moves == INT_MAX)
+		return ;
+	g->moves++;
+}
 
 static void	modify_data(t_game *g, int y, int x)
 {
@@ -46,7 +53,7 @@ static void	change_map(t_game *g, int y, int x)
 	m = get_map()->map;
 	if (m[y][x] == '1')
 		return ;
-	g->moves++;
+	up_move_cnt(g);
 	move_str = ft_itoa(g->moves);
 	write(1, "move_cnt : ", 11);
 	write(1, move_str, num_len(g->moves) + 1);
