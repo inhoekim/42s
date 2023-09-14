@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 20:38:57 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/12 23:58:13 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 22:28:06 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ typedef struct s_render_info{
 	t_pair	coord;
 	int		iy;
 	int		ix;
-}t_render_info;
+}	t_render_info;
 int		key_input(int key, t_game *game);
-void	alloc_img(t_game *game);
+int		alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
 void	render(t_game *g);

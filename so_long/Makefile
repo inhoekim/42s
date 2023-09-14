@@ -6,7 +6,7 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/10 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/09/13 00:22:33 by inhkim           ###   ########.fr        #
+#    Updated: 2023/09/14 22:51:16 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,4 +75,4 @@ fclean : clean
 re : fclean
 	make all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re bonus _MANDATORY _BONUS

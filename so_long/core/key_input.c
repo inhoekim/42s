@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 02:06:29 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/13 00:15:33 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 22:02:21 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	change_map(t_game *g, int y, int x)
 		return ;
 	g->moves++;
 	move_str = ft_itoa(g->moves);
-	write(1, &"move_cnt : ", 11);
+	write(1, "move_cnt : ", 11);
 	write(1, move_str, num_len(g->moves) + 1);
 	free(move_str);
 	if (m[y][x] == 'E' && g->item.cnt == get_map()->info.target_cnt)

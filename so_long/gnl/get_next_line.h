@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:44:44 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/28 15:44:45 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 22:22:58 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct s_vector{
 	int				fd;
 	char			*str;
 	struct s_vector	*inner_vec;
-}t_vector;
+}	t_vector;
 typedef struct s_data{
 	int		fd_idx;
 	char	*str;
 	char	*buf;
-}t_data;
+}	t_data;
 char	*get_next_line(int fd);
 int		ft_split_newline(t_vector *vec, \
 int idx, long long offset, char **ret_str);

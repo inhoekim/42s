@@ -13,7 +13,7 @@
 #include "../so_long.h"
 #include "core.h"
 
-static void	alloc_item_img(t_game *game)
+static int	alloc_item_img(t_game *game)
 {
 	game->imgs.i_imgs[0] = mlx_xpm_file_to_image(game->mlx, \
 	"textures/fire/1.xpm", &(game->img_size), &(game->img_size));
@@ -27,9 +27,13 @@ static void	alloc_item_img(t_game *game)
 	"textures/fire/5.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.i_imgs[5] = mlx_xpm_file_to_image(game->mlx, \
 	"textures/fire/6.xpm", &(game->img_size), &(game->img_size));
+	if (!game->imgs.i_imgs[0] || !game->imgs.i_imgs[1] || !game->imgs.i_imgs[2] \
+	|| !game->imgs.i_imgs[3] || !game->imgs.i_imgs[4] || !game->imgs.i_imgs[5])
+		return (FT_ERR);
+	return (FT_TRUE);
 }
 
-static void	alloc_etc_img(t_game *game)
+static int	alloc_etc_img(t_game *game)
 {
 	game->imgs.b_imgs[2] = mlx_xpm_file_to_image(game->mlx, \
 	"textures/light/1.xpm", &(game->light_size_x), &(game->light_size_y));
@@ -43,9 +47,24 @@ static void	alloc_etc_img(t_game *game)
 	"textures/etc/do.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.w_img = mlx_xpm_file_to_image(game->mlx, \
 	"textures/etc/wall.xpm", &(game->img_size), &(game->img_size));
+	if (!game->imgs.b_imgs[0] || !game->imgs.b_imgs[1] || !game->imgs.b_imgs[2] \
+	|| !game->imgs.d_imgs[0] || !game->imgs.d_imgs[1] || !game->imgs.w_img)
+		return (FT_ERR);
+	return (FT_TRUE);
 }
 
-static void	alloc_player_img(t_game *game)
+static int	check_player_imgs(t_game *game)
+{
+	if (!game->imgs.p_imgs[0] || !game->imgs.p_imgs[1] || \
+	!game->imgs.p_imgs[2] || !game->imgs.p_imgs[3] || \
+	!game->imgs.p_imgs[4] || !game->imgs.p_imgs[5] || \
+	!game->imgs.p_imgs[6] || !game->imgs.p_imgs[7] || \
+	!game->imgs.p_imgs[8] || !game->imgs.p_imgs[9])
+		return (FT_ERR);
+	return (FT_TRUE);
+}
+
+static int	alloc_player_img(t_game *game)
 {
 	game->imgs.p_imgs[0] = mlx_xpm_file_to_image(game->mlx, \
 	"textures/player/0.xpm", &(game->img_size), &(game->img_size));
@@ -67,14 +86,16 @@ static void	alloc_player_img(t_game *game)
 	"textures/player/8.xpm", &(game->img_size), &(game->img_size));
 	game->imgs.p_imgs[9] = mlx_xpm_file_to_image(game->mlx, \
 	"textures/player/9.xpm", &(game->img_size), &(game->img_size));
+	return (check_player_imgs(game));
 }
 
-void	alloc_img(t_game *game)
+int	alloc_img(t_game *game)
 {
 	game->img_size = 64;
 	game->light_size_y = WIN_Y;
 	game->light_size_x = WIN_X;
-	alloc_player_img(game);
-	alloc_etc_img(game);
-	alloc_item_img(game);
+	if (alloc_player_img(game) && alloc_etc_img(game) && \
+	alloc_item_img(game))
+		return (FT_ERR);
+	return (FT_TRUE);
 }

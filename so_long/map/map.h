@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 01:39:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/06/28 17:50:20 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/14 22:22:20 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ typedef struct s_map_info{
 	int		target_cnt;
 	int		exit_cnt;
 	t_pair	size;
-}t_map_info;
+}	t_map_info;
 typedef struct s_map{
 	t_map_info	info;
 	t_pair		player;
 	int			can_exit;
 	char		**map;
-}t_map;
+}	t_map;
 typedef struct s_dfs_info{
 	int		ny;
 	int		nx;
@@ -34,7 +34,7 @@ typedef struct s_dfs_info{
 	int		visited_exit;
 	char	ch;
 	t_pair	nc;
-}t_dfs_info;
+}	t_dfs_info;
 t_map		*get_map(void);
 int			create_map(char *file);
 void		clear_map(int cnt);

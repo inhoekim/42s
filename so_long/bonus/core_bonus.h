@@ -27,13 +27,13 @@ typedef struct s_render_info{
 	t_pair	coord;
 	int		iy;
 	int		ix;
-}t_render_info;
+}	t_render_info;
 int		key_input(int key, t_game *game);
-void	alloc_img(t_game *game);
+int		alloc_img(t_game *game);
 int		init_game(t_game *game);
 int		frame_update(t_game *game);
 void	render(t_game *g);
-void	alloc_player_img(t_game *game);
-void	alloc_dead_img(t_game *game);
+int		alloc_player_img(t_game *game);
+int		alloc_dead_img(t_game *game);
 void	player_die(t_game *g);
 #endif

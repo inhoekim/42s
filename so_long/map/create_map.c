@@ -38,7 +38,6 @@ static void	regist_size(char *file)
 		str = get_next_line(fd);
 	}
 	get_map()->info.size.y = idx;
-	close(fd);
 }
 
 static int	alloc_map(char *file)
@@ -48,6 +47,8 @@ static int	alloc_map(char *file)
 	char	*str;
 
 	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (FT_ERR);
 	str = get_next_line(fd);
 	idx = 0;
 	while (str != FT_NULL)
@@ -59,14 +60,12 @@ static int	alloc_map(char *file)
 		{
 			clear_map(idx);
 			free(str);
-			close(fd);
 			return (FT_ERR);
 		}
 		free(str);
 		str = get_next_line(fd);
 		idx++;
 	}
-	close(fd);
 	return (FT_TRUE);
 }
 

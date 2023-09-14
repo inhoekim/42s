@@ -22,14 +22,14 @@
 typedef struct s_pair{
 	int	x;
 	int	y;
-}t_pair;
+}	t_pair;
 typedef struct s_player
 {
 	t_pair		curr;
 	int			is_dead;
 	int			img_idx;
 	int			frame;
-}t_player;
+}	t_player;
 typedef struct s_enemy{
 	t_pair			curr;
 	int				dir;
@@ -37,12 +37,12 @@ typedef struct s_enemy{
 	int				frame;
 	char			type;
 	struct s_enemy	*next;
-}t_enemy;
+}	t_enemy;
 typedef struct s_item{
 	int	img_idx;
 	int	frame;
 	int	cnt;
-}t_item;
+}	t_item;
 typedef struct s_imgs{
 	void	*p_imgs[10];
 	void	*e_imgs[3];
@@ -51,7 +51,7 @@ typedef struct s_imgs{
 	void	*w_img;
 	void	*b_imgs[3];
 	void	*dead_imgs[12];
-}t_imgs;
+}	t_imgs;
 typedef struct s_game
 {
 	void			*mlx;
@@ -67,6 +67,6 @@ typedef struct s_game
 	int				dark_cnt;
 	int				enemy_move_delay;
 	unsigned long	moves;
-}t_game;
+}	t_game;
 int	game_exit(t_game *game);
 #endif

@@ -80,6 +80,7 @@ int	init_game(t_game *game)
 	game->bright_lv = 1;
 	game->dark_cnt = 0;
 	game->enemy_move_delay = 0;
-	alloc_img(game);
+	if (alloc_img(game) == FT_ERR)
+		return (FT_ERR);
 	return (FT_TRUE);
 }

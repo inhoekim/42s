@@ -57,7 +57,7 @@ static int	chk_file_format(char *str)
 	while (str[idx] != FT_NULL)
 		idx++;
 	idx -= 4;
-	if (idx < 0 || (str[idx] == '.' && \
+	if (idx >= 1 && (str[idx] == '.' && \
 	str[idx + 1] == 'b' && str[idx + 2] == 'e' && str[idx + 3] == 'r'))
 		return (FT_TRUE);
 	return (FT_ERR);
@@ -75,12 +75,12 @@ int	main(int argc, char **argv)
 
 	if (argc != 2 || chk_file_format(argv[1]) == FT_ERR)
 	{
-		write(2, &"[Error] wrong file name\n", 24);
+		write(2, "[Error] wrong file name\n", 24);
 		exit (1);
 	}
 	if (create_map(argv[1]) == FT_ERR)
 	{
-		write(2, &"[Error] abnormal map file\n", 26);
+		write(2, "[Error] abnormal map file\n", 26);
 		exit (1);
 	}
 	game_start(&game);
