@@ -6,14 +6,14 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/09/17 18:15:39 by inhkim           ###   ########.fr        #
+#    Updated: 2023/09/17 20:27:45 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
 CFLAGS=-Wall -Wextra -Werror
-CLIENT_SRC=client.c
-SERVER_SRC=server.c
+CLIENT_SRC=client.c utils.c
+SERVER_SRC=server.c utils.c
 
 $(all) : server
 	
