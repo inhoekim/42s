@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 17:33:23 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/09/17 18:15:16 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ void	handler(int sig, siginfo_t *sip, void *none)
 	(void)none;
 	if (sig == SIGINT)
 	{
-		ft_printf("OK");
+		ft_putstr_fd("OK", 2);
 	}
 }
 
 static void	print_start(void)
 {
-	ft_printf("The server is running!\n");
-	ft_printf("Server PID is %d\n", (int)getpid());
+	ft_putendl_fd("The server is running!", 1);
+	ft_putstr_fd("Server PID is ", 1);
+	ft_putnbr_fd((int)getpid(), 1);
+	ft_putendl_fd("!", 1);
 }
 
 int	main(void)
