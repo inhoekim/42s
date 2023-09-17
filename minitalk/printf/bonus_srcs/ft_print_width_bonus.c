@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_print_width_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 15:25:33 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/31 10:48:25 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/31 10:48:27 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include <unistd.h>
 
-int	main(void)
+long long	ft_print_width(int width)
 {
-	ft_printf("OK");
-	return (0);
+	long long	cnt;
+	long long	temp;
+
+	cnt = 0;
+	while (width > 0)
+	{
+		temp = write(1, " ", 1);
+		if (temp < 0)
+			return (-1);
+		cnt += temp;
+		width--;
+	}
+	return (cnt);
 }

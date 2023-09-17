@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memset_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 15:25:33 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/31 10:45:40 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/31 10:45:45 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	ft_printf("OK");
-	return (0);
+	int				idx;
+	unsigned char	*temp_b;
+
+	idx = 0;
+	temp_b = (unsigned char *)b;
+	while (len)
+	{
+		temp_b[idx] = (unsigned char)c;
+		idx++;
+		len--;
+	}
+	return ((void *)temp_b);
 }

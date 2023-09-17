@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_print_char_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 15:25:33 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/31 10:47:32 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/31 10:47:34 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include <unistd.h>
+#include "ft_printf_bonus.h"
 
-int	main(void)
+long long	ft_print_char(t_format format, char ch)
 {
-	ft_printf("OK");
-	return (0);
+	if (format.flag_ascii['-'])
+	{
+		if (write(1, &ch, 1) == -1 || \
+		ft_print_width(format.width - 1) == -1)
+			return (-1);
+	}
+	else
+	{
+		if (ft_print_width(format.width - 1) == -1 || \
+		write(1, &ch, 1) == -1)
+			return (-1);
+	}
+	if (!format.width)
+		return (1);
+	return (format.width);
 }

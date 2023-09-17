@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 15:25:33 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/31 10:47:51 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/31 10:47:53 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+size_t	ft_strlen(const char *s)
 {
-	ft_printf("OK");
-	return (0);
+	size_t	idx;
+
+	idx = 0;
+	if (s == FT_NULL)
+		return (0);
+	while (s[idx] != '\0')
+		idx++;
+	return (idx);
 }

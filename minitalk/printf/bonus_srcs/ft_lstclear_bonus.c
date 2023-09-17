@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 15:25:33 by inhkim           ###   ########.fr       */
+/*   Created: 2023/03/31 10:48:01 by inhkim            #+#    #+#             */
+/*   Updated: 2023/03/31 10:48:03 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "ft_printf_bonus.h"
+#include <stdlib.h>
 
-int	main(void)
+void	ft_lstclear(t_format_lst *lst)
 {
-	ft_printf("OK");
-	return (0);
+	t_format_lst	*del_target;
+
+	while (lst != FT_NULL)
+	{
+		del_target = lst;
+		lst = lst->next;
+		free(del_target);
+	}
 }
