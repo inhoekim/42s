@@ -20,6 +20,7 @@ void	leak_check(void)
 {
 	system("leaks server");
 }
+
 void	handler(int sig, siginfo_t *sip, void *none)
 {
 	(void)sip;
@@ -42,7 +43,6 @@ int	main(void)
 {
 	struct sigaction	sigact;
 
-	atexit(leak_check);
 	print_start();
 	sigact.sa_flags = SA_SIGINFO;
 	sigact.sa_sigaction = &handler;
