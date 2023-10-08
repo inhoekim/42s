@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 20:15:08 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 20:49:01 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ volatile t_buff	g_buf;
 
 static int	check_conn(pid_t pid)
 {
-	if (g_buf.curr_pid == 0)
+	if (pid == 0)
+	{
+		ft_putendl_fd("\n[Server shut down due to incorrect PID Error]", 1);
+		exit(1);
+	}
+	if (g_buf.curr_pid == -1)
 	{
 		ft_putstr_fd("[pid:", 1);
 		ft_putnbr_fd((int)pid, 1);
@@ -49,7 +54,7 @@ struct __siginfo *sif, void *none)
 		ft_putstr_fd((char *)&g_buf.buf, 1);
 		if (g_buf.buf == 0)
 		{
-			g_buf.curr_pid = 0;
+			g_buf.curr_pid = -1;
 			ft_putendl_fd("", 1);
 		}
 		g_buf.buf = 0;
@@ -77,7 +82,7 @@ int	main(void)
 	sigaddset(&sigact.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sigact, NULL);
 	sigaction(SIGUSR2, &sigact, NULL);
-	g_buf.curr_pid = 0;
+	g_buf.curr_pid = -1;
 	g_buf.offset = 0;
 	g_buf.buf = 0;
 	while (1)

@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 20:12:57 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 20:49:07 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ static void	send_message(pid_t pid, const char *msg)
 	idx = -1;
 	while (++idx < 8)
 	{
-		usleep(50);
 		g_lock = 1;
+		usleep(50);
 		kill(pid, SIGUSR2);
 		timer_lock();
 	}
