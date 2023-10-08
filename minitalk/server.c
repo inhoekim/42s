@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 15:50:34 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 20:15:08 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	check_conn(pid_t pid)
 	if (g_buf.curr_pid == 0)
 	{
 		ft_putstr_fd("[pid:", 1);
-		ft_putstr_fd(ft_itoa((int)pid), 1);
-		ft_putstr_fd("] -> ", 1);
+		ft_putnbr_fd((int)pid, 1);
+		ft_putstr_fd("] ==> ", 1);
 		g_buf.curr_pid = pid;
 	}
 	else
@@ -34,7 +34,7 @@ static int	check_conn(pid_t pid)
 	return (0);
 }
 
-void	recieve_handler(int sig, \
+static void	recieve_handler(int sig, \
 struct __siginfo *sif, void *none)
 {
 	(void) none;
@@ -44,7 +44,7 @@ struct __siginfo *sif, void *none)
 		g_buf.buf |= (1 << g_buf.offset);
 	g_buf.offset++;
 	kill(sif->si_pid, SIGUSR1);
-	if (g_buf.offset == 8)
+	if (g_buf.offset >= 8)
 	{
 		ft_putstr_fd((char *)&g_buf.buf, 1);
 		if (g_buf.buf == 0)
@@ -84,4 +84,3 @@ int	main(void)
 		;
 	return (0);
 }
-

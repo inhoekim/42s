@@ -6,33 +6,33 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/30 05:28:44 by inhkim            #+#    #+#              #
-#    Updated: 2023/09/17 20:27:45 by inhkim           ###   ########.fr        #
+#    Updated: 2023/10/08 19:51:20 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC=cc
-CFLAGS=-Wall -Wextra -Werror
-CLIENT_SRC=client.c utils.c
-SERVER_SRC=server.c utils.c
+CFLAGS=-Wall -Wextra -Werror -fsanitize=address
+NAME=server
 
-$(all) : server
-	
-server : $(SERVER_SRC:.c=.o)
+all : $(NAME)
+	@make client
+
+$(NAME) : server.o
 	@make -C ./libft
 	$(CC) $(CFLAGS) $^ -o $@ -L./libft -lft
-	make client
 
-$(SERVER_SRC:.c=.o) : %.o : %.c
-	$(CC) $(CFLAGS) -c $^ -o $@ -I./
+server.o : server.c minitalk.h
+	$(CC) $(CFLAGS) -c $^
 
-client : $(CLIENT_SRC:.c=.o)
+client : client.o
+	@make -C ./libft
 	$(CC) $(CFLAGS) $^ -o $@ -L./libft -lft
 
-$(CLIENT_SRC:.c=.o) : %.o : %.c 
-	$(CC) $(CFLAGS) -c $^ -o $@ -I./
+client.o : client.c minitalk.h
+	$(CC) $(CFLAGS) -c $^
 
 clean :
-	rm -f $(CLIENT_SRC:.c=.o) $(SERVER_SRC:.c=.o)
+	rm -f client.o server.o minitalk.h.gch
 
 fclean : clean 
 	rm -f client server
@@ -40,4 +40,4 @@ fclean : clean
 re : fclean 
 	make client server
 
-.PHONY : all fclean re clean client server
+.PHONY : all fclean re clean
