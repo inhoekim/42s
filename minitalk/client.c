@@ -6,14 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 14:18:55 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 15:54:11 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minitalk.h"
-#include <stdio.h>
 
-volatile sig_atomic_t g_lock;
+volatile sig_atomic_t	g_lock;
 
 void	recieve_handler(int sig, \
 struct __siginfo *sif, void *none)
@@ -24,8 +23,7 @@ struct __siginfo *sif, void *none)
 		g_lock = 0;
 	else
 	{
-		ft_putendl_fd("Your Message is Missing for some reason. \
-		Please resend!", 2);
+		ft_putendl_fd("The server is busy. Please try later!", 2);
 		exit(1);
 	}
 }
@@ -42,14 +40,20 @@ void	send_message(pid_t pid, const char *msg)
 		while (++bit_offset < 8)
 		{
 			usleep(10);
-			g_lock = 1;
 			if ((msg[idx] >> bit_offset) & 1)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			while (g_lock)
-				;
 		}
+	}
+	idx = -1;
+	while (++idx < 8)
+	{
+		usleep(10);
+		g_lock = 1;
+		kill(pid, SIGUSR2);
+		while (g_lock)
+			;
 	}
 }
 
@@ -66,6 +70,7 @@ int	main(int argc, char **argv)
 	if (argc == 3 && argv[2][0] != '\0')
 	{
 		check_pid(argv[1]);
+		g_lock = 0;
 		send_message(ft_atoi(argv[1]), argv[2]);
 		ft_putendl_fd("Transmission is success!", 1);
 	}

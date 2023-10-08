@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:14 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 14:11:58 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 15:50:34 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,32 @@
 
 volatile t_buff	g_buf;
 
+static int	check_conn(pid_t pid)
+{
+	if (g_buf.curr_pid == 0)
+	{
+		ft_putstr_fd("[pid:", 1);
+		ft_putstr_fd(ft_itoa((int)pid), 1);
+		ft_putstr_fd("] -> ", 1);
+		g_buf.curr_pid = pid;
+	}
+	else
+	{
+		if (g_buf.curr_pid != pid)
+		{
+			kill(pid, SIGUSR2);
+			return (1);
+		}
+	}
+	return (0);
+}
+
 void	recieve_handler(int sig, \
 struct __siginfo *sif, void *none)
 {
 	(void) none;
+	if (check_conn(sif->si_pid))
+		return ;
 	if (sig == SIGUSR1)
 		g_buf.buf |= (1 << g_buf.offset);
 	g_buf.offset++;
@@ -25,6 +47,11 @@ struct __siginfo *sif, void *none)
 	if (g_buf.offset == 8)
 	{
 		ft_putstr_fd((char *)&g_buf.buf, 1);
+		if (g_buf.buf == 0)
+		{
+			g_buf.curr_pid = 0;
+			ft_putendl_fd("", 1);
+		}
 		g_buf.buf = 0;
 		g_buf.offset = 0;
 		return ;
@@ -50,9 +77,11 @@ int	main(void)
 	sigaddset(&sigact.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sigact, NULL);
 	sigaction(SIGUSR2, &sigact, NULL);
+	g_buf.curr_pid = 0;
 	g_buf.offset = 0;
 	g_buf.buf = 0;
 	while (1)
 		;
 	return (0);
 }
+
