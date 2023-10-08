@@ -6,22 +6,51 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/17 20:22:18 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/08 14:18:55 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minitalk.h"
+#include <stdio.h>
+
+volatile sig_atomic_t g_lock;
 
 void	recieve_handler(int sig, \
-struct __siginfo *sip, void *none)
+struct __siginfo *sif, void *none)
 {
-	(void)sig;(void)sip;(void)none;
-	exit(0);
+	(void) sif;
+	(void) none;
+	if (sig == SIGUSR1)
+		g_lock = 0;
+	else
+	{
+		ft_putendl_fd("Your Message is Missing for some reason. \
+		Please resend!", 2);
+		exit(1);
+	}
 }
 
-void	send_message(void)
+void	send_message(pid_t pid, const char *msg)
 {
-	exit(0);
+	int	idx;
+	int	bit_offset;
+
+	idx = -1;
+	while (msg[++idx])
+	{
+		bit_offset = -1;
+		while (++bit_offset < 8)
+		{
+			usleep(10);
+			g_lock = 1;
+			if ((msg[idx] >> bit_offset) & 1)
+				kill(pid, SIGUSR1);
+			else
+				kill(pid, SIGUSR2);
+			while (g_lock)
+				;
+		}
+	}
 }
 
 int	main(int argc, char **argv)
@@ -36,11 +65,9 @@ int	main(int argc, char **argv)
 	sigaction(SIGUSR2, &sigact, NULL);
 	if (argc == 3 && argv[2][0] != '\0')
 	{
-		if (check_pid(argv[1]))
-			exit(1);
-		kill(ft_atoi(argv[1]), SIGUSR1);
-		while (1)
-			;
+		check_pid(argv[1]);
+		send_message(ft_atoi(argv[1]), argv[2]);
+		ft_putendl_fd("Transmission is success!", 1);
 	}
 	else
 	{
