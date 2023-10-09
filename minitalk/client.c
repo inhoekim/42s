@@ -67,19 +67,17 @@ struct __siginfo *sif, void *none)
 	}
 }
 
-static void	send_message(pid_t pid, const char *msg)
+static void	send_message(pid_t pid, const char *msg, int idx)
 {
-	int	idx;
 	int	bit_offset;
 
-	idx = -1;
 	while (msg[++idx])
 	{
 		bit_offset = -1;
 		while (++bit_offset < 8)
 		{
 			g_lock = 1;
-			usleep(50);
+			usleep(100);
 			if ((msg[idx] >> bit_offset) & 1)
 				kill(pid, SIGUSR1);
 			else
@@ -91,7 +89,7 @@ static void	send_message(pid_t pid, const char *msg)
 	while (++idx < 8)
 	{
 		g_lock = 1;
-		usleep(50);
+		usleep(100);
 		kill(pid, SIGUSR2);
 		timer_lock();
 	}
@@ -103,6 +101,7 @@ int	main(int argc, char **argv)
 
 	sigact.sa_sigaction = &recieve_handler;
 	sigemptyset(&sigact.sa_mask);
+	sigact.sa_flags = SA_SIGINFO;
 	sigaddset(&sigact.sa_mask, SIGUSR1);
 	sigaddset(&sigact.sa_mask, SIGUSR2);
 	sigaction(SIGUSR1, &sigact, NULL);
@@ -111,7 +110,7 @@ int	main(int argc, char **argv)
 	{
 		check_pid(argv[1]);
 		g_lock = 0;
-		send_message(ft_atoi(argv[1]), argv[2]);
+		send_message(ft_atoi(argv[1]), argv[2], -1);
 		ft_putendl_fd("Transmission is success!", 1);
 	}
 	else

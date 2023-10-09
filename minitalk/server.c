@@ -77,6 +77,7 @@ int	main(void)
 
 	print_start();
 	sigact.sa_sigaction = &recieve_handler;
+	sigact.sa_flags = SA_SIGINFO;
 	sigemptyset(&sigact.sa_mask);
 	sigaddset(&sigact.sa_mask, SIGUSR1);
 	sigaddset(&sigact.sa_mask, SIGUSR2);
