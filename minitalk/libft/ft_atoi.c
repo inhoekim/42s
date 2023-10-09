@@ -70,11 +70,9 @@ static long	ft_strtol(const char *str, int sign)
 int	ft_atoi(const char *str)
 {
 	long	num;
-	int		idx;
 	int		sign;
 
 	num = 0;
-	idx = 0;
 	del_ws(&str);
 	sign = confirm_sign(&str);
 	num = ft_strtol(str, sign);
