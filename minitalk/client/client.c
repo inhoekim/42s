@@ -6,11 +6,11 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:56:03 by inhkim            #+#    #+#             */
-/*   Updated: 2023/10/08 20:49:07 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/09 17:40:29 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minitalk.h"
+#include "../include/minitalk.h"
 
 volatile sig_atomic_t	g_lock;
 
