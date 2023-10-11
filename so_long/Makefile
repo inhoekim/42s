@@ -13,7 +13,7 @@
 NAME = so_long
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror 
 MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
 
 MAIN = main.c
