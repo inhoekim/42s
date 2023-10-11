@@ -6,7 +6,7 @@
 #    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/09 18:55:10 by inhkim            #+#    #+#              #
-#    Updated: 2023/10/09 19:19:28 by inhkim           ###   ########.fr        #
+#    Updated: 2023/10/11 17:21:55 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,29 +19,29 @@ all : $(NAME)
 
 $(NAME) : _MANDATORY
 
-_MANDATORY : server.o
+_MANDATORY : ft_server.o
 	@rm -f _BONUS
 	@make -C ../libft
 	$(CC) $(CFLAGS) -L../libft -lft $^ -o $(NAME)
 	touch $@
 
-server.o : server.c
+ft_server.o : ft_server.c
 	$(CC) $(CFLAGS) -c $^
 
 bonus : _BONUS
 
-_BONUS : server_bonus.o
+_BONUS : ft_server_bonus.o
 	@rm -f _MANDATORY
 	@make -C ../libft
 	$(CC) $(CFLAGS) -L../libft -lft $^ -o $(NAME)
 	touch $@
 
-server_bonus.o : server_bonus.c
+ft_server_bonus.o : ft_server_bonus.c
 	$(CC) $(CFLAGS) -c $^
 
 clean :
 	@rm -f _MANDATORY _BONUS
-	rm -f server.o server_bonus.o
+	rm -f ft_server.o ft_server_bonus.o
 
 fclean : clean
 	rm -f $(NAME)
@@ -49,4 +49,4 @@ fclean : clean
 re : fclean
 	make all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
