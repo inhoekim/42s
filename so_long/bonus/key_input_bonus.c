@@ -6,13 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/14 23:20:45 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:36:32 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../map/map.h"
+#include "../map_bonus/map_bonus.h"
 #include "core_bonus.h"
-#include "../utils/utils.h"
+#include "../utils_bonus/utils_bonus.h"
 
 static void	modify_data(t_game *g, int y, int x)
 {

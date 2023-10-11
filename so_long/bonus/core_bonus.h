@@ -12,7 +12,7 @@
 
 #ifndef CORE_BONUS_H
 # define CORE_BONUS_H
-# include "../so_long.h"
+# include "../so_long_bonus.h"
 
 enum e_keys
 {

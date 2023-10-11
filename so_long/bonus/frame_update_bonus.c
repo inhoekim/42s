@@ -6,13 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 18:45:41 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/12 23:45:48 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:36:14 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
-#include "../map/map.h"
-#include "../utils/utils.h"
+#include "../so_long_bonus.h"
+#include "../map_bonus/map_bonus.h"
+#include "../utils_bonus/utils_bonus.h"
 #include "core_bonus.h"
 
 static void	player_update(t_game *game)

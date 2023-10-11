@@ -6,13 +6,13 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 09:03:46 by inhkim            #+#    #+#             */
-/*   Updated: 2023/07/08 09:52:33 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:36:43 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../map/map.h"
+#include "../map_bonus/map_bonus.h"
 #include "core_bonus.h"
-#include "../utils/utils.h"
+#include "../utils_bonus/utils_bonus.h"
 #include <stdlib.h>
 
 static void	render_element(t_game *g, int dy, int dx)

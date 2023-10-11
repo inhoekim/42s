@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../map/map.h"
+#include "../map_bonus/map_bonus.h"
 #include "core_bonus.h"
 #include <stdlib.h>
 

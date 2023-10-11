@@ -6,12 +6,12 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 23:53:38 by inhkim            #+#    #+#             */
-/*   Updated: 2023/09/13 00:05:16 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/10/11 14:28:26 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
-#include "utils.h"
+#include "../so_long_bonus.h"
+#include "utils_bonus.h"
 
 int	ft_strlen(char *str, char end)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../so_long_bonus.h"
 #include "core_bonus.h"
 
 static int	alloc_enemy_img(t_game *game)
