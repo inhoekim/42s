@@ -75,4 +75,4 @@ fclean : clean
 re : fclean
 	make all
 
-.PHONY : all clean fclean re bonus _MANDATORY _BONUS
+.PHONY : all clean fclean re
