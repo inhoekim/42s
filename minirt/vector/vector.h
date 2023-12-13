@@ -6,17 +6,16 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:46:35 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/14 03:21:26 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/14 04:03:34 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# include "../minirt.h"
-#endif
 #ifndef VECTOR_H
 # define VECTOR_H
+# include "../minirt.h"
 # include <stdio.h>
 # include <math.h>
+# include <stdlib.h>
 
 t_vector	vec(float x, float y, float z);
 t_vector	vec_add(t_vector a, t_vector b);

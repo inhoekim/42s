@@ -1,18 +1,13 @@
 #include <stdio.h>
 #include "vector/vector.h"
 #include "view/view.h"
+#include "figure/figure.h"
 
-typedef struct t_color3 {
-	int x;
-	int y;
-	int z;
-} t_color3;
-
-void    write_color(t_vector pixel_color)
+void    write_color(t_coord color)
 {
-    printf("%d %d %d\n", (int)(255.999 * pixel_color.x),
-                        (int)(255.999 * pixel_color.y),
-                        (int)(255.999 * pixel_color.z));
+    printf("%d %d %d\n", (int)(255.999 * color.x),
+                        (int)(255.999 * color.y),
+                        (int)(255.999 * color.z));
 }
 
 int main(void)
@@ -27,10 +22,11 @@ int main(void)
     t_canvas    canv;
     t_camera    cam;
     t_ray       ray;
-
+	t_sphere	sp;
     //Scene setting;
-    canv = init_canvas(800, 400);
+    canv = init_canvas(400, 300);
     cam = init_camera(&canv, vec(0, 0, 0));
+	sp = sphere(vec(0, 0, -5), 2);
     /* * * * 수정 끝 * * * */
 
     // 랜더링
@@ -49,7 +45,7 @@ int main(void)
             normalized_y = (double)j / (canv.height - 1);
             //ray from camera origin to pixel
             ray = ray_primary(&cam, normalized_x, normalized_y);
-            pixel_color = ray_color(&ray);
+            pixel_color = ray_color(&ray, &sp);
         /* * * * 수정 끝 * * * */
             write_color(pixel_color);
             ++i;
