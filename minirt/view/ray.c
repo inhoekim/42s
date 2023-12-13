@@ -6,14 +6,15 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:41:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/14 02:19:37 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/14 03:23:51 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "view.h"
+#include "../vector/vector.h"
 
 //ray 생성자(정규화 된 ray)
-t_ray	ray(t_vector origin, t_vector vec)
+t_ray	ray(t_coord origin, t_vector vec)
 {
 	t_ray	ray;
 
@@ -23,12 +24,12 @@ t_ray	ray(t_vector origin, t_vector vec)
 }
 
 //ray origin point 부터 방향벡터 ray dir * t 만큼 떨어진 점.
-t_vector	ray_at(t_ray *ray, float t)
+t_coord	ray_at(t_ray *ray, float t)
 {
 	return (vec_add(ray->origin, vec_mul_num(ray->dir_vec, t)));
 }
 
-t_ray       ray_primary(t_camera *cam, float x, float y)
+t_ray	ray_primary(t_camera *cam, float x, float y)
 {
 	t_vector	temp_vec;
 	

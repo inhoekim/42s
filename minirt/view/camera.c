@@ -1,4 +1,5 @@
 #include "view.h"
+#include "../vector/vector.h"
 
 t_canvas	init_canvas(int width, int height)
 {
