@@ -14,7 +14,7 @@
 
 float	vec_len(t_vector vec)
 {
-	return ((float)sqrtf(vec_len_sqr(vec)));
+	return ((float)sqrtf(vec_len_square(vec)));
 }
 
 float	vec_len_square(t_vector vec)

@@ -47,7 +47,6 @@ t_ray	ray_primary(t_camera *cam, float x, float y)
 t_vector	ray_color(t_ray *ray, t_sphere *sphere)
 {
 	float		num;
-	float		t;
 	t_hit		hit;
 
 	hit.t_min = 0;
