@@ -28,7 +28,7 @@ t_vector	vec_div_num(t_vector a, float num);
 t_vector	vec_unit(t_vector vec);
 float		vec_dot_product(t_vector a, t_vector b);
 float		vec_len(t_vector vec);
-float		vec_len_sqr(t_vector vec);
+float		vec_len_square(t_vector vec);
 void		vec_set(t_vector *vec, float x, float y, float z);
 
 #endif

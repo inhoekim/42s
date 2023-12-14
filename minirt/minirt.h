@@ -14,7 +14,7 @@
 # define MINIRT_H
 # define FALSE 0
 # define TRUE 1
-
+# define INF 987654321
 typedef struct s_triple
 {
 	float	x;
@@ -50,4 +50,13 @@ typedef struct s_sphere
 	t_coord	center;
 	float	radius;
 }	t_sphere;
+typedef struct s_hit
+{
+	t_coord		coord;
+	t_vector	normal_vec;
+	float		t_min;
+	float		t_max;
+	float		t;
+	t_bool		front_face;
+}	t_hit;
 #endif

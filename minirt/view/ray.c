@@ -48,13 +48,13 @@ t_vector	ray_color(t_ray *ray, t_sphere *sphere)
 {
 	float		num;
 	float		t;
-	t_vector	nm_vec;
+	t_hit		hit;
 
-	t = hit_sphere(sphere, ray);
-	if (t > 0.0)
+	hit.t_min = 0;
+	hit.t_max = INF;
+	if (hit_sphere(sphere, ray, &hit))
 	{
-		nm_vec = vec_unit(vec_sub(ray_at(ray, t), sphere->center));
-		return (vec_mul_num(vec(nm_vec.x + 1, nm_vec.y + 1, nm_vec.z + 1), 0.5));
+		return (vec_mul_num(vec_add(hit.normal_vec, vec(1, 1, 1)), 0.5));
 	}
 	num = 0.5 * (ray->dir_vec.y + 1.0);
 	return (vec_add(vec_mul_num(vec(1, 1, 1), 1.0 - num), vec_mul_num(vec(0.5, 0.7, 1.0), num)));

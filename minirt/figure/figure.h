@@ -14,5 +14,5 @@
 # define FIGURE_H
 # include "../minirt.h"
 t_sphere	sphere(t_coord center, double radius);
-float		hit_sphere(t_sphere *sp, t_ray *ray);
+t_bool	    hit_sphere(t_sphere *sp, t_ray *ray, t_hit *hit);
 #endif
