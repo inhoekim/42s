@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:56:15 by seykim            #+#    #+#             */
-/*   Updated: 2023/12/13 20:21:09 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:16:02 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vector	vec_div_num(t_vector a, float num)
 	if (num == 0)
 	{
 		printf("Error\n:Devider is 0");
-		exit(0);
+		exit(1);
 	}
 	return (vec_mul_num(a, (1 / num)));
 }

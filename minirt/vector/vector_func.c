@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:54:21 by seykim            #+#    #+#             */
-/*   Updated: 2023/12/14 03:14:11 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:16:19 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_vector	vec_div(t_vector a, t_vector b)
 	if (!b.x || !b.y || !b.z)
 	{
 		printf("Error\n:Devider is 0");
-		exit(0);
+		exit(1);
 	}
 	new_vec.x = a.x / b.x;
 	new_vec.y = a.y / b.y;
