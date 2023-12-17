@@ -32,15 +32,12 @@ t_coord	ray_at(t_ray *ray, float t)
 
 t_ray	ray_primary(t_camera *cam, float x, float y)
 {
-	t_vector	pixel_vec;
-	t_coord		pixel_coord;
+	t_vector	ray_vec;
+	t_coord		destination;
 	
-	// left_bottom + x * horizontal + y * vertical - origin 의 단위 벡터.
-	pixel_coord = vec_add(vec_mul_num(cam->horizon_vec, x), \
-	vec_mul_num(cam->vertical_vec, y));
-	pixel_coord = vec_add(pixel_coord, cam->left_bottom); // temp_vec = 현재 픽셀의 좌표값
-	pixel_vec = vec_sub(pixel_coord, cam->origin); // 현재 픽셀의 좌표와 카메라의 좌표를 빼서 벡터를 만든다
-	return (ray(cam->origin, pixel_vec));
+	destination = vec_add(vec_add(cam->left_bottom, x), y);
+	ray_vec = vec_sub(destination, cam->origin); // 현재 픽셀의 좌표와 카메라의 좌표를 빼서 벡터를 만든다
+	return (ray(cam->origin, ray_vec));
 }
 
 //광선이 최종적으로 얻게된 픽셀의 색상 값을 리턴.

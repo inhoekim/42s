@@ -33,19 +33,19 @@ int	key_hook(int keycode, t_vars *vars)
 
 int main(void)
 {
-    int         i;
-    int         j;
+    int         x;
+    int         y;
     float      normalized_x;
     float      normalized_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
-
     t_triple	pixel_color;
     t_camera    cam;
     t_ray       ray;
 	t_sphere	sp;
 	t_coord		origin;
 	t_vector	dir;
+    t_data      data;
 
 	origin.x = 0;
 	origin.y = 0;
@@ -56,26 +56,21 @@ int main(void)
     cam = init_camera(origin, dir);
 	sp = sphere(vec(0, 0, -5), 2);
 
-
-    printf("P3\n%d %d\n255\n", canv.width, canv.height);
-    j = canv.height - 1;
-    while (j >= 0)
+    y = HEIGHT - 1;
+    while (y >= 0)
     {
-        i = 0;
-       while (i < canv.width)
+        x = 0;
+       while (x < WIDTH)
         {
-            u = (double)i / (canv.width - 1);
-            v = (double)j / (canv.height - 1);
-            ray = ray_primary(&cam, u, v);
+            ray = ray_primary(&cam, x, y);
             pixel_color = ray_color(&ray);
-            write_color(pixel_color);
-			my_mlx_pixel_put(&image, i, canv.height - 1 - j, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
-            ++i;
+            //write_color(pixel_color);
+			my_mlx_pixel_put(&data, x, canv.height - 1 - y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
+            ++x;
         }
-        --j;
+        --y;
     }
-
-	mlx_put_image_to_window(vars.mlx, vars.win, image.img, 0, 0);
+	mlx_put_image_to_window(vars.mlx, vars.win, data.img, 0, 0);
 	mlx_key_hook(vars.win, key_hook, &vars);
 	mlx_loop(mlx_ptr);
 }
