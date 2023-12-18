@@ -17,6 +17,12 @@
 # define INF 987654321
 # define WIDTH 400
 # define HEIGHT 400
+# include <stdlib.h>
+enum e_figure
+{
+	SPHERE = 1,
+
+};
 typedef struct s_triple
 {
 	float	x;
@@ -69,4 +75,11 @@ typedef struct s_mlx
 	void		*win;
 	t_data		data;
 }	t_mlx;
+typedef struct s_obj_list
+{
+	int		type;
+	void	*data;
+	void	*next;
+}	t_obj_list;
+typedef struct s_obj_list t_ptr;
 #endif

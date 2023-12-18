@@ -1,0 +1,37 @@
+#include "figure.h"
+
+t_obj_list  *object(int type, void *data)
+{
+	t_obj_list	*lst;
+
+	if (!(lst = (t_obj_list *)malloc(sizeof(t_obj_list))))
+		exit(1);
+	lst->type = type;
+	lst->data = data;
+	lst->next = 0;
+	return (lst);
+}
+
+void	obj_add(t_obj_list **lst, t_obj_list *new_element)
+{
+	t_ptr	*curr;
+
+	if (*lst == 0)
+	{
+		*lst = new_element;
+		return ;
+	}
+	curr = *lst;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new_element;
+}
+
+t_obj_list	*obj_last(t_obj_list *lst)
+{
+	if (lst == 0)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}

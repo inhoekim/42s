@@ -45,43 +45,17 @@ t_ray	ray_primary(t_camera *cam, float x, float y)
 }
 
 //광선이 최종적으로 얻게된 픽셀의 색상 값을 리턴.
-t_vector	ray_color(t_ray *ray, t_sphere *sphere)
+t_vector	ray_color(t_ray *ray, t_obj_list *world)
 {
 	float		num;
-	t_hit		hit;
+	t_hit		hit_rec;
 
-	hit.t_min = 0;
-	hit.t_max = INF;
-	if (hit_sphere(sphere, ray, &hit))
+	hit_rec.t_min = 0;
+	hit_rec.t_max = INF;
+	if (hit(world, ray, &hit_rec))
 	{
-		return (vec_mul_num(vec_add(hit.normal_vec, vec(1, 1, 1)), 0.5));
+		return (vec_mul_num(vec_add(hit_rec.normal_vec, vec(1, 1, 1)), 0.5));
 	}
 	num = 0.5 * (ray->dir_vec.y + 1.0);
 	return (vec_add(vec_mul_num(vec(1, 1, 1), 1.0 - num), vec_mul_num(vec(0.5, 0.7, 1.0), num)));
 }
-
-/*
-static void raytracing(t_scene *scene, t_mlx *mlx)
-{
-	int     i; // x
-	int     j; // y
-	t_color3    pixel_color;
-
-	j = HEIGHT - 1;
-	while (j >= 0)
-	{
-		i = 0;
-	   while (i < WIDTH)
-		{
-			printf ("x : %d y : %d\n", i, j);
-			scene->ray = ray_primary(&scene->camera, i, j); // 광선의 방향 벡터가 정해진다.
-			print_vec(scene->ray.dir); // 확인을 위한 출력 코드.
-			pixel_color = ray_color(scene); // 광선을 발사하여 물체와 충돌 유무에 따라 색이 변한다.
-			my_mlx_pixel_put(mlx, i, HEIGHT - 1 - j, create_trgb(0, pixel_color.x, pixel_color.y, pixel_color.z));
-			// 위쪽에서부터 찍을 것이기에 높이에서 빼줌.
-			++i;
-		}
-		--j;
-	}
-}
-*/

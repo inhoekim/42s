@@ -2,12 +2,14 @@
 #include "../view/view.h"
 #include "../vector/vector.h"
 
-t_sphere	sphere(t_coord center, double radius)
+void	*sphere(t_coord center, double radius)
 {
-	t_sphere	sphere;
+	t_sphere	*sphere;
 
-	sphere.center = center;
-	sphere.radius = radius;
+	if (!(sphere = (t_sphere *)malloc(sizeof(t_sphere))))
+		exit(1);
+	sphere->center = center;
+	sphere->radius = radius;
 	return (sphere);
 }
 

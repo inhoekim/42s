@@ -19,5 +19,5 @@ t_camera	init_camera(t_coord origin, t_vector dir);
 t_ray		ray(t_coord origin, t_vector vec);
 t_vector	ray_at(t_ray *ray, float t);
 t_ray		ray_primary(t_camera *cam, float u, float v);
-t_vector	ray_color(t_ray *ray, t_sphere *sphere);
+t_vector	ray_color(t_ray *ray, t_obj_list *world);
 #endif

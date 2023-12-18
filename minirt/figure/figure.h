@@ -13,6 +13,11 @@
 #ifndef FIGURE_H
 # define FIGURE_H
 # include "../minirt.h"
-t_sphere	sphere(t_coord center, double radius);
+void		*sphere(t_coord center, double radius);
 t_bool	    hit_sphere(t_sphere *sp, t_ray *ray, t_hit *hit);
+t_obj_list  *object(int type, void *data);
+void        obj_add(t_obj_list **lst, t_obj_list *new_element);
+t_obj_list  *obj_last(t_obj_list *lst);
+t_bool      hit(t_obj_list *world, t_ray *ray, t_hit *hit);
+t_bool      hit_obj(t_obj_list *world, t_ray *ray, t_hit *hit);
 #endif

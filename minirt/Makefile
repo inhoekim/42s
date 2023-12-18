@@ -27,7 +27,7 @@ CC= cc
 CFLAGS = -g #-Wall -Wextra -Werror 
 CLIB= -Lmlx -framework OpenGl -framework AppKit -Imlx
 HEADERS = vector.h view.h figure.h
-SRCS=main.c vector_func.c vector_func2.c vector_func3.c sphere.c
+SRCS=main.c vector_func.c vector_func2.c vector_func3.c sphere.c hit.c object.c
 SRCS+=camera.c ray.c
 OBJS=$(SRCS:.c=.o)
 NAME=miniRT

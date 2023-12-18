@@ -41,10 +41,12 @@ int main(void)
     t_triple	pixel_color;
     t_camera    cam;
     t_ray       ray;
-	t_sphere	sp;
+	t_obj_list	*world;
     
-    cam = init_camera(vec(0, 0, 0), vec(0, 0, -1));
-	sp = sphere(vec(0, 0, -5), 2);
+    cam = init_camera(vec(0, 0, 0), vec_unit(vec(0, -0.2, -0.3)));
+	world = object(SPHERE, sphere(vec(-1, 0, -5), 2));
+	obj_add(&world, object(SPHERE, sphere(vec(1, 0, -5), 2)));
+	obj_add(&world, object(SPHERE, sphere(vec(0, -1000, 0), 990)));
     y = HEIGHT - 1;
 	my_mlx.mlx = mlx_init();
 	my_mlx.win = mlx_new_window(my_mlx.mlx, WIDTH, HEIGHT, "miniRT");
@@ -57,7 +59,7 @@ int main(void)
        while (x < WIDTH)
         {
             ray = ray_primary(&cam, x / (float)(WIDTH - 1), y / (float)(HEIGHT - 1));
-            pixel_color = ray_color(&ray, &sp);
+            pixel_color = ray_color(&ray, world);
             //write_color(pixel_color);
 			my_mlx_pixel_put(&my_mlx.data, x, HEIGHT - 1 - y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
             ++x;
