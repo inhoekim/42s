@@ -34,8 +34,12 @@ t_ray	ray_primary(t_camera *cam, float x, float y)
 {
 	t_vector	ray_vec;
 	t_coord		destination;
-	
-	destination = vec_add(vec_add(cam->left_bottom, x), y);
+	t_coord		d_horizon;
+	t_coord		d_vertical;
+
+	d_horizon = vec_mul_num(cam->horizon_vec, x);
+	d_vertical = vec_mul_num(cam->vertical_vec, y);
+	destination = vec_add(vec_add(cam->left_bottom, d_horizon), d_vertical);
 	ray_vec = vec_sub(destination, cam->origin); // 현재 픽셀의 좌표와 카메라의 좌표를 빼서 벡터를 만든다
 	return (ray(cam->origin, ray_vec));
 }
@@ -56,6 +60,7 @@ t_vector	ray_color(t_ray *ray, t_sphere *sphere)
 	return (vec_add(vec_mul_num(vec(1, 1, 1), 1.0 - num), vec_mul_num(vec(0.5, 0.7, 1.0), num)));
 }
 
+/*
 static void raytracing(t_scene *scene, t_mlx *mlx)
 {
 	int     i; // x
@@ -79,3 +84,4 @@ static void raytracing(t_scene *scene, t_mlx *mlx)
 		--j;
 	}
 }
+*/

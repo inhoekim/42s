@@ -15,8 +15,7 @@
 # define VIEW_H
 # include "../minirt.h"
 
-t_camera	init_camera(t_canvas *canvas, t_vector origin);
-t_canvas	init_canvas(int width, int height);
+t_camera	init_camera(t_coord origin, t_vector dir);
 t_ray		ray(t_coord origin, t_vector vec);
 t_vector	ray_at(t_ray *ray, float t);
 t_ray		ray_primary(t_camera *cam, float u, float v);

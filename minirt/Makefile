@@ -24,7 +24,7 @@ vpath %.c $(SRC_DIRS)
 
 CC= cc 
 #-g3 -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g #-Wall -Wextra -Werror 
 CLIB= -Lmlx -framework OpenGl -framework AppKit -Imlx
 HEADERS = vector.h view.h figure.h
 SRCS=main.c vector_func.c vector_func2.c vector_func3.c sphere.c

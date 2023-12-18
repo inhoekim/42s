@@ -15,8 +15,8 @@
 # define FALSE 0
 # define TRUE 1
 # define INF 987654321
-# define WIDTH 300
-# define HEIGHT 600
+# define WIDTH 400
+# define HEIGHT 400
 typedef struct s_triple
 {
 	float	x;
