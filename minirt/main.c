@@ -21,11 +21,11 @@ void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	key_hook(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_mlx *my_mlx)
 {
 	if(keycode == 53)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_window(my_mlx->mlx, my_mlx->win);
 		exit(0);
 	}
 	return (0);
@@ -35,13 +35,9 @@ int main(void)
 {
     int         x;
     int         y;
-	/*
-    float      normalized_x;
-    float      normalized_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_data      data;
-	*/
+	t_mlx		my_mlx;
     t_triple	pixel_color;
     t_camera    cam;
     t_ray       ray;
@@ -49,9 +45,12 @@ int main(void)
     
     cam = init_camera(vec(0, 0, 0), vec(0, 0, -1));
 	sp = sphere(vec(0, 0, -5), 2);
-
-	printf("P3\n%d %d\n255\n", WIDTH, HEIGHT);
     y = HEIGHT - 1;
+	my_mlx.mlx = mlx_init();
+	my_mlx.win = mlx_new_window(my_mlx.mlx, WIDTH, HEIGHT, "miniRT");
+	my_mlx.data.img = mlx_new_image(my_mlx.mlx, WIDTH, HEIGHT);
+	my_mlx.data.addr = mlx_get_data_addr(my_mlx.data.img, &my_mlx.data.bits_per_pixel, &my_mlx.data.line_length, &my_mlx.data.endian);
+	//printf("P3\n%d %d\n255\n", WIDTH, HEIGHT);
     while (y >= 0)
     {
         x = 0;
@@ -59,13 +58,13 @@ int main(void)
         {
             ray = ray_primary(&cam, x / (float)(WIDTH - 1), y / (float)(HEIGHT - 1));
             pixel_color = ray_color(&ray, &sp);
-            write_color(pixel_color);
-			//my_mlx_pixel_put(&data, x, canv.height - 1 - y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
+            //write_color(pixel_color);
+			my_mlx_pixel_put(&my_mlx.data, x, HEIGHT - 1 - y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
             ++x;
         }
         --y;
     }
-	//mlx_put_image_to_window(vars.mlx, vars.win, data.img, 0, 0);
-	//mlx_key_hook(vars.win, key_hook, &vars);
-	//mlx_loop(mlx_ptr);
+	mlx_put_image_to_window(my_mlx.mlx, my_mlx.win, my_mlx.data.img, 0, 0);
+	mlx_key_hook(my_mlx.win, key_hook, &my_mlx);
+	mlx_loop(my_mlx.mlx);
 }

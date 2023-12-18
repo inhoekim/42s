@@ -63,9 +63,10 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 }	t_data;
-typedef struct s_vars {
+typedef struct s_mlx
+{
 	void		*mlx;
 	void		*win;
-	t_data		image;
-}	t_vars;
+	t_data		data;
+}	t_mlx;
 #endif
