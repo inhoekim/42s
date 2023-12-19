@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:41:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/19 20:16:40 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/20 06:55:34 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,13 @@ t_ray	ray_primary(t_camera *cam, float x, float y)
 //광선이 최종적으로 얻게된 픽셀의 색상 값을 리턴.
 t_vector	ray_color(t_ray *ray, t_obj_list *world, t_info *info)
 {
-	float		num;
 	t_hit		hit_rec;
 
 	hit_rec.t_min = 1e-6;
 	hit_rec.t_max = INF;
 	if (hit(world, ray, &hit_rec))
 		return (phong_lighting(info, hit_rec));
-	num = 0.5 * (ray->dir_vec.y + 1.0);
-	return (vec_add(vec_mul_num(vec(1, 1, 1), 1.0 - num), vec_mul_num(vec(0.5, 0.7, 1.0), num)));
+	return (vec(0, 0, 0));
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -82,7 +80,7 @@ void raytracing(t_camera *cam, t_obj_list *world, t_mlx *mlx, t_info *info)
 		{
 			ray = ray_primary(cam, x / (float)(WIDTH - 1), y / (float)(HEIGHT - 1));
 			pixel_color = ray_color(&ray, world, info);
-			my_mlx_pixel_put(&mlx->data, x, HEIGHT - 1 -y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
+			my_mlx_pixel_put(&mlx->data, x, HEIGHT - 1 -y, create_trgb(0, pixel_color.x, pixel_color.y, pixel_color.z));
 			++x;
 		}
 		--y;
