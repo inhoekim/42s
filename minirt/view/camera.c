@@ -11,8 +11,8 @@ t_camera	init_camera(t_coord origin, t_vector dir)
 
 	cam.origin = origin;
 	cam.dir = dir;
-	//cam.fov = 90;
-	//cam.focal_len = (float)WIDTH / 2 / get_tan(cam.fov / 2);
+	// cam.fov = 90;
+	// cam.focal_len = (float)WIDTH / 2 / get_tan(cam.fov / 2);
 	cam.focal_len = 1.0;
 	ratio_h = 2;
 	ratio_w = 2 * WIDTH / HEIGHT;

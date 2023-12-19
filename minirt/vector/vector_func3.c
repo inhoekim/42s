@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   vector_func3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:56:15 by seykim            #+#    #+#             */
-/*   Updated: 2023/12/16 18:26:17 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/19 21:02:25 by seykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include <stdio.h>
 
 float	vec_len(t_vector vec)
 {

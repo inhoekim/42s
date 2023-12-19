@@ -2,23 +2,20 @@
 #include "vector/vector.h"
 #include "view/view.h"
 #include "figure/figure.h"
+#include "initailize/initailize.h"
 
-void    write_color(t_coord color)
+
+void	print_error(char *str)
 {
-    printf("%d %d %d\n", (int)(255.999 * color.x),
-                        (int)(255.999 * color.y),
-                        (int)(255.999 * color.z));
+	printf("Error\n");
+	printf("%s\n", str);
+	exit(1);
 }
+
+
 int		create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-void			my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
 }
 
 int	key_hook(int keycode, t_mlx *my_mlx)
@@ -31,42 +28,27 @@ int	key_hook(int keycode, t_mlx *my_mlx)
 	return (0);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-    int         x;
-    int         y;
-	void	*mlx_ptr;
-	void	*win_ptr;
 	t_mlx		my_mlx;
-    t_triple	pixel_color;
-    t_camera    cam;
-    t_ray       ray;
+	t_camera	cam;
 	t_obj_list	*world;
-    
-    cam = init_camera(vec(0, 0, 0), vec_unit(vec(0, -0.2, -0.3)));
-	world = object(SPHERE, sphere(vec(-1, 0, -5), 2));
-	obj_add(&world, object(SPHERE, sphere(vec(1, 0, -5), 2)));
-	obj_add(&world, object(SPHERE, sphere(vec(0, -1000, 0), 990)));
-    y = HEIGHT - 1;
+	t_info		*info;
+
+	arg_error(argc,argv);
+	if (!(world = (t_obj_list *)malloc(sizeof(t_obj_list))))
+		print_error("No space to Malloc");
+	world->next = 0;
+	if (!(info = (t_info *)malloc(sizeof(t_info))))
+		print_error("No space to Malloc");
+	file_init(argv, world, info);
+	cam = init_camera(info->cam.origin, vec_unit(info->cam.dir));
+
 	my_mlx.mlx = mlx_init();
 	my_mlx.win = mlx_new_window(my_mlx.mlx, WIDTH, HEIGHT, "miniRT");
 	my_mlx.data.img = mlx_new_image(my_mlx.mlx, WIDTH, HEIGHT);
-	my_mlx.data.addr = mlx_get_data_addr(my_mlx.data.img, &my_mlx.data.bits_per_pixel, &my_mlx.data.line_length, &my_mlx.data.endian);
-	//printf("P3\n%d %d\n255\n", WIDTH, HEIGHT);
-    while (y >= 0)
-    {
-        x = 0;
-       while (x < WIDTH)
-        {
-            ray = ray_primary(&cam, x / (float)(WIDTH - 1), y / (float)(HEIGHT - 1));
-            pixel_color = ray_color(&ray, world);
-            //write_color(pixel_color);
-			my_mlx_pixel_put(&my_mlx.data, x, HEIGHT - 1 - y, create_trgb(0, pixel_color.x * 255.999, pixel_color.y * 255.999, pixel_color.z * 255.999));
-            ++x;
-        }
-        --y;
-    }
-	mlx_put_image_to_window(my_mlx.mlx, my_mlx.win, my_mlx.data.img, 0, 0);
+	my_mlx.data.addr = mlx_get_data_addr(my_mlx.data.img, &my_mlx.data.bits_per_pixel, &my_mlx.data.line_length, &my_mlx.data.endian);	
+	raytracing(&cam, world, &my_mlx, info);
 	mlx_key_hook(my_mlx.win, key_hook, &my_mlx);
 	mlx_loop(my_mlx.mlx);
 }

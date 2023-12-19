@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_func.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 19:54:21 by seykim            #+#    #+#             */
-/*   Updated: 2023/12/16 18:16:19 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/19 21:01:50 by seykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_vector	vec_div(t_vector a, t_vector b)
 
 	if (!b.x || !b.y || !b.z)
 	{
-		printf("Error\n:Devider is 0");
+		printf("Error\n: Devider is 0");
 		exit(1);
 	}
 	new_vec.x = a.x / b.x;

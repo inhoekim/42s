@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: seykim <seykim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 14:11:28 by seykim            #+#    #+#              #
-#    Updated: 2023/12/14 03:53:55 by inhkim           ###   ########.fr        #
+#    Updated: 2023/12/19 20:44:07 by seykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,30 @@ RESET := \033[0m
 LOG   := printf "[$(CYAN)INFO$(RESET)] %s\n"
 
 ## directory
-INC_DIRS = vector view figure
-SRC_DIRS = vector view figure
+INC_DIRS = vector view figure initailize util
+SRC_DIRS = vector view figure initailize util
 
 vpath %.h $(INC_DIRS)
 vpath %.c $(SRC_DIRS)
 
-CC= cc 
+CC= cc -g3 -fsanitize=address
 #-g3 -fsanitize=address
-CFLAGS = -g #-Wall -Wextra -Werror 
+CFLAGS = -g -Wall -Wextra -Werror 
 CLIB= -Lmlx -framework OpenGl -framework AppKit -Imlx
-HEADERS = vector.h view.h figure.h
-SRCS=main.c vector_func.c vector_func2.c vector_func3.c sphere.c hit.c object.c
-SRCS+=camera.c ray.c
+HEADERS = vector.h view.h figure.h initailize.h get_next_line.h minirt.h
+#main
+SRCS+=main.c
+# figure
+SRCS+=cylinder.c hit.c object.c plane.c sphere.c
+# initailize
+SRCS+=alight_check.c camera_check.c cylinder_check.c error_check.c file_init.c light_check.c plane_check.c sphere_check.c  ft_atof.c
+# util
+SRCS+=get_next_line.c get_next_line_utils.c
+# vector
+SRCS+=vector_func.c vector_func2.c vector_func3.c
+# view
+SRCS+=camera.c phong.c ray.c
+#
 OBJS=$(SRCS:.c=.o)
 NAME=miniRT
 LIBFT= libft/libft.a
