@@ -6,7 +6,7 @@
 /*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 02:37:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/19 20:34:04 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/20 19:37:09 by seykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,13 @@
 # define FALSE 0
 # define TRUE 1
 # define INF 987654321
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 640
+# define HEIGHT 480
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include "util/get_next_line.h"
-
-// typedef struct s_obj_list;
-// typedef struct s_triple;
-// typedef struct s_info;
-// typedef struct s_light;
-// typedef struct s_alight;
-// typedef struct s_camera;
-// typedef struct s_cylinder;
-// typedef struct s_cylinder_float;
 
 enum e_figure
 {
@@ -105,11 +96,8 @@ typedef struct s_plane
 {
 	t_coord		origin;
 	t_triple	color;
-	t_vector	pl_vec;
+	t_vector	pl_normal;
 }	t_plane;
-
-
-
 
 typedef struct s_ray
 {

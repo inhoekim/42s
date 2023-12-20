@@ -6,7 +6,7 @@
 #    By: seykim <seykim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 14:11:28 by seykim            #+#    #+#              #
-#    Updated: 2023/12/19 20:44:07 by seykim           ###   ########.fr        #
+#    Updated: 2023/12/20 18:36:55 by seykim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,14 @@ SRC_DIRS = vector view figure initailize util
 vpath %.h $(INC_DIRS)
 vpath %.c $(SRC_DIRS)
 
-CC= cc -g3 -fsanitize=address
-#-g3 -fsanitize=address
-CFLAGS = -g -Wall -Wextra -Werror 
+CC= cc 
+CFLAGS = -g -fsanitize=address #-Wall -Wextra -Werror 
 CLIB= -Lmlx -framework OpenGl -framework AppKit -Imlx
 HEADERS = vector.h view.h figure.h initailize.h get_next_line.h minirt.h
 #main
 SRCS+=main.c
 # figure
-SRCS+=cylinder.c hit.c object.c plane.c sphere.c
+SRCS+=cylinder.c hit.c object.c sphere.c plane.c
 # initailize
 SRCS+=alight_check.c camera_check.c cylinder_check.c error_check.c file_init.c light_check.c plane_check.c sphere_check.c  ft_atof.c
 # util

@@ -19,12 +19,10 @@ void	obj_add(t_obj_list **lst, t_obj_list *new_element)
 
 	if (*lst == 0)
 	{
-		printf("Asdasdas\n");
 		*lst = new_element;
 		return ;
 	}
 	curr = *lst;
-	// error
 	while (curr->next)
 		curr = curr->next;
 	curr->next = new_element;

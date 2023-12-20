@@ -2,20 +2,26 @@
 #include "../vector/vector.h"
 #include "../minirt.h"
 
-t_camera	init_camera(t_coord origin, t_vector dir)
+static float	get_tan(float degree)
+{
+	static const float	radian = M_PI / 180;
+
+	return (tan(degree * radian));
+}
+
+t_camera	init_camera(t_camera camera)
 {
 	t_camera	cam;
 	t_vector	temp_left_bot;
 	float		ratio_w;
 	float		ratio_h;
 
-	cam.origin = origin;
-	cam.dir = dir;
-	// cam.fov = 90;
-	// cam.focal_len = (float)WIDTH / 2 / get_tan(cam.fov / 2);
-	cam.focal_len = 1.0;
-	ratio_h = 2;
+	cam.origin = camera.origin;
+	cam.dir = camera.dir;
+	cam.fov = camera.fov;
 	ratio_w = 2 * WIDTH / HEIGHT;
+	cam.focal_len = ratio_w / 2 / get_tan(cam.fov / 2);
+	ratio_h = 2;
 	if (vec_len(vec_cross_product(vec(0, 1.0, 0), cam.dir)))
 		cam.horizon_vec = vec_mul_num(vec_unit(vec_cross_product(cam.dir, vec(0, 1.0, 0))), ratio_w);
 	else 

@@ -28,5 +28,9 @@ t_bool      hit_obj(t_obj_list *world, t_ray *ray, t_hit *hit)
 	hit_result = FALSE;
 	if (world->type == SPHERE)
 		hit_result = hit_sphere(world->data, ray, hit); //hit_sphere의 첫번째 인자도 t_sphere *에서 t_object *로 수정해주자.
+	if (world->type == CYLINDER)
+		hit_result = hit_cylinder(world->data, ray, hit);
+	if (world->type == PLANE)
+		hit_result = hit_plane(world->data, ray, hit);
 	return (hit_result);
 }

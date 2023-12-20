@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:41:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/20 06:55:34 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/20 19:58:47 by seykim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ t_vector	ray_color(t_ray *ray, t_obj_list *world, t_info *info)
 {
 	t_hit		hit_rec;
 
-	hit_rec.t_min = 1e-6;
+	hit_rec.t_min = 1e-3;
 	hit_rec.t_max = INF;
 	if (hit(world, ray, &hit_rec))
-		return (phong_lighting(info, hit_rec));
-	return (vec(0, 0, 0));
+		return (phong_lighting(info, world, hit_rec));
+	return (vec(204,255,255));
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -80,7 +80,7 @@ void raytracing(t_camera *cam, t_obj_list *world, t_mlx *mlx, t_info *info)
 		{
 			ray = ray_primary(cam, x / (float)(WIDTH - 1), y / (float)(HEIGHT - 1));
 			pixel_color = ray_color(&ray, world, info);
-			my_mlx_pixel_put(&mlx->data, x, HEIGHT - 1 -y, create_trgb(0, pixel_color.x, pixel_color.y, pixel_color.z));
+			my_mlx_pixel_put(&mlx->data, x, HEIGHT - 1 -y, create_trgb(0, pixel_color.x , pixel_color.y, pixel_color.z));
 			++x;
 		}
 		--y;

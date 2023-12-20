@@ -12,7 +12,6 @@ void	print_error(char *str)
 	exit(1);
 }
 
-
 int		create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
@@ -42,7 +41,8 @@ int main(int argc, char **argv)
 	if (!(info = (t_info *)malloc(sizeof(t_info))))
 		print_error("No space to Malloc");
 	file_init(argv, world, info);
-	cam = init_camera(info->cam.origin, vec_unit(info->cam.dir));
+	// cam = init_camera(info->cam.origin, vec_unit(info->cam.dir));
+	cam = init_camera(info->cam);
 
 	my_mlx.mlx = mlx_init();
 	my_mlx.win = mlx_new_window(my_mlx.mlx, WIDTH, HEIGHT, "miniRT");
