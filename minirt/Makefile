@@ -31,7 +31,7 @@ SRCS+=main.c
 # figure
 SRCS+=cylinder.c hit.c object.c sphere.c plane.c
 # initailize
-SRCS+=alight_check.c camera_check.c cylinder_check.c error_check.c file_init.c light_check.c plane_check.c sphere_check.c  ft_atof.c
+SRCS+=alight_check.c camera_check.c cylinder.c cylinder_check.c error_check.c file_init.c light_check.c plane_check.c sphere_check.c  ft_atof.c
 # util
 SRCS+=get_next_line.c get_next_line_utils.c
 # vector

@@ -49,9 +49,8 @@ t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, double hit_
     return (vec_unit(normal));
 }
 
-int      hit_cylinder_cap(t_obj_list *cy_obj, t_ray *ray, t_hit *rec, double height)
+int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, double height)
 {
-    const t_cylinder *cy = cy_obj->data;
     const double r = cy->num.delimeter / 2;
     const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->cy_vec, height));
     const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->cy_vec);
@@ -70,15 +69,12 @@ int      hit_cylinder_cap(t_obj_list *cy_obj, t_ray *ray, t_hit *rec, double hei
 
     // rec->normal = vunit(vminus(circle_center, ray->origin)); // vmult(ray->dir, root)하면 안돼!!!
     set_face_normal(ray, rec);
-    rec->albedo = cy_obj->albedo;
+    rec->albedo = cy->color;
     return (1);
 }
 
-int      hit_cylinder_side(t_obj_list *cy_obj, t_ray *ray, t_hit *rec)
+int      hit_cylinder_side(t_cylinder *cy, t_ray *ray, t_hit *rec)
 {
-    t_cylinder *cy;
-
- 
     //a, b, c는 각각 t에 관한 근의 공식 2차 방정식의 계수
     double  a;
 		double  half_b;
@@ -93,7 +89,6 @@ int      hit_cylinder_side(t_obj_list *cy_obj, t_ray *ray, t_hit *rec)
     double root;
     double hit_height;
     
-    cy = cy_obj->data;
     u = ray->dir_vec;
     o = cy->cy_vec;
     r = cy->num.delimeter / 2;
@@ -122,19 +117,17 @@ int      hit_cylinder_side(t_obj_list *cy_obj, t_ray *ray, t_hit *rec)
     rec->coord = ray_at(ray, root); // 교점의 좌표를 rec에 저장한다.
     rec->normal_vec = get_cylinder_normal(cy, rec->coord, hit_height);
 	  set_face_normal(ray, rec); 
-    rec->albedo = cy_obj->albedo;
+    rec->albedo = cy->color;
     return (1);
 }
 
-t_bool      hit_cylinder(t_obj_list *cy_obj, t_ray *ray, t_hit *rec)
+t_bool      hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec)
 {
-    t_cylinder *cy = cy_obj->data;
     int result;
 
     result = 0;
-	printf("%p\n", cy);
-    result += hit_cylinder_cap(cy_obj, ray, rec, cy->num.height / 2);
-    result += hit_cylinder_cap(cy_obj, ray, rec, -(cy->num.height / 2));
-    result += hit_cylinder_side(cy_obj, ray, rec);
+    result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
+    result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
+    result += hit_cylinder_side(cy, ray, rec);
     return (result);
 }
