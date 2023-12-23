@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seykim <seykim@student.42.fr>              +#+  +:+       +#+         #
+#    By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/06 14:11:28 by seykim            #+#    #+#              #
-#    Updated: 2023/12/20 18:36:55 by seykim           ###   ########.fr        #
+#    Updated: 2023/12/23 21:20:27 by inhkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ HEADERS = vector.h view.h figure.h initailize.h get_next_line.h minirt.h
 #main
 SRCS+=main.c
 # figure
-SRCS+=cylinder.c hit.c object.c sphere.c plane.c
+SRCS+=hit.c object.c sphere.c plane.c
 # initailize
 SRCS+=alight_check.c camera_check.c cylinder.c cylinder_check.c error_check.c file_init.c light_check.c plane_check.c sphere_check.c  ft_atof.c
 # util
