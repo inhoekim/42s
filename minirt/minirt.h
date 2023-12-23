@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 02:37:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/20 19:37:09 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/23 20:30:55 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_cylinder_float
 {
 	float		delimeter;
 	float		height;
-} t_cylinder_float;
+}	t_cylinder_float;
 
 typedef struct s_cylinder
 {

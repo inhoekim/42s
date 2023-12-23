@@ -20,8 +20,9 @@ t_triple    point_light_get(t_light *light, t_obj_list *world, t_hit hit)
 	t_ray		light_ray;
 	float		diffuse_weight;
 
+	hit.coord = vec_add(hit.coord, vec_mul_num(hit.normal_vec, 1e-3));
     light_vec = vec_sub(light->origin, hit.coord);
-	light_ray = ray(vec_add(hit.coord, vec_mul_num(hit.normal_vec, 1e-3)), light_vec);
+	light_ray = ray(hit.coord, light_vec);
 	if (check_shadow(world, light_ray, vec_len(light_vec)))
 		return (vec(0, 0, 0));
     diffuse_weight = fmaxf(vec_dot_product(hit.normal_vec, light_ray.dir), 0.0);
@@ -36,7 +37,7 @@ t_triple        phong_lighting(t_info *info, t_obj_list *world, t_hit hit)
     light_color = vec_add(light_color, vec_mul_num(vec_div_num(info->a_light.color, 255), info->a_light.ratio));
 	if (light_color.x > 1.0)
 		light_color.x = 1.0;
-	if (light_color.y > 1.0) 
+	if (light_color.y > 1.0)
 		light_color.y = 1.0;
 	if (light_color.z > 1.0)
 		light_color.z = 1.0;

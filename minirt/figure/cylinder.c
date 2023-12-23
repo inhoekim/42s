@@ -25,17 +25,16 @@ t_cylinder_float	cylinder_float(float del, float height)
     return (num);
 }
 
-int	cy_boundary(t_cylinder *cy, t_vector at_point)
+float	cy_boundary(t_cylinder *cy, t_vector at_point)
 {
 	float	hit_height;
 	float	max_height;
 
 	hit_height = vec_dot_product(vec_sub(at_point, cy->bot_origin), cy->dir);
 	max_height = cy->num.height;
-	
-	if (fabs(hit_height) > max_height)
+	if (fabs(hit_height) > max_height || hit_height < 0)
 		return (0);
-	return (1);
+	return (hit_height);
 }
 
 t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, float hit_height)
@@ -49,12 +48,12 @@ t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, float hit_h
     return (vec_unit(normal));
 }
 
-/*
 int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height)
 {
     const float r = cy->num.delimeter / 2;
-    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height));
-    const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir);
+    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height / 2));
+    // const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir);
+	const float root =  (vec_dot_product(vec_sub(cy->origin, ray->origin), cy->dir)) / (vec_dot_product(ray->dir, cy->dir));
     const float diameter = vec_len(vec_sub(circle_center, ray_at(ray, root)));
 	if (fabs(r) < fabs(diameter))
 		return (0);
@@ -73,7 +72,6 @@ int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height)
     rec->albedo = cy->color;
     return (1);
 }
-*/
 
 int      hit_cylinder_side(t_cylinder *cy, t_ray *ray, t_hit *rec)
 {
@@ -98,21 +96,22 @@ int      hit_cylinder_side(t_cylinder *cy, t_ray *ray, t_hit *rec)
         return (0);
     // 이 시점에서 판별식이 참이 나왔기에 근이 존재한다고 판단한다.
     sqrt_f = sqrtf(discriminant); 
-    root = (-half_b - sqrt_f) / a;  // 근의 공식 해, 작은 근부터 고려.
-    if (root < rec->t_min || rec->t_max < root)
-    {
-    root = (-half_b + sqrt_f) / a; 
-        if (root < rec->t_min || rec->t_max < root)
-        return (0);
-    }
+	root = (-half_b - sqrt_f) / a;  // 근의 공식 해, 작은 근부터 고려.
+	if (root < rec->t_min || rec->t_max < root)
+	{
+		root = (-half_b + sqrt_f) / a; 
+		if (root < rec->t_min || rec->t_max < root)
+			return (0);
+	}
     t_triple temp_coord = ray_at(ray, root);
     if (!(hit_height = cy_boundary(cy, temp_coord)))
         return (0);
     rec->t = root; // 광선의 원점과 교점까지의 거리를 rec에 저장한다.
     rec->coord = temp_coord; // 교점의 좌표를 rec에 저장한다.
     rec->normal_vec = get_cylinder_normal(cy, rec->coord, hit_height);
-	set_face_normal(ray, rec); 
+	set_face_normal(ray, rec);
     rec->albedo = cy->color;
+
     return (1);
 }
 
@@ -121,8 +120,8 @@ t_bool      hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec)
     int result;
 
     result = 0;
-    //result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
-    //result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
+    // result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
+    result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
     result += hit_cylinder_side(cy, ray, rec);
     return (result);
 }

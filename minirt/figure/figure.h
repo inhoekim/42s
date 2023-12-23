@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figure.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 03:08:42 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/20 20:23:08 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/23 19:50:20 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_bool				hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec);
 int					hit_cylinder_side(t_cylinder *cy, t_ray *ray, t_hit *rec);
 t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, float hit_height);
 int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height);
-int	cy_boundary(t_cylinder *cy, t_vector at_point);
+float	cy_boundary(t_cylinder *cy, t_vector at_point);
 t_obj_list  		*object(int type, void *data, t_triple albedo);
 void    		    obj_add(t_obj_list **lst, t_obj_list *new_element);
 t_obj_list			*obj_last(t_obj_list *lst);

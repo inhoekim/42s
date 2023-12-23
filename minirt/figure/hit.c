@@ -9,11 +9,11 @@ t_bool      hit(t_obj_list *world, t_ray *ray, t_hit *hit)
 	hit_anything = FALSE;
 	while (world)
 	{
-		if (hit_obj(world, ray, hit))
+		if (hit_obj(world, ray, &temp_hit))
 		{
 			hit_anything = TRUE;
-			//temp_hit.t_max = temp_hit.t;
-			//*hit = temp_hit;
+			temp_hit.t_max = temp_hit.t;
+			*hit = temp_hit;
 		}
 		world = world->next;
 	}
