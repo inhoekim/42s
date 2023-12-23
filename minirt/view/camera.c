@@ -19,9 +19,9 @@ t_camera	init_camera(t_camera camera)
 	cam.origin = camera.origin;
 	cam.dir = camera.dir;
 	cam.fov = camera.fov;
-	ratio_w = 2 * WIDTH / HEIGHT;
-	cam.focal_len = ratio_w / 2 / get_tan(cam.fov / 2);
 	ratio_h = 2;
+	ratio_w = ratio_h * WIDTH / HEIGHT;
+	cam.focal_len = ratio_w / 2 / get_tan(cam.fov / 2);
 	if (vec_len(vec_cross_product(cam.dir, vec(0, 1.0, 0))))
 		cam.horizon_vec = vec_mul_num(vec_unit(vec_cross_product(cam.dir, vec(0, 1.0, 0))), ratio_w);
 	else 

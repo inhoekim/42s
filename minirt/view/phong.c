@@ -7,7 +7,7 @@ static t_bool	check_shadow(t_obj_list *obj_lst, t_ray light_ray, float light_len
 {
     t_hit hit_rec;
 
-    hit_rec.t_min = 0;
+    hit_rec.t_min = FZERO;
     hit_rec.t_max = light_len;
     if (hit(obj_lst, &light_ray, &hit_rec))
         return (TRUE);
@@ -24,7 +24,7 @@ t_triple    point_light_get(t_light *light, t_obj_list *world, t_hit hit)
 	light_ray = ray(vec_add(hit.coord, vec_mul_num(hit.normal_vec, 1e-3)), light_vec);
 	if (check_shadow(world, light_ray, vec_len(light_vec)))
 		return (vec(0, 0, 0));
-    diffuse_weight = fmaxf(vec_dot_product(hit.normal_vec, light_ray.dir_vec), 0.0);
+    diffuse_weight = fmaxf(vec_dot_product(hit.normal_vec, light_ray.dir), 0.0);
     return (vec_mul_num(vec(1, 1, 1), diffuse_weight));
 }
 

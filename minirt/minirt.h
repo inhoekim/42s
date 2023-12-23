@@ -14,7 +14,8 @@
 # define MINIRT_H
 # define FALSE 0
 # define TRUE 1
-# define INF 987654321
+# define FINF 1e20
+# define FZERO 1e-4
 # define WIDTH 640
 # define HEIGHT 480
 
@@ -89,7 +90,8 @@ typedef struct s_cylinder
 	t_coord				origin;
 	t_cylinder_float	num;
 	t_triple			color;
-	t_vector			cy_vec;
+	t_vector			dir;
+	t_coord				bot_origin;
 }	t_cylinder;
 
 typedef struct s_plane
@@ -102,7 +104,7 @@ typedef struct s_plane
 typedef struct s_ray
 {
 	t_coord		origin;
-	t_vector	dir_vec;
+	t_vector	dir;
 }	t_ray;
 
 typedef struct s_sphere

@@ -22,14 +22,14 @@ t_ray	ray(t_coord origin, t_vector vec)
 	t_ray	ray;
 
 	ray.origin = origin;
-	ray.dir_vec = vec_unit(vec);
+	ray.dir = vec_unit(vec);
 	return (ray);
 }
 
 //ray origin point 부터 방향벡터 ray dir * t 만큼 떨어진 점.
 t_coord	ray_at(t_ray *ray, float t)
 {
-	return (vec_add(ray->origin, vec_mul_num(ray->dir_vec, t)));
+	return (vec_add(ray->origin, vec_mul_num(ray->dir, t)));
 }
 
 t_ray	ray_primary(t_camera *cam, float x, float y)
@@ -51,8 +51,8 @@ t_vector	ray_color(t_ray *ray, t_obj_list *world, t_info *info)
 {
 	t_hit		hit_rec;
 
-	hit_rec.t_min = 1e-3;
-	hit_rec.t_max = INF;
+	hit_rec.t_min = FZERO;
+	hit_rec.t_max = FINF;
 	if (hit(world, ray, &hit_rec))
 		return (phong_lighting(info, world, hit_rec));
 	return (vec(204,255,255));

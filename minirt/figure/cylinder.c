@@ -10,50 +10,51 @@ void	*cylinder(t_coord origin, t_triple color, t_vector dir, t_cylinder_float nu
 		print_error("No space to malloc cylinder");
 	cylinder->origin = origin;
 	cylinder->color = color;
-	cylinder->cy_vec = dir;
+	cylinder->dir = dir;
 	cylinder->num.delimeter = num.delimeter;
 	cylinder->num.height = num.height;
 	return (cylinder);
 }
 
-t_cylinder_float	cylinder_float(float x, float y)
+t_cylinder_float	cylinder_float(float del, float height) 
 {
-	t_cylinder_float	cylinder_float;
+    t_cylinder_float num;
 
-	cylinder_float.delimeter = x;
-	cylinder_float.height = y;
-	return (cylinder_float);
+    num.delimeter = del;
+    num.height = height;
+    return (num);
 }
 
 int	cy_boundary(t_cylinder *cy, t_vector at_point)
 {
-	double	hit_height;
-	double	max_height;
+	float	hit_height;
+	float	max_height;
 
-	hit_height = vec_dot_product(vec_sub(at_point, cy->origin), cy->cy_vec);
-	max_height = cy->num.height / 2;
+	hit_height = vec_dot_product(vec_sub(at_point, cy->bot_origin), cy->dir);
+	max_height = cy->num.height;
 	
 	if (fabs(hit_height) > max_height)
 		return (0);
 	return (1);
 }
 
-t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, double hit_height)
+t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, float hit_height)
 {
     t_triple hit_center;
     t_vector normal;
 
-    hit_center = vec_add(cy->origin, vec_mul_num(cy->cy_vec, hit_height));
+    hit_center = vec_add(cy->bot_origin, vec_mul_num(cy->dir, hit_height));
     normal = vec_sub(at_point, hit_center);
 
     return (vec_unit(normal));
 }
 
-int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, double height)
+/*
+int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height)
 {
-    const double r = cy->num.delimeter / 2;
-    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->cy_vec, height));
-    const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->cy_vec);
+    const float r = cy->num.delimeter / 2;
+    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height));
+    const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir);
     const float diameter = vec_len(vec_sub(circle_center, ray_at(ray, root)));
 	if (fabs(r) < fabs(diameter))
 		return (0);
@@ -63,60 +64,54 @@ int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, double height)
     rec->coord = ray_at(ray, root);
     rec->t_max = rec->t;
     if (0 < height)
-        rec->normal_vec = cy->cy_vec;
+        rec->normal_vec = cy->dir;
     else
-        rec->normal_vec = vec_mul_num(cy->cy_vec, -1);
+        rec->normal_vec = vec_mul_num(cy->dir, -1);
 
     // rec->normal = vunit(vminus(circle_center, ray->origin)); // vmult(ray->dir, root)하면 안돼!!!
     set_face_normal(ray, rec);
     rec->albedo = cy->color;
     return (1);
 }
+*/
 
 int      hit_cylinder_side(t_cylinder *cy, t_ray *ray, t_hit *rec)
 {
-    //a, b, c는 각각 t에 관한 근의 공식 2차 방정식의 계수
-    double  a;
-		double  half_b;
-    double  c;
-    t_vector  u;
-    t_vector  o;
-    t_vector  delta_P;
-    double r;
+	t_vector  w; // 실린더의 바닥과 카메라의 중점을 잇는 벡터
+    float   a;
+    float   half_b;
+    float   c;
+    float   r;
 
-    double discriminant; // 판별식
-    double sqrtd;
-    double root;
-    double hit_height;
+    float discriminant; // 판별식
+    float sqrt_f;
+    float root;
+    float hit_height;
     
-    u = ray->dir_vec;
-    o = cy->cy_vec;
     r = cy->num.delimeter / 2;
-    delta_P = vec_sub(ray->origin, cy->origin);
-    a = vec_len_square(vec_cross_product(u, o));
-    half_b = vec_dot_product(vec_cross_product(u, o), vec_cross_product(delta_P, o));
-    c = vec_len_square(vec_cross_product(delta_P, o)) - pow(r, 2);
+	w = vec_sub(ray->origin, cy->bot_origin);
+    a = vec_dot_product(ray->dir, ray->dir) - powf(vec_dot_product(ray->dir, cy->dir), 2.0);
+    half_b = vec_dot_product(ray->dir, w) - (vec_dot_product(ray->dir, cy->dir) * vec_dot_product(w, cy->dir));
+    c = vec_dot_product(w, w) - powf(vec_dot_product(w, cy->dir), 2) - r * r;
     discriminant = half_b * half_b - a * c;
-    if (discriminant < 0) 
+    if (discriminant < FZERO) 
         return (0);
     // 이 시점에서 판별식이 참이 나왔기에 근이 존재한다고 판단한다.
-    sqrtd = sqrt(discriminant); 
-    root = (-half_b - sqrtd) / a;  // 근의 공식 해, 작은 근부터 고려.
+    sqrt_f = sqrtf(discriminant); 
+    root = (-half_b - sqrt_f) / a;  // 근의 공식 해, 작은 근부터 고려.
     if (root < rec->t_min || rec->t_max < root)
     {
-    root = (-half_b + sqrtd) / a; 
+    root = (-half_b + sqrt_f) / a; 
         if (root < rec->t_min || rec->t_max < root)
         return (0);
     }
-    //    print_vec(vmult(ray->dir, root));
-    // print_vec(ray_at(ray, root));
-    if (!(hit_height = cy_boundary(cy, ray_at(ray, root))))
+    t_triple temp_coord = ray_at(ray, root);
+    if (!(hit_height = cy_boundary(cy, temp_coord)))
         return (0);
-
     rec->t = root; // 광선의 원점과 교점까지의 거리를 rec에 저장한다.
-    rec->coord = ray_at(ray, root); // 교점의 좌표를 rec에 저장한다.
+    rec->coord = temp_coord; // 교점의 좌표를 rec에 저장한다.
     rec->normal_vec = get_cylinder_normal(cy, rec->coord, hit_height);
-	  set_face_normal(ray, rec); 
+	set_face_normal(ray, rec); 
     rec->albedo = cy->color;
     return (1);
 }
@@ -126,8 +121,8 @@ t_bool      hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec)
     int result;
 
     result = 0;
-    result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
-    result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
+    //result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
+    //result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
     result += hit_cylinder_side(cy, ray, rec);
     return (result);
 }

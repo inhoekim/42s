@@ -20,8 +20,8 @@ t_bool	hit_plane(t_plane *pl, t_ray *ray, t_hit *hit)
 	float	denom;
 	float	root;
 
-	denom = vec_dot_product(ray->dir_vec, pl->pl_normal);
-	if (fabs(denom) < 1e-3)
+	denom = vec_dot_product(ray->dir, pl->pl_normal);
+	if (fabs(denom) < FZERO)
 		return (FALSE);
 	num = vec_dot_product(vec_sub(pl->origin, ray->origin), pl->pl_normal);
 	root = num / denom;

@@ -28,6 +28,7 @@ void	cylinder_check(t_obj_list *temp, char *arr, int idx)
 	split = ft_split(arr, 32);
 	cylinder_check2(split, idx, cy_temp);
 	free_split(split);
+	cy_temp->bot_origin = vec_sub(cy_temp->origin, vec_mul_num(cy_temp->dir, cy_temp->num.height / 2.0));
 	obj_add(&temp, object(CYLINDER, cy_temp, vec(0, 0, 0)));
 }
 
@@ -87,11 +88,11 @@ static void	cylinder_check4(char *str, t_cylinder *temp)
 		else
 		{
 			if (idx == 0)
-				temp->cy_vec.x = num;
+				temp->dir.x = num;
 			else if (idx == 1)
-				temp->cy_vec.y = num;
+				temp->dir.y = num;
 			else if (idx == 2)
-				temp->cy_vec.z = num;
+				temp->dir.z = num;
 		}
 		idx++;
 	}
