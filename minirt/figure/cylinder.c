@@ -52,6 +52,7 @@ int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height)
 {
     const float r = cy->num.delimeter / 2;
     const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height / 2));
+	printf("%f %f %f\n", circle_center.x,circle_center.y,circle_center.z);
     // const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir);
 	const float root =  (vec_dot_product(vec_sub(cy->origin, ray->origin), cy->dir)) / (vec_dot_product(ray->dir, cy->dir));
     const float diameter = vec_len(vec_sub(circle_center, ray_at(ray, root)));
