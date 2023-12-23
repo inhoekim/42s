@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:23:06 by seykim            #+#    #+#             */
-/*   Updated: 2023/12/19 20:42:31 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/23 14:20:58 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	cylinder_check(t_obj_list *temp, char *arr, int idx)
 	split = ft_split(arr, 32);
 	cylinder_check2(split, idx, cy_temp);
 	free_split(split);
+	cy_temp->dir = vec_unit(cy_temp->dir);
 	cy_temp->bot_origin = vec_sub(cy_temp->origin, vec_mul_num(cy_temp->dir, cy_temp->num.height / 2.0));
 	obj_add(&temp, object(CYLINDER, cy_temp, vec(0, 0, 0)));
 }
