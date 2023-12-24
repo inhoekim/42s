@@ -121,8 +121,9 @@ t_bool      hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec)
     int result;
 
     result = 0;
-    result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
+
 	result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
+    result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
     result += hit_cylinder_side(cy, ray, rec);
     return (result);
 }

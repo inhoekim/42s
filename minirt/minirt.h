@@ -6,7 +6,7 @@
 /*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 02:37:15 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/24 14:45:14 by inhkim           ###   ########.fr       */
+/*   Updated: 2023/12/24 16:22:18 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define TRUE 1
 # define FINF 1e20
 # define FZERO 1e-4
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1600
+# define HEIGHT 900
 
 # include <unistd.h>
 # include <stdlib.h>

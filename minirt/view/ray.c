@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seykim <seykim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: inhkim <inhkim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 19:41:43 by inhkim            #+#    #+#             */
-/*   Updated: 2023/12/20 19:58:47 by seykim           ###   ########.fr       */
+/*   Updated: 2023/12/24 15:56:44 by inhkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_vector	ray_color(t_ray *ray, t_obj_list *world, t_info *info)
 	hit_rec.t_max = FINF;
 	if (hit(world, ray, &hit_rec))
 		return (phong_lighting(info, world, hit_rec));
-	return (vec(204,255,255));
+	hit_rec.t = 0.5 * (ray->dir.y + 1.0);
+    return (vec_mul_num(vec(1.0 - 0.5 * hit_rec.t, 1.0 - 0.3 * hit_rec.t, 1.0), 255));
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
