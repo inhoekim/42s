@@ -51,8 +51,8 @@ t_vector      get_cylinder_normal(t_cylinder *cy, t_vector at_point, float hit_h
 int      hit_cylinder_cap(t_cylinder *cy, t_ray *ray, t_hit *rec, float height)
 {
     const float r = cy->num.delimeter / 2;
-    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height / 2));
-    const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir);
+    const t_vector    circle_center = vec_add(cy->origin, vec_mul_num(cy->dir, height));
+    const float root = vec_dot_product(vec_sub(circle_center, ray->origin), cy->dir) / vec_dot_product(ray->dir, cy->dir);
 	// printf("%f\n" ,root );
 	// const float root =  (vec_dot_product(vec_sub(cy->origin, ray->origin), cy->dir)) / (vec_dot_product(ray->dir, cy->dir));
     const float diameter = vec_len(vec_sub(circle_center, ray_at(ray, root)));
@@ -121,8 +121,8 @@ t_bool      hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit *rec)
     int result;
 
     result = 0;
-    result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
     result += hit_cylinder_cap(cy, ray, rec, -(cy->num.height / 2));
+	result += hit_cylinder_cap(cy, ray, rec, cy->num.height / 2);
     result += hit_cylinder_side(cy, ray, rec);
     return (result);
 }
